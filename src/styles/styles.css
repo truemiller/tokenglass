@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+* {
+    font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: black;
+    line-height: 1.1em;
+    letter-spacing: -0.045em;
+}

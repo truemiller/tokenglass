@@ -2,27 +2,31 @@ import { useEffect, useState } from "react";
 import { TOKENS } from "./consts/tokens";
 import { getBalance } from "./helper/EthersHelper";
 import { ethers } from "ethers";
-import { APP_NAME } from "./consts/config";
 import { TokenRow } from "./components/TokenRow";
-import { Navbar } from "./components/Navbar";
 
-export default function Wallet({address}) {
-
+export default function Wallet({ address }) {
   const [tokens, setTokens] = useState([]);
 
   // set tokens
   useEffect(() => {
+    setTokens([]);
     const getTokens = async () => {
       // get tokens with balance
       let tokensWithBalance = TOKENS.map(async (token) => {
-        token["balance"] = await getBalance(token, address);
+        if (token.address) {
+          // is a token
+          token["balance"] = await getBalance(token, address);
+        } else {
+          // is native token
+          token["balance"] = await token.chain.provider.getBalance(address);
+        }
         const resolvedToken = await token;
         if (token["balance"]) {
           token["balance"] = parseFloat(
             ethers.utils.formatEther(token["balance"])
           );
+          return token;
         }
-        return token;
       });
       // resolve all the promises
       let resolved = await Promise.all(tokensWithBalance);
@@ -33,11 +37,15 @@ export default function Wallet({address}) {
     getTokens().then((r) => r);
   }, [address]);
 
+  useEffect(() => {
+    console.log(tokens);
+  }, [tokens]);
+
   return (
     <>
       <div className={"container"}>
-        Connected: <pre>{address}</pre>
-        <table className={"table"}>
+        Connected to: <pre>{address}</pre>
+        <table className={"table table-white border shadow"}>
           <thead className={"bg-light"}>
             <tr>
               <th className={"fw-bolder"}>Token</th>
