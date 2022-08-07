@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navbar } from "./components/Navbar";
+import {BrowserRouter} from "react-router-dom"
+import Wallet from "./Wallet";
+import {createContext, useContext, useEffect, useState} from "react";
 
-function App() {
+const AddressContext = createContext("")
+
+export default function App() {
+
+  const [address, setAddress] = useState("")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AddressContext.Provider value={address}>
+      <Navbar setAddress={setAddress}></Navbar>
+      <div className="container text-center my-5">
+        <h1>Wow amazing</h1>
+      </div>
+      <hr/>
+      <Wallet address={address}/>
+    </AddressContext.Provider>
   );
 }
-
-export default App;
