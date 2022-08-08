@@ -1,45 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TOKENS } from "./consts/tokens";
 import { getBalance } from "./helper/EthersHelper";
 import { ethers } from "ethers";
 import { TokenRow } from "./components/TokenRow";
+import { TokensContext } from "./App";
 
-export default function Wallet({ address }) {
-  const [tokens, setTokens] = useState([]);
-
-  // set tokens
-  useEffect(() => {
-    setTokens([]);
-    const getTokens = async () => {
-      // get tokens with balance
-      let tokensWithBalance = TOKENS.map(async (token) => {
-        if (token.address) {
-          // is a token
-          token["balance"] = await getBalance(token, address);
-        } else {
-          // is native token
-          token["balance"] = await token.chain.provider.getBalance(address);
-        }
-        const resolvedToken = await token;
-        if (token["balance"]) {
-          token["balance"] = parseFloat(
-            ethers.utils.formatEther(token["balance"])
-          );
-          return token;
-        }
-      });
-      // resolve all the promises
-      let resolved = await Promise.all(tokensWithBalance);
-      // sort by balance
-      resolved = resolved.sort((a, b) => a.balance < b.balance);
-      setTokens(resolved);
-    };
-    getTokens().then((r) => r);
-  }, [address]);
-
-  useEffect(() => {
-    console.log(tokens);
-  }, [tokens]);
+export default function Wallet({ address, setTokens }) {
+  const tokens = useContext(TokensContext);
 
   return (
     <>
@@ -50,6 +17,8 @@ export default function Wallet({ address }) {
             <tr>
               <th className={"fw-bolder"}>Token</th>
               <th className={"fw-bolder"}>Balance</th>
+              <th className={"fw-bolder"}>Price</th>
+              <th className={"fw-bolder"}>Total</th>
             </tr>
           </thead>
           <tbody>

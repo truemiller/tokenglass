@@ -10,5 +10,6 @@ export const CHAINS = {
         name: "Avalanche",
       }
     ),
+    logo: "https://snowtrace.io/images/svg/brands/mainbrand-1.svg?v=22.7.4.0",
   },
 };

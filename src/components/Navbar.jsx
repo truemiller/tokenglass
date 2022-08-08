@@ -13,9 +13,9 @@ export function Navbar({ setAddress }) {
 
   return (
     <>
-      <nav className="navbar bg-light shadow border-bottom">
-        <div className="container">
-          <a href="#" className="navbar-brand">
+      <nav className="navbar bg-white border-left border-bottom">
+        <div className="container-fluid">
+          <a href="#" className="navbar-brand fw-bolder">
             {APP_NAME}
           </a>
 
@@ -32,7 +32,7 @@ export function Navbar({ setAddress }) {
 
 function ConnectButton({ handleConnect }) {
   return (
-    <button className="btn btn-success" onClick={handleConnect}>
+    <button className="btn" onClick={handleConnect}>
       Connect
     </button>
   );
