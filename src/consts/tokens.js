@@ -66,11 +66,27 @@ export const TOKENS = [
     coingecko: "pollen",
   },
   {
-    name: "SHIABVAX",
+    name: "SHIBAVAX",
     symbol: "SHIBX",
     address: "0x440aBbf18c54b2782A4917b80a1746d3A2c2Cce1",
     chain: CHAINS.AVALANCHE,
     logo: "https://snowtrace.io/token/images/shibavax_32.png",
     coingecko: "shibavax",
+  },
+  {
+    name: "USD Tether (Bridged)",
+    symbol: "USDT.e",
+    address: "0xc7198437980c041c805A1EDcbA50c1Ce5db95118",
+    chain: CHAINS.AVALANCHE,
+    logo: "https://snowtrace.io/token/images/tether_32.png",
+    coingecko: "tether",
+  },
+  {
+    name: "USD Coin",
+    symbol: "USDC",
+    address: "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+    chain: CHAINS.AVALANCHE,
+    logo: "https://snowtrace.io/token/images/usdc_32.png",
+    coingecko: "usd-coin",
   },
 ];

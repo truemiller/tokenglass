@@ -4,7 +4,6 @@ import { AddressContext } from "../App";
 
 export function Navbar({ setAddress }) {
   const address = useContext(AddressContext);
-  console.log(address);
   const handleConnect = (e) => {
     window.ethereum.request({ method: "eth_requestAccounts" }).then((r) => {
       setAddress(window.ethereum.selectedAddress);
@@ -19,10 +18,10 @@ export function Navbar({ setAddress }) {
             {APP_NAME}
           </a>
 
-          {address === "" ? (
-            <ConnectButton handleConnect={handleConnect}></ConnectButton>
-          ) : (
+          {address ? (
             <DisconnectButton setAddress={setAddress}></DisconnectButton>
+          ) : (
+            <ConnectButton handleConnect={handleConnect}></ConnectButton>
           )}
         </div>
       </nav>
@@ -32,7 +31,7 @@ export function Navbar({ setAddress }) {
 
 function ConnectButton({ handleConnect }) {
   return (
-    <button className="btn" onClick={handleConnect}>
+    <button className="btn btn-primary rounded" onClick={handleConnect}>
       Connect
     </button>
   );
@@ -40,7 +39,7 @@ function ConnectButton({ handleConnect }) {
 
 function DisconnectButton({ setAddress }) {
   return (
-    <button className={"btn btn-danger"} onClick={() => setAddress("")}>
+    <button className={"btn btn-danger rounded"} onClick={() => setAddress("")}>
       Disconnect
     </button>
   );

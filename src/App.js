@@ -41,7 +41,7 @@ export default function App() {
       let resolved = await Promise.all(tokensInWallet);
       setTokensWithBalance(resolved);
     };
-    if (address.length > 0) getTokens().then((r) => r);
+    if (address) getTokens().then((r) => r);
     else setTokensWithBalance([]);
   }, [address, tokens]);
 
@@ -50,11 +50,7 @@ export default function App() {
     const tokensToUpdate = async () => {
       const ids = tokensWithBalance.map((token) => token.coingecko);
       const idsString = ids.join(",");
-      if (
-        idsString.length > 0 &&
-        address.length > 0 &&
-        tokensWithBalance.length > 0
-      ) {
+      if (idsString.length > 0 && address && tokensWithBalance.length > 0) {
         const coinGeckoPrices = await getCoingeckoPrice(idsString);
         setTokensWithBalanceAndPrice(
           Object.keys(coinGeckoPrices).map((key) => {
@@ -90,6 +86,8 @@ export default function App() {
         .map((token) => token.total)
         .reduce((a, b) => a + b);
       setTotalBalance(sum);
+    } else {
+      setTotalBalance(0);
     }
   }, [tokensWithBalancePriceAndTotal]);
 
