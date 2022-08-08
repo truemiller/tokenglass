@@ -1,4 +1,4 @@
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 import erc20Abi from "../data/abis/erc20.json";
 
 export const getBalance = (token, userAddress) => {

@@ -1,7 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { TOKENS } from "./consts/tokens";
-import { getBalance } from "./helper/EthersHelper";
-import { ethers } from "ethers";
+import { useContext } from "react";
 import { TokenRow } from "./components/TokenRow";
 import { TokensContext } from "./App";
 

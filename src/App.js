@@ -7,12 +7,14 @@ import { getBalance } from "./helper/EthersHelper";
 import { ethers } from "ethers";
 import { getCoingeckoPrice } from "./helper/CoinGeckoHelper";
 //contexts
-export const AddressContext = createContext("");
+export const AddressContext = createContext(null);
 export const TotalBalanceContext = createContext(0);
 export const TokensContext = createContext([]);
 export default function App() {
   //state
-  const [address, setAddress] = useState(window.ethereum.selectedAddress);
+  const [address, setAddress] = useState(
+    window.ethereum.selectedAddress ?? null
+  );
   const [tokens, setTokens] = useState([]);
   const [tokensWithBalance, setTokensWithBalance] = useState([]);
   const [tokensWithBalanceAndPrice, setTokensWithBalanceAndPrice] = useState(
@@ -67,7 +69,7 @@ export default function App() {
     };
     console.log(tokensWithBalance, tokensWithBalanceAndPrice);
     tokensToUpdate().then((r) => r);
-  }, [tokensWithBalance]);
+  }, [address, tokensWithBalance, tokensWithBalanceAndPrice]);
 
   // update tokens with totals (setTokensWithBalancePriceAndTotal)
   useEffect(() => {

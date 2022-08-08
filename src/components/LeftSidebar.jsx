@@ -15,29 +15,15 @@ export const LeftSidebar = () => {
       </button>
 
       <div className="list-group list-group-flush">
-        <a className="list-group-item d-flex p-3">
+        <a className="list-group-item d-flex p-3" href={"/"}>
           <i className="fas fa-home"></i>
           {toggle ? <span className={"ms-2"}> Home</span> : null}
         </a>
-        <a className="list-group-item d-flex p-3">
-          <i className="fas fa-home"></i>
-          {toggle ? <span className={"ms-2"}> Home</span> : null}
-        </a>
-        <a className="list-group-item d-flex p-3">
-          <i className="fas fa-home"></i>
-          {toggle ? <span className={"ms-2"}> Home</span> : null}
-        </a>
-        <a className="list-group-item d-flex p-3">
-          <i className="fas fa-home"></i>
-          {toggle ? <span className={"ms-2"}> Home</span> : null}
-        </a>
-        <a className="list-group-item d-flex p-3">
-          <i className="fas fa-home"></i>
-          {toggle ? <span className={"ms-2"}> Home</span> : null}
+        <a className="list-group-item d-flex p-3" href={"/"}>
+          <i className="fas fa-pie-chart"></i>
+          {toggle ? <span className={"ms-2"}> Dashboard</span> : null}
         </a>
       </div>
-
-      <button className="btn"></button>
     </aside>
   );
 };

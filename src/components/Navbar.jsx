@@ -14,7 +14,7 @@ export function Navbar({ setAddress }) {
     <>
       <nav className="navbar bg-white border-left border-bottom">
         <div className="container-fluid">
-          <a href="#" className="navbar-brand fw-bolder">
+          <a href="/" className="navbar-brand fw-bolder">
             {APP_NAME}
           </a>
 
