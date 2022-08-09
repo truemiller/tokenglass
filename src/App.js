@@ -69,7 +69,7 @@ export default function App() {
     };
     console.log(tokensWithBalance, tokensWithBalanceAndPrice);
     tokensToUpdate().then((r) => r);
-  }, [address, tokensWithBalance, tokensWithBalanceAndPrice]);
+  }, [address, tokensWithBalance]);
 
   // update tokens with totals (setTokensWithBalancePriceAndTotal)
   useEffect(() => {
