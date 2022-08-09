@@ -7,10 +7,10 @@ export default function Wallet({ address, setTokens }) {
 
   return (
     <>
-      <div className={"container p-5"}>
-        <table className={"w-full rounded-lg bg-white shadow-xl"}>
-          <thead className={"text-left "}>
-            <tr>
+      <div className={"p-5"}>
+        <table className={"w-full rounded-b-2xl bg-white shadow-xl table"}>
+          <thead className={"text-left w-full "}>
+            <tr className={""}>
               <th className={"fw-bolder p-3"}>Token</th>
               <th className={"fw-bolder p-3"}>Balance</th>
               <th className={"fw-bolder p-3"}>Price</th>
