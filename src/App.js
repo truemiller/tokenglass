@@ -67,23 +67,26 @@ export default function App() {
         setTokensWithBalanceAndPrice([]);
       }
     };
-    console.log(tokensWithBalance, tokensWithBalanceAndPrice);
-    tokensToUpdate().then((r) => r);
-  }, [address, tokensWithBalance, tokensWithBalanceAndPrice]);
+    if (address) tokensToUpdate().then((r) => r);
+  }, [address, tokensWithBalance]);
 
   // update tokens with totals (setTokensWithBalancePriceAndTotal)
   useEffect(() => {
-    setTokensWithBalancePriceAndTotal(
-      tokensWithBalanceAndPrice.map((token) => {
-        token["total"] = token.price * token.balance;
-        return token;
-      })
-    );
-  }, [tokensWithBalanceAndPrice]);
+    if (address) {
+      setTokensWithBalancePriceAndTotal(
+        tokensWithBalanceAndPrice.map((token) => {
+          token["total"] = token.price * token.balance;
+          return token;
+        })
+      );
+    } else {
+      setTokensWithBalancePriceAndTotal([]);
+    }
+  }, [address, tokensWithBalanceAndPrice]);
 
   // update total balance
   useEffect(() => {
-    if (tokensWithBalancePriceAndTotal.length > 0) {
+    if (address && tokensWithBalancePriceAndTotal.length > 0) {
       const sum = tokensWithBalancePriceAndTotal
         .map((token) => token.total)
         .reduce((a, b) => a + b);
@@ -91,22 +94,21 @@ export default function App() {
     } else {
       setTotalBalance(0);
     }
-  }, [tokensWithBalancePriceAndTotal]);
+  }, [address, tokensWithBalancePriceAndTotal]);
 
   return (
     <AddressContext.Provider value={address}>
-      <TokensContext.Provider value={tokensWithBalancePriceAndTotal}>
+      <TokensContext.Provider value={tokensWithBalance}>
         <TotalBalanceContext.Provider value={totalBalance}>
-          <div className="d-flex flex-row">
+          <div className="flex flex-row">
             <LeftSidebar />
-            <main className={"w-100 bg-light"}>
+            <main className={"w-full bg-light"}>
               <Navbar setAddress={setAddress}></Navbar>
               <div className="container text-center my-5">
-                <h1 className={"fw-bolder"}>
+                <h1 className={"font-extrabold text-4xl"}>
                   $ {totalBalance.toLocaleString()}
                 </h1>
               </div>
-              <hr />
               <Wallet address={address} setTokens={setTokens} />
             </main>
           </div>
