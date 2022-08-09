@@ -7,8 +7,11 @@ export default function Wallet({ address, setTokens }) {
 
   return (
     <>
-      <div className={"p-5"}>
-        <table className={"w-full rounded-b-2xl bg-white shadow-xl table"}>
+      <div className={"m-3 p-3 bg-white "}>
+        <div className="flex">
+          <span className={"font-extrabold text-xl"}>Tokens</span>
+        </div>
+        <table className={"w-full  bg-white shadow-xl table"}>
           <thead className={"text-left w-full "}>
             <tr className={""}>
               <th className={"fw-bolder p-3"}>Token</th>
@@ -20,9 +23,12 @@ export default function Wallet({ address, setTokens }) {
           <tbody>
             {tokens.map((token) => {
               return !token.balance ? (
-                <tr key={token.name}></tr>
+                <tr key={token.name + ":" + token.chain}></tr>
               ) : (
-                <TokenRow key={token.name} tokenData={token} />
+                <TokenRow
+                  key={token.name + ":" + token.chain}
+                  tokenData={token}
+                />
               );
             })}
           </tbody>

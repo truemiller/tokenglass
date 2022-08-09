@@ -2,11 +2,13 @@ import { Navbar } from "./components/Navbar";
 import Wallet from "./Wallet";
 import { createContext, useEffect, useState } from "react";
 import { LeftSidebar } from "./components/LeftSidebar";
-import { TOKENS } from "./consts/tokens";
+import { TOKENS, NATIVE_TOKENS } from "./consts/tokens";
 import { getBalance } from "./helper/EthersHelper";
 import { ethers } from "ethers";
 import { getCoingeckoPrice } from "./helper/CoinGeckoHelper";
 import { RightSidebar } from "./components/RightSidebar";
+import { CHAINS } from "./consts/chains";
+import ethcall from "ethcall";
 //contexts
 export const AddressContext = createContext(null);
 export const TotalBalanceContext = createContext(0);
@@ -14,7 +16,7 @@ export const TokensContext = createContext([]);
 export default function App() {
   //state
   const [address, setAddress] = useState(
-    window.ethereum.selectedAddress ?? null
+    "0x85b452216b053cbb018d9c7c4195da51b600c28e" ?? null
   );
   const [tokens, setTokens] = useState([]);
   const [tokensWithBalance, setTokensWithBalance] = useState([]);
@@ -27,26 +29,53 @@ export default function App() {
 
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
-    const getTokens = async () => {
-      let tokensInWallet = TOKENS.map(async (token) => {
-        if (token.address) {
-          token["balance"] = await getBalance(token, address);
-        } else {
-          token["balance"] = await token.chain.provider.getBalance(address);
-        }
-        const resolvedToken = await token;
-        resolvedToken["balance"] = parseFloat(
-          ethers.utils.formatEther(resolvedToken["balance"])
-        );
-        return token;
-      });
+    const getTokens = async (chain) => {
+      let tokensInWallet = [...TOKENS, ...NATIVE_TOKENS]
+        .filter((token) => token.chain === chain)
+        .map(async (token, index) => {
+          if (index <= 1000) {
+            if (token.address) {
+              token["balance"] = await getBalance(token, address);
+            } else {
+              token["balance"] = await token.chain.provider.getBalance(address);
+            }
+            const resolvedToken = await token;
+            const balanceAsString = ethers.utils
+              .formatEther(resolvedToken["balance"])
+              .toString();
+            resolvedToken["balance"] = parseFloat(balanceAsString);
+            return token;
+          }
+        });
       // resolve all the promises
       let resolved = await Promise.all(tokensInWallet);
-      setTokensWithBalance(resolved);
+      let filtered = resolved.filter((token) => token["balance"] > 0);
+      return [...tokensWithBalance, ...filtered];
     };
-    if (address) getTokens().then((r) => r);
-    else setTokensWithBalance([]);
-  }, [address, tokens]);
+
+    const batch = async () => {
+      const avalanche = (await getTokens(CHAINS.AVALANCHE)) ?? [];
+      setTokensWithBalance([...avalanche]);
+      const fantom = (await getTokens(CHAINS.FANTOM)) ?? [];
+      setTokensWithBalance([...avalanche, ...fantom]);
+      const polygon = (await getTokens(CHAINS.POLYGON)) ?? [];
+      setTokensWithBalance([...avalanche, ...fantom, ...polygon]);
+      const bnb = (await getTokens(CHAINS.BNB)) ?? [];
+      setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...bnb]);
+      const ethereum = (await getTokens(CHAINS.ETHEREUM)) ?? [];
+      setTokensWithBalance([
+        ...avalanche,
+        ...fantom,
+        ...polygon,
+        ...bnb,
+        ...ethereum,
+      ]);
+    };
+
+    if (address) {
+      batch().then((r) => r);
+    } else setTokensWithBalance([]);
+  }, [address]);
 
   // update tokens with price (setTokensWithBalanceAndPrice)
   useEffect(() => {
@@ -111,10 +140,10 @@ export default function App() {
                 </h1>
               </div>
               <div className="grid grid-cols-5">
-                <div className="col-span-4">
+                <div className="md:col-span-4 col-span-5">
                   <Wallet address={address} setTokens={setTokens} />
                 </div>
-                <div className="col-span-1">
+                <div className="md:col-span-1 hidden md:block">
                   <RightSidebar />
                 </div>
               </div>
