@@ -91,7 +91,7 @@ import { CHAINS } from "./chains";
 //   },
 // ];
 
-const NATIVE_TOKENS = [
+export const NATIVE_TOKENS = [
   {
     name: "Avalanche",
     symbol: "AVAX",
@@ -99,6 +99,38 @@ const NATIVE_TOKENS = [
     chain: CHAINS.AVALANCHE,
     address: null,
     coingecko: "wrapped-avax",
+  },
+  {
+    name: "Fantom",
+    symbol: "FTM",
+    logo: "https://assets.coingecko.com/coins/images/4001/small/Fantom.png?1558015016",
+    chain: CHAINS.FANTOM,
+    address: null,
+    coingecko: "fantom",
+  },
+  {
+    name: "Matic",
+    symbol: "MATIC",
+    logo: "https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912",
+    chain: CHAINS.POLYGON,
+    address: null,
+    coingecko: "polygon",
+  },
+  {
+    name: "xDai",
+    symbol: "XDAI",
+    logo: "https://assets.coingecko.com/coins/images/11062/small/Identity-Primary-DarkBG.png?1638372986",
+    chain: CHAINS.XDAI,
+    address: null,
+    coingecko: "xdai",
+  },
+  {
+    name: "Binance Coin",
+    symbol: "BNB",
+    logo: "https://assets.coingecko.com/coins/images/11062/small/Identity-Primary-DarkBG.png?1638372986",
+    chain: CHAINS.BNB,
+    address: null,
+    coingecko: "xdai",
   },
 ];
 
@@ -58256,4 +58288,3 @@ export let TOKENS = [
     coingecko: "yearn-finance",
   },
 ];
-TOKENS.push();

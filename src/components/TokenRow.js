@@ -10,7 +10,7 @@ export const TokenRow = ({ tokenData }) => {
         />
         <div className={"flex flex-col ms-2"}>
           <strong>{tokenData.name}</strong>
-          {tokenData.symbol}
+          {tokenData.symbol.toUpperCase()}
         </div>
       </td>
       <td>{tokenData.balance.toLocaleString()}</td>
