@@ -16,7 +16,7 @@ export const TokensContext = createContext([]);
 export default function App() {
   //state
   const [address, setAddress] = useState(
-    "0x85b452216b053cbb018d9c7c4195da51b600c28e" ?? null
+    window.ethereum.selectedAddress ?? null
   );
   const [tokens, setTokens] = useState([]);
   const [tokensWithBalance, setTokensWithBalance] = useState([]);
