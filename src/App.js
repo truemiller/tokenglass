@@ -6,6 +6,7 @@ import { TOKENS } from "./consts/tokens";
 import { getBalance } from "./helper/EthersHelper";
 import { ethers } from "ethers";
 import { getCoingeckoPrice } from "./helper/CoinGeckoHelper";
+import { RightSidebar } from "./components/RightSidebar";
 //contexts
 export const AddressContext = createContext(null);
 export const TotalBalanceContext = createContext(0);
@@ -104,12 +105,19 @@ export default function App() {
             <LeftSidebar />
             <main className={"w-full bg-light"}>
               <Navbar setAddress={setAddress}></Navbar>
-              <div className="container text-center my-5">
+              <div className="text-center my-5">
                 <h1 className={"font-extrabold text-4xl"}>
                   $ {totalBalance.toLocaleString()}
                 </h1>
               </div>
-              <Wallet address={address} setTokens={setTokens} />
+              <div className="grid grid-cols-5">
+                <div className="col-span-4">
+                  <Wallet address={address} setTokens={setTokens} />
+                </div>
+                <div className="col-span-1">
+                  <RightSidebar />
+                </div>
+              </div>
             </main>
           </div>
         </TotalBalanceContext.Provider>

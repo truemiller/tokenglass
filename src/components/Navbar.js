@@ -14,19 +14,21 @@ export function Navbar({ setAddress }) {
     <>
       <nav className="shadow-xl w-full p-3">
         <div className="flex justify-between">
-          <a href="/" className="font-bold">
+          <a href="/" className="font-bold p-2">
             {APP_NAME}
           </a>
           {address ? (
             <button
-              className={"btn btn-danger rounded"}
+              className={
+                "btn btn-danger rounded p-2 bg-red-600 hover:bg-red-900 text-white"
+              }
               onClick={() => setAddress(null)}
             >
               Disconnect
             </button>
           ) : (
             <button
-              className="bg-blue-500 border p-2 rounded text-white hover:bg-blue-900"
+              className="bg-blue-600 p-2 rounded text-white hover:bg-blue-900"
               onClick={handleConnect}
             >
               Connect

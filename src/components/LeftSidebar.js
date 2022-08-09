@@ -12,12 +12,12 @@ export const LeftSidebar = () => {
       <button className={"btn"} onClick={handleToggle}>
         <i className={"fas fa-bars"}></i>
       </button>
-      <a className="flex p-3" href={"/"}>
-        <i className="fas fa-home"></i>
+      <a className="flex p-3 hover:text-sky-500" href={"/"}>
+        <i className="fas fa-home mt-1"></i>
         {toggle ? <span className={"ml-2"}> Home</span> : null}
       </a>
-      <a className="flex p-3" href={"/"}>
-        <i className="fas fa-pie-chart"></i>
+      <a className="flex p-3  align-middle  hover:text-sky-500" href={"/"}>
+        <i className="fas fa-pie-chart  mt-1"></i>
         {toggle ? <span className={"ml-2"}> Dashboard</span> : null}
       </a>
     </aside>
