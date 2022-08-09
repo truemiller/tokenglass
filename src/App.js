@@ -7,6 +7,7 @@ import { getBalance } from "./helper/EthersHelper";
 import { ethers } from "ethers";
 import { getCoingeckoPrice } from "./helper/CoinGeckoHelper";
 import { RightSidebar } from "./components/RightSidebar";
+import { CHAINS } from "./consts/chains";
 //contexts
 export const AddressContext = createContext(null);
 export const TotalBalanceContext = createContext(0);
@@ -28,7 +29,9 @@ export default function App() {
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
     const getTokens = async () => {
-      let tokensInWallet = TOKENS.map(async (token) => {
+      let tokensInWallet = TOKENS.filter(
+        (token) => token.chain === CHAINS.AVALANCHE
+      ).map(async (token) => {
         if (token.address) {
           token["balance"] = await getBalance(token, address);
         } else {
@@ -111,10 +114,10 @@ export default function App() {
                 </h1>
               </div>
               <div className="grid grid-cols-5">
-                <div className="col-span-4">
+                <div className="md:col-span-4 col-span-5">
                   <Wallet address={address} setTokens={setTokens} />
                 </div>
-                <div className="col-span-1">
+                <div className="md:col-span-1 hidden md:block">
                   <RightSidebar />
                 </div>
               </div>

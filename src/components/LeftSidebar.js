@@ -7,7 +7,7 @@ export const LeftSidebar = () => {
   };
   return (
     <aside
-      className={"bg-white p-3 flex flex-col shadow-2xl min-h-max h-screen "}
+      className={" bg-white p-3 flex flex-col shadow-2xl min-h-max h-screen"}
     >
       <button className={"btn"} onClick={handleToggle}>
         <i className={"fas fa-bars"}></i>
