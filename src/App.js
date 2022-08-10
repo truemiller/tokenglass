@@ -30,14 +30,18 @@ export default function App() {
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
     const getTokens = async (chain) => {
-      let tokensInWallet = [...TOKENS, ...NATIVE_TOKENS]
+      let tokensInWallet;
+      tokensInWallet = [...NATIVE_TOKENS, ...TOKENS]
         .filter((token) => token.chain === chain)
         .map(async (token, index) => {
-          if (index <= 1000) {
-            if (token.address) {
-              token["balance"] = await getBalance(token, address);
+          if (index <= 200) {
+            if (ethers.utils.isAddress(token.address)) {
+              token["balance"] = await getBalance(token, address).then(
+                (r) => r
+              );
             } else {
               token["balance"] = await token.chain.provider.getBalance(address);
+              console.log(token.chain.provider.network.chainId);
             }
             const resolvedToken = await token;
             const balanceAsString = ethers.utils
@@ -47,10 +51,13 @@ export default function App() {
             return token;
           }
         });
+      console.log(tokensInWallet);
       // resolve all the promises
       let resolved = await Promise.all(tokensInWallet);
-      let filtered = resolved.filter((token) => token["balance"] > 0);
-      return [...tokensWithBalance, ...filtered];
+      let filtered = resolved
+        .filter((token) => token)
+        .filter((token) => token["balance"] > 0);
+      return [...filtered];
     };
 
     const batch = async () => {
@@ -60,16 +67,10 @@ export default function App() {
       setTokensWithBalance([...avalanche, ...fantom]);
       const polygon = (await getTokens(CHAINS.POLYGON)) ?? [];
       setTokensWithBalance([...avalanche, ...fantom, ...polygon]);
-      const bnb = (await getTokens(CHAINS.BNB)) ?? [];
-      setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...bnb]);
-      const ethereum = (await getTokens(CHAINS.ETHEREUM)) ?? [];
-      setTokensWithBalance([
-        ...avalanche,
-        ...fantom,
-        ...polygon,
-        ...bnb,
-        ...ethereum,
-      ]);
+      const iotex = (await getTokens(CHAINS.IOTEX)) ?? [];
+      setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...iotex]);
+      const xdai = (await getTokens(CHAINS.XDAI)) ?? [];
+      setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...xdai]);
     };
 
     if (address) {

@@ -114,7 +114,7 @@ export const NATIVE_TOKENS = [
     logo: "https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912",
     chain: CHAINS.POLYGON,
     address: null,
-    coingecko: "polygon",
+    coingecko: "matic",
   },
   {
     name: "xDai",
@@ -127,10 +127,26 @@ export const NATIVE_TOKENS = [
   {
     name: "Binance Coin",
     symbol: "BNB",
-    logo: "https://assets.coingecko.com/coins/images/11062/small/Identity-Primary-DarkBG.png?1638372986",
+    logo: "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1644979850",
     chain: CHAINS.BNB,
     address: null,
-    coingecko: "xdai",
+    coingecko: "wbnb",
+  },
+  {
+    name: "Ethereum",
+    symbol: "ETH",
+    logo: "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
+    chain: CHAINS.ETHEREUM,
+    address: null,
+    coingecko: "weth",
+  },
+  {
+    name: "IoTeX",
+    symbol: "IOTEX",
+    logo: "https://assets.coingecko.com/coins/images/3334/small/iotex-logo.png?1547037941",
+    chain: CHAINS.IOTEX,
+    address: null,
+    coingecko: "iotex",
   },
 ];
 
