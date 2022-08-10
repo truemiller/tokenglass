@@ -1,6 +1,6 @@
 export const TokenRow = ({ tokenData }) => {
   return (
-    <tr key={tokenData.name} className={"w-full"}>
+    <tr key={tokenData.name} className={"w-full hover:bg-gray-100"}>
       <td className={"flex p-3"}>
         <img src={tokenData.logo} alt="" className={"rounded-full w-8 h-8"} />
         <img
