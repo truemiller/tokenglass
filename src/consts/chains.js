@@ -193,12 +193,13 @@ export const CHAINS = {
   },
   MOONRIVER: {
     provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://moonriver.public.blastapi.io",
+      "https://rpc.api.moonriver.moonbeam.network",
       {
         chainId: 1285,
         name: "Moonriver",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/17984/small/9285.png?1630028620",
   },
   OKC: {
     provider: new ethers.providers.JsonRpcBatchProvider(

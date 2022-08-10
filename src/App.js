@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import { LeftSidebar } from "./components/LeftSidebar";
 import { TOKENS, NATIVE_TOKENS } from "./consts/tokens";
 import { getBalance } from "./helper/EthersHelper";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { getCoingeckoPrice } from "./helper/CoinGeckoHelper";
 import { RightSidebar } from "./components/RightSidebar";
 import { CHAINS } from "./consts/chains";
@@ -44,8 +44,9 @@ export default function App() {
               console.log(token.chain.provider.network.chainId);
             }
             const resolvedToken = await token;
+            const balanceAsBN = BigNumber.from(token["balance"]);
             const balanceAsString = ethers.utils
-              .formatEther(resolvedToken["balance"])
+              .formatEther(balanceAsBN)
               .toString();
             resolvedToken["balance"] = parseFloat(balanceAsString);
             return token;
@@ -70,7 +71,32 @@ export default function App() {
       const iotex = (await getTokens(CHAINS.IOTEX)) ?? [];
       setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...iotex]);
       const xdai = (await getTokens(CHAINS.XDAI)) ?? [];
-      setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...xdai]);
+      setTokensWithBalance([
+        ...avalanche,
+        ...fantom,
+        ...polygon,
+        ...iotex,
+        ...xdai,
+      ]);
+      const moonriver = (await getTokens(CHAINS.MOONRIVER)) ?? [];
+      setTokensWithBalance([
+        ...avalanche,
+        ...fantom,
+        ...polygon,
+        ...iotex,
+        ...xdai,
+        ...moonriver,
+      ]);
+      const fuse = (await getTokens(CHAINS.FUSE)) ?? [];
+      setTokensWithBalance([
+        ...avalanche,
+        ...fantom,
+        ...polygon,
+        ...iotex,
+        ...xdai,
+        ...moonriver,
+        ...fuse,
+      ]);
     };
 
     if (address) {

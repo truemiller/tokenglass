@@ -114,7 +114,7 @@ export const NATIVE_TOKENS = [
     logo: "https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912",
     chain: CHAINS.POLYGON,
     address: null,
-    coingecko: "matic",
+    coingecko: "wmatic",
   },
   {
     name: "xDai",
@@ -147,6 +147,22 @@ export const NATIVE_TOKENS = [
     chain: CHAINS.IOTEX,
     address: null,
     coingecko: "iotex",
+  },
+  {
+    name: "Moonriver",
+    symbol: "MOVR",
+    logo: "https://assets.coingecko.com/coins/images/17984/small/9285.png?1630028620",
+    chain: CHAINS.MOONRIVER,
+    address: null,
+    coingecko: "moonriver",
+  },
+  {
+    name: "Fuse",
+    symbol: "FUSE",
+    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/5634.png",
+    chain: CHAINS.FUSE,
+    address: null,
+    coingecko: "fuse",
   },
 ];
 
@@ -582,14 +598,6 @@ export let TOKENS = [
     chain: CHAINS.ARBITRUM,
     address: "0xde903e2712288a1da82942dddf2c20529565ac30",
     coingecko: "swapr",
-  },
-  {
-    name: `Tangle`,
-    symbol: "tngl",
-    logo: "https://assets.coingecko.com/coins/images/18312/small/tangle.PNG?1631510159",
-    chain: CHAINS.ARBITRUM,
-    address: "0xa943f863fa69ff4f6d9022843fb861bbee45b2ce",
-    coingecko: "tangle",
   },
   {
     name: `Tether`,
@@ -2078,14 +2086,6 @@ export let TOKENS = [
     chain: CHAINS.AVALANCHE,
     address: "0x8ae8be25c23833e0a01aa200403e826f611f9cd2",
     coingecko: "talecraft",
-  },
-  {
-    name: `Tangle`,
-    symbol: "tngl",
-    logo: "https://assets.coingecko.com/coins/images/18312/small/tangle.PNG?1631510159",
-    chain: CHAINS.AVALANCHE,
-    address: "0xd17584633bc8d190e5a14502976dad9640456d6d",
-    coingecko: "tangle",
   },
   {
     name: `Teddy`,
@@ -21454,14 +21454,6 @@ export let TOKENS = [
     chain: CHAINS.BNB,
     address: "0x0f1c6791a8b8d764c78dd54f0a151ec4d3a0c090",
     coingecko: "tama-finance",
-  },
-  {
-    name: `Tangle`,
-    symbol: "tngl",
-    logo: "https://assets.coingecko.com/coins/images/18312/small/tangle.PNG?1631510159",
-    chain: CHAINS.BNB,
-    address: "0xd17584633bc8d190e5a14502976dad9640456d6d",
-    coingecko: "tangle",
   },
   {
     name: `Tanks`,
@@ -46776,14 +46768,6 @@ export let TOKENS = [
     coingecko: "talken",
   },
   {
-    name: `Tangle`,
-    symbol: "tngl",
-    logo: "https://assets.coingecko.com/coins/images/18312/small/tangle.PNG?1631510159",
-    chain: CHAINS.ETHEREUM,
-    address: "0x5af28eb9dec75e86cdfbd2e41a474b54b211c1c2",
-    coingecko: "tangle",
-  },
-  {
     name: `Tanks`,
     symbol: "tanks",
     logo: "https://assets.coingecko.com/coins/images/19819/small/tank-200.png?1635930932",
@@ -51766,14 +51750,6 @@ export let TOKENS = [
     chain: CHAINS.FANTOM,
     address: "0x1bcf4dc879979c68fa255f731fe8dcf71970c9bc",
     coingecko: "syfin",
-  },
-  {
-    name: `Tangle`,
-    symbol: "tngl",
-    logo: "https://assets.coingecko.com/coins/images/18312/small/tangle.PNG?1631510159",
-    chain: CHAINS.FANTOM,
-    address: "0xd17584633bc8d190e5a14502976dad9640456d6d",
-    coingecko: "tangle",
   },
   {
     name: `Tarot`,
