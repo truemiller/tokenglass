@@ -32,7 +32,7 @@ export default function Wallet({ address }) {
       tokensInWallet = [...NATIVE_TOKENS, ...TOKENS]
         .filter((token) => token.chain === chain)
         .map(async (token, index) => {
-          if (index <= 200) {
+          if (index <= 500) {
             if (ethers.utils.isAddress(token.address)) {
               token["balance"] = await getBalance(token, address).then(
                 (r) => r
