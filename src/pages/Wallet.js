@@ -183,39 +183,45 @@ export default function Wallet({ address }) {
 
   return (
     <div className={"p-10"}>
-      <div className="hero">
-        <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
-      </div>
-      <div className={"mt-5 bg-white "}>
-        <div className="flex">
-          <span className={"font-extrabold text-xl"}>
-            Balance: $ {totalBalance.toLocaleString()}
-          </span>
+      <div className="mx-auto container">
+        <div className="hero">
+          <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
         </div>
-        <table className={"w-full  bg-white shadow-xl table"}>
-          <thead className={"text-left w-full "}>
-            <tr className={""}>
-              <th className={"fw-bolder p-3"}>Token</th>
-              <th className={"fw-bolder p-3"}>Balance</th>
-              <th className={"fw-bolder p-3"}>Price</th>
-              <th className={"fw-bolder p-3"}>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedTokensWithBalancePriceAndTotal.map((token) => {
-              return !token.balance ? (
-                <tr
-                  key={token.name + ":" + token.chain.provider.network.chainId}
-                ></tr>
-              ) : (
-                <TokenRow
-                  key={token.name + ":" + token.chain.provider.network.chainId}
-                  tokenData={token}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        <div className={"mt-5 bg-white "}>
+          <div className="flex">
+            <span className={"font-extrabold text-xl"}>
+              Balance: $ {totalBalance.toLocaleString()}
+            </span>
+          </div>
+          <table className={"w-full  bg-white shadow-2xl table"}>
+            <thead className={"text-left w-full "}>
+              <tr className={""}>
+                <th className={"fw-bolder p-3"}>Token</th>
+                <th className={"fw-bolder p-3"}>Balance</th>
+                <th className={"fw-bolder p-3"}>Price</th>
+                <th className={"fw-bolder p-3"}>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedTokensWithBalancePriceAndTotal.map((token) => {
+                return !token.balance ? (
+                  <tr
+                    key={
+                      token.name + ":" + token.chain.provider.network.chainId
+                    }
+                  ></tr>
+                ) : (
+                  <TokenRow
+                    key={
+                      token.name + ":" + token.chain.provider.network.chainId
+                    }
+                    tokenData={token}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
