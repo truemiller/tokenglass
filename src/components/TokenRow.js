@@ -3,7 +3,7 @@ export const TokenRow = ({ tokenData }) => {
     <tr key={tokenData.name} className={"w-full hover:bg-gray-100"}>
       <td className={"flex p-3"}>
         <img
-          src={tokenData.logo}
+          src={`/logos/${tokenData.coingecko}.png`}
           alt=""
           className={"rounded-full w-8 h-8 border-2 border-black"}
           loading={"lazy"}
