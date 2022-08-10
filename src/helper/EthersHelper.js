@@ -2,12 +2,17 @@ import { ethers } from "ethers";
 import erc20Abi from "../data/abis/erc20.json";
 
 export const getBalance = (token, userAddress) => {
-  // if (token && userAddress) {
-  const contract = new ethers.Contract(
-    token.address,
-    erc20Abi,
-    token.chain.provider
-  );
-  return contract.balanceOf(userAddress);
-  // } else return false;
+  if (
+    ethers.utils.isAddress(token.address) &&
+    ethers.utils.isAddress(userAddress)
+  ) {
+    const { balanceOf } = new ethers.Contract(
+      ethers.utils.getAddress(token.address),
+      erc20Abi,
+      token.chain.provider
+    );
+    return balanceOf(ethers.utils.getAddress(userAddress));
+  } else {
+    return "0";
+  }
 };

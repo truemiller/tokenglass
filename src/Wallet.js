@@ -23,10 +23,12 @@ export default function Wallet({ address, setTokens }) {
           <tbody>
             {tokens.map((token) => {
               return !token.balance ? (
-                <tr key={token.name + ":" + token.chain}></tr>
+                <tr
+                  key={token.name + ":" + token.chain.provider.network.chainId}
+                ></tr>
               ) : (
                 <TokenRow
-                  key={token.name + ":" + token.chain}
+                  key={token.name + ":" + token.chain.provider.network.chainId}
                   tokenData={token}
                 />
               );

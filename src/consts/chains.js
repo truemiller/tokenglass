@@ -32,7 +32,7 @@ export const CHAINS = {
   },
   BNB: {
     provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://rpc.ankr.com/bsc",
+      "https://bsc.mytokenpocket.vip",
       {
         chainId: 56,
         name: "BNB Chain",
@@ -144,6 +144,7 @@ export const CHAINS = {
         name: "Iotex",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/3334/small/iotex-logo.png?1547037941",
   },
   KARDIA: {
     provider: new ethers.providers.JsonRpcBatchProvider(
@@ -192,12 +193,13 @@ export const CHAINS = {
   },
   MOONRIVER: {
     provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://moonriver.public.blastapi.io",
+      "https://rpc.api.moonriver.moonbeam.network",
       {
         chainId: 1285,
         name: "Moonriver",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/17984/small/9285.png?1630028620",
   },
   OKC: {
     provider: new ethers.providers.JsonRpcBatchProvider(
@@ -219,12 +221,13 @@ export const CHAINS = {
   },
   POLYGON: {
     provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://rpc.ankr.com/polygon",
+      "https://polygon-rpc.com",
       {
         chainId: 137,
         name: "Polygon",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912",
   },
   THETA: {
     provider: new ethers.providers.JsonRpcBatchProvider(
@@ -252,5 +255,6 @@ export const CHAINS = {
         name: "xDai",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/662/small/logo_square_simple_300px.png?1609402668",
   },
 };
