@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <>
-      <div className={"w-full p-5"}>
-        <div className="ml-10 w-full">
+      <div className={"w-full ml-5 p-5"}>
+        <div className=" w-full">
           <h1 className={"my-5 text-6xl font-extrabold ms-5"}>
             Welcome to TokenGlass
           </h1>
@@ -25,7 +25,7 @@ export const Home = () => {
               <img
                 src="/screenshots/portfolio.png"
                 alt=""
-                className={"shadow-xl w-full"}
+                className={"shadow-2xl w-full"}
               />
             </div>
           </div>

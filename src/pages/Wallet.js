@@ -182,11 +182,11 @@ export default function Wallet({ address }) {
   }, [address, tokensWithBalancePriceAndTotal]);
 
   return (
-    <>
-      <div className="hero my-5 p-5">
+    <div className={"p-10"}>
+      <div className="hero">
         <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
       </div>
-      <div className={"m-3 p-3 bg-white "}>
+      <div className={"mt-5 bg-white "}>
         <div className="flex">
           <span className={"font-extrabold text-xl"}>
             Balance: $ {totalBalance.toLocaleString()}
@@ -217,6 +217,6 @@ export default function Wallet({ address }) {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
