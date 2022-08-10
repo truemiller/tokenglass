@@ -38,6 +38,7 @@ export const CHAINS = {
         name: "BNB Chain",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1644979850",
   },
   BITCI: {
     provider: new ethers.providers.JsonRpcBatchProvider(
@@ -83,6 +84,7 @@ export const CHAINS = {
         name: "Ethereum",
       }
     ),
+    logo: "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
   },
   FANTOM: {
     provider: new ethers.providers.JsonRpcBatchProvider(
@@ -99,6 +101,7 @@ export const CHAINS = {
       chainId: 122,
       name: "Fuse",
     }),
+    logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/5634.png",
   },
   FUSION: {
     provider: new ethers.providers.JsonRpcBatchProvider(
