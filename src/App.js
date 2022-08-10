@@ -97,6 +97,29 @@ export default function App() {
         ...moonriver,
         ...fuse,
       ]);
+      const bnb = (await getTokens(CHAINS.BNB)) ?? [];
+      setTokensWithBalance([
+        ...avalanche,
+        ...fantom,
+        ...polygon,
+        ...iotex,
+        ...xdai,
+        ...moonriver,
+        ...fuse,
+        ...bnb,
+      ]);
+      const eth = (await getTokens(CHAINS.ETHEREUM)) ?? [];
+      setTokensWithBalance([
+        ...avalanche,
+        ...fantom,
+        ...polygon,
+        ...iotex,
+        ...xdai,
+        ...moonriver,
+        ...fuse,
+        ...bnb,
+        ...eth,
+      ]);
     };
 
     if (address) {
