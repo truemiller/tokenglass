@@ -6,6 +6,7 @@ export const TokenRow = ({ tokenData }) => {
           src={tokenData.logo}
           alt=""
           className={"rounded-full w-8 h-8 border-2 border-black"}
+          loading={"lazy"}
         />
         <img
           className={
@@ -13,6 +14,7 @@ export const TokenRow = ({ tokenData }) => {
           }
           src={tokenData.chain.logo}
           alt=""
+          loading={"lazy"}
         />
         <div className={"flex flex-col ms-2"}>
           <strong>{tokenData.name}</strong>
