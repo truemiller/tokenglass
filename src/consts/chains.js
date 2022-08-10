@@ -11,15 +11,15 @@ export const CHAINS = {
       }
     ),
   },
-  AURORA: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://mainnet.aurora.dev/",
-      {
-        chainId: 1313161554,
-        name: "Aurora",
-      }
-    ),
-  },
+  // AURORA: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://mainnet.aurora.dev/",
+  //     {
+  //       chainId: 1313161554,
+  //       name: "Aurora",
+  //     }
+  //   ),
+  // },
   AVALANCHE: {
     provider: new ethers.providers.JsonRpcBatchProvider(
       "https://rpc.ankr.com/avalanche",
@@ -40,42 +40,42 @@ export const CHAINS = {
     ),
     logo: "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1644979850",
   },
-  BITCI: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://bitci.bitcichain.com",
-      {
-        chainId: 1907,
-        name: "BitciChain",
-      }
-    ),
-  },
-  BOBA: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://mainnet.boba.network",
-      {
-        chainId: 288,
-        name: "Bobachain",
-      }
-    ),
-  },
-  CELO: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://forno.celo.org",
-      {
-        chainId: 42220,
-        name: "Celo",
-      }
-    ),
-  },
-  CRONOS: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://evm.cronos.org",
-      {
-        chainId: 25,
-        name: "Cronos",
-      }
-    ),
-  },
+  // BITCI: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://bitci.bitcichain.com",
+  //     {
+  //       chainId: 1907,
+  //       name: "BitciChain",
+  //     }
+  //   ),
+  // },
+  // BOBA: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://mainnet.boba.network",
+  //     {
+  //       chainId: 288,
+  //       name: "Bobachain",
+  //     }
+  //   ),
+  // },
+  // CELO: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://forno.celo.org",
+  //     {
+  //       chainId: 42220,
+  //       name: "Celo",
+  //     }
+  //   ),
+  // },
+  // CRONOS: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://cronosrpc-1.xstaking.sg",
+  //     {
+  //       chainId: 25,
+  //       name: "Cronos",
+  //     }
+  //   ),
+  // },
   ETHEREUM: {
     provider: new ethers.providers.JsonRpcBatchProvider(
       "https://rpc.ankr.com/eth",
@@ -103,15 +103,15 @@ export const CHAINS = {
     }),
     logo: "https://s2.coinmarketcap.com/static/img/coins/200x200/5634.png",
   },
-  FUSION: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://mainnet.anyswap.exchange",
-      {
-        chainId: 32659,
-        name: "Fusion",
-      }
-    ),
-  },
+  // FUSION: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://mainnet.anyswap.exchange",
+  //     {
+  //       chainId: 32659,
+  //       name: "Fusion",
+  //     }
+  //   ),
+  // },
   HARMONY: {
     provider: new ethers.providers.JsonRpcBatchProvider(
       "https://rpc.ankr.com/harmony",
@@ -149,24 +149,24 @@ export const CHAINS = {
     ),
     logo: "https://assets.coingecko.com/coins/images/3334/small/iotex-logo.png?1547037941",
   },
-  KARDIA: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://rpc.kardiachain.io/",
-      {
-        chainId: 0,
-        name: "Kardia",
-      }
-    ),
-  },
-  KLAYTN: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://public-node-api.klaytnapi.com/v1/cypress",
-      {
-        chainId: 8217,
-        name: "Klaytn",
-      }
-    ),
-  },
+  // KARDIA: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://rpc.kardiachain.io/",
+  //     {
+  //       chainId: 0,
+  //       name: "Kardia",
+  //     }
+  //   ),
+  // },
+  // KLAYTN: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://public-node-api.klaytnapi.com/v1/cypress",
+  //     {
+  //       chainId: 8217,
+  //       name: "Klaytn",
+  //     }
+  //   ),
+  // },
   KUCOIN: {
     provider: new ethers.providers.JsonRpcBatchProvider(
       "https://rpc-mainnet.kcc.network/",
@@ -241,15 +241,15 @@ export const CHAINS = {
       }
     ),
   },
-  TOMOCHAIN: {
-    provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://rpc.tomochain.com",
-      {
-        chainId: 88,
-        name: "Tomochain",
-      }
-    ),
-  },
+  // TOMOCHAIN: {
+  //   provider: new ethers.providers.JsonRpcBatchProvider(
+  //     "https://rpc.tomochain.com",
+  //     {
+  //       chainId: 88,
+  //       name: "Tomochain",
+  //     }
+  //   ),
+  // },
   XDAI: {
     provider: new ethers.providers.JsonRpcBatchProvider(
       "https://rpc.gnosischain.com",

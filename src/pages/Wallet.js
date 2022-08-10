@@ -29,28 +29,31 @@ export default function Wallet({ address }) {
   useEffect(() => {
     const getTokens = async (chain) => {
       let tokensInWallet;
-      tokensInWallet = [...NATIVE_TOKENS, ...TOKENS]
-        .filter((token) => token.chain === chain)
-        .map(async (token, index) => {
-          if (index <= 500) {
-            if (ethers.utils.isAddress(token.address)) {
-              token["balance"] = await getBalance(token, address).then(
-                (r) => r
-              );
-            } else {
-              token["balance"] = await token.chain.provider.getBalance(address);
-              console.log(token.chain.provider.network.chainId);
-            }
-            const resolvedToken = await token;
-            const balanceAsBN = BigNumber.from(token["balance"]);
-            const balanceAsString = ethers.utils
-              .formatEther(balanceAsBN)
-              .toString();
-            resolvedToken["balance"] = parseFloat(balanceAsString);
-            return token;
+      let allTokens = [...NATIVE_TOKENS, ...TOKENS].filter(
+        (token) => token.chain === chain
+      );
+      tokensInWallet = allTokens.map(async (token, index) => {
+        if (index <= 200) {
+          if (ethers.utils.isAddress(token.address)) {
+            token["balance"] = await getBalance(token, address)
+              .then((r) => r)
+              .catch((e) => e);
+          } else {
+            token["balance"] = await token.chain.provider
+              .getBalance(address)
+              .then((r) => r)
+              .catch((e) => e);
+            console.log(token.chain.provider.network.chainId);
           }
-        });
-      console.log(tokensInWallet);
+          const resolvedToken = await token;
+          const balanceAsBN = BigNumber.from(token["balance"]);
+          const balanceAsString = ethers.utils
+            .formatEther(balanceAsBN)
+            .toString();
+          resolvedToken["balance"] = parseFloat(balanceAsString);
+          return token;
+        }
+      });
       // resolve all the promises
       let resolved = await Promise.all(tokensInWallet);
       let filtered = resolved
@@ -60,64 +63,72 @@ export default function Wallet({ address }) {
     };
 
     const batch = async () => {
-      const avalanche = (await getTokens(CHAINS.AVALANCHE)) ?? [];
-      setTokensWithBalance([...avalanche]);
-      const fantom = (await getTokens(CHAINS.FANTOM)) ?? [];
-      setTokensWithBalance([...avalanche, ...fantom]);
-      const polygon = (await getTokens(CHAINS.POLYGON)) ?? [];
-      setTokensWithBalance([...avalanche, ...fantom, ...polygon]);
-      const iotex = (await getTokens(CHAINS.IOTEX)) ?? [];
-      setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...iotex]);
-      const xdai = (await getTokens(CHAINS.XDAI)) ?? [];
-      setTokensWithBalance([
-        ...avalanche,
-        ...fantom,
-        ...polygon,
-        ...iotex,
-        ...xdai,
-      ]);
-      const moonriver = (await getTokens(CHAINS.MOONRIVER)) ?? [];
-      setTokensWithBalance([
-        ...avalanche,
-        ...fantom,
-        ...polygon,
-        ...iotex,
-        ...xdai,
-        ...moonriver,
-      ]);
-      const fuse = (await getTokens(CHAINS.FUSE)) ?? [];
-      setTokensWithBalance([
-        ...avalanche,
-        ...fantom,
-        ...polygon,
-        ...iotex,
-        ...xdai,
-        ...moonriver,
-        ...fuse,
-      ]);
-      const bnb = (await getTokens(CHAINS.BNB)) ?? [];
-      setTokensWithBalance([
-        ...avalanche,
-        ...fantom,
-        ...polygon,
-        ...iotex,
-        ...xdai,
-        ...moonriver,
-        ...fuse,
-        ...bnb,
-      ]);
-      const eth = (await getTokens(CHAINS.ETHEREUM)) ?? [];
-      setTokensWithBalance([
-        ...avalanche,
-        ...fantom,
-        ...polygon,
-        ...iotex,
-        ...xdai,
-        ...moonriver,
-        ...fuse,
-        ...bnb,
-        ...eth,
-      ]);
+      let _tokensWithBalance = [];
+      for (let chainKey in CHAINS) {
+        const chain = CHAINS[chainKey];
+        const tokens = (await getTokens(chain)) ?? [];
+        _tokensWithBalance = [..._tokensWithBalance, ...tokens];
+        setTokensWithBalance(_tokensWithBalance);
+      }
+
+      // const avalanche = (await getTokens(CHAINS.AVALANCHE)) ?? [];
+      // setTokensWithBalance([...avalanche]);
+      // const fantom = (await getTokens(CHAINS.FANTOM)) ?? [];
+      // setTokensWithBalance([...avalanche, ...fantom]);
+      // const polygon = (await getTokens(CHAINS.POLYGON)) ?? [];
+      // setTokensWithBalance([...avalanche, ...fantom, ...polygon]);
+      // const iotex = (await getTokens(CHAINS.IOTEX)) ?? [];
+      // setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...iotex]);
+      // const xdai = (await getTokens(CHAINS.XDAI)) ?? [];
+      // setTokensWithBalance([
+      //   ...avalanche,
+      //   ...fantom,
+      //   ...polygon,
+      //   ...iotex,
+      //   ...xdai,
+      // ]);
+      // const moonriver = (await getTokens(CHAINS.MOONRIVER)) ?? [];
+      // setTokensWithBalance([
+      //   ...avalanche,
+      //   ...fantom,
+      //   ...polygon,
+      //   ...iotex,
+      //   ...xdai,
+      //   ...moonriver,
+      // ]);
+      // const fuse = (await getTokens(CHAINS.FUSE)) ?? [];
+      // setTokensWithBalance([
+      //   ...avalanche,
+      //   ...fantom,
+      //   ...polygon,
+      //   ...iotex,
+      //   ...xdai,
+      //   ...moonriver,
+      //   ...fuse,
+      // ]);
+      // const bnb = (await getTokens(CHAINS.BNB)) ?? [];
+      // setTokensWithBalance([
+      //   ...avalanche,
+      //   ...fantom,
+      //   ...polygon,
+      //   ...iotex,
+      //   ...xdai,
+      //   ...moonriver,
+      //   ...fuse,
+      //   ...bnb,
+      // ]);
+      // const eth = (await getTokens(CHAINS.ETHEREUM)) ?? [];
+      // setTokensWithBalance([
+      //   ...avalanche,
+      //   ...fantom,
+      //   ...polygon,
+      //   ...iotex,
+      //   ...xdai,
+      //   ...moonriver,
+      //   ...fuse,
+      //   ...bnb,
+      //   ...eth,
+      // ]);
     };
 
     if (address) {
