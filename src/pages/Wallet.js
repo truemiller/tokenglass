@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TokenRow } from "../components/TokenRow";
-import { TokensContext } from "../App";
 import { NATIVE_TOKENS, TOKENS } from "../consts/tokens";
 import { BigNumber, ethers } from "ethers";
 import { getBalance } from "../helper/EthersHelper";
@@ -28,38 +27,47 @@ export default function Wallet({ address }) {
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
     const getTokens = async (chain) => {
+      const batchSize = 200;
       let tokensInWallet;
       let allTokens = [...NATIVE_TOKENS, ...TOKENS].filter(
         (token) => token.chain === chain
       );
-      tokensInWallet = allTokens.map(async (token, index) => {
-        if (index <= 200) {
-          if (ethers.utils.isAddress(token.address)) {
-            token["balance"] = await getBalance(token, address)
-              .then((r) => r)
-              .catch((e) => e);
-          } else {
-            token["balance"] = await token.chain.provider
-              .getBalance(address)
-              .then((r) => r)
-              .catch((e) => e);
-            console.log(token.chain.provider.network.chainId);
+      let runs = Math.ceil(allTokens.length / batchSize);
+      let allResolved = [];
+      for (let x = 0; x < runs; x++) {
+        tokensInWallet = allTokens.map(async (token, index) => {
+          let tokenPromises = [];
+          if (index + batchSize * x <= batchSize + batchSize * x) {
+            if (ethers.utils.isAddress(token.address)) {
+              token["balance"] = await getBalance(token, address)
+                .then((r) => r)
+                .catch((e) => e);
+            } else {
+              token["balance"] = await token.chain.provider
+                .getBalance(address)
+                .then((r) => r)
+                .catch((e) => e);
+            }
+            const resolvedToken = await token;
+            const balanceAsBN = BigNumber.from(token["balance"]);
+            const balanceAsString = ethers.utils
+              .formatEther(balanceAsBN)
+              .toString();
+            resolvedToken["balance"] = parseFloat(balanceAsString);
+            // resolve all the promises
+            return resolvedToken;
           }
-          const resolvedToken = await token;
-          const balanceAsBN = BigNumber.from(token["balance"]);
-          const balanceAsString = ethers.utils
-            .formatEther(balanceAsBN)
-            .toString();
-          resolvedToken["balance"] = parseFloat(balanceAsString);
-          return token;
-        }
-      });
-      // resolve all the promises
-      let resolved = await Promise.all(tokensInWallet);
-      let filtered = resolved
-        .filter((token) => token)
-        .filter((token) => token["balance"] > 0);
-      return [...filtered];
+        });
+        let resolved = await Promise.all(tokensInWallet)
+          .then((r) => r)
+          .catch((e) => e);
+        let filtered = resolved
+          .filter((token) => token)
+          .filter((token) => token["balance"] > 0);
+        allResolved = [...allResolved, ...filtered];
+      }
+      console.log(allResolved);
+      return allResolved;
     };
 
     const batch = async () => {
@@ -70,65 +78,6 @@ export default function Wallet({ address }) {
         _tokensWithBalance = [..._tokensWithBalance, ...tokens];
         setTokensWithBalance(_tokensWithBalance);
       }
-
-      // const avalanche = (await getTokens(CHAINS.AVALANCHE)) ?? [];
-      // setTokensWithBalance([...avalanche]);
-      // const fantom = (await getTokens(CHAINS.FANTOM)) ?? [];
-      // setTokensWithBalance([...avalanche, ...fantom]);
-      // const polygon = (await getTokens(CHAINS.POLYGON)) ?? [];
-      // setTokensWithBalance([...avalanche, ...fantom, ...polygon]);
-      // const iotex = (await getTokens(CHAINS.IOTEX)) ?? [];
-      // setTokensWithBalance([...avalanche, ...fantom, ...polygon, ...iotex]);
-      // const xdai = (await getTokens(CHAINS.XDAI)) ?? [];
-      // setTokensWithBalance([
-      //   ...avalanche,
-      //   ...fantom,
-      //   ...polygon,
-      //   ...iotex,
-      //   ...xdai,
-      // ]);
-      // const moonriver = (await getTokens(CHAINS.MOONRIVER)) ?? [];
-      // setTokensWithBalance([
-      //   ...avalanche,
-      //   ...fantom,
-      //   ...polygon,
-      //   ...iotex,
-      //   ...xdai,
-      //   ...moonriver,
-      // ]);
-      // const fuse = (await getTokens(CHAINS.FUSE)) ?? [];
-      // setTokensWithBalance([
-      //   ...avalanche,
-      //   ...fantom,
-      //   ...polygon,
-      //   ...iotex,
-      //   ...xdai,
-      //   ...moonriver,
-      //   ...fuse,
-      // ]);
-      // const bnb = (await getTokens(CHAINS.BNB)) ?? [];
-      // setTokensWithBalance([
-      //   ...avalanche,
-      //   ...fantom,
-      //   ...polygon,
-      //   ...iotex,
-      //   ...xdai,
-      //   ...moonriver,
-      //   ...fuse,
-      //   ...bnb,
-      // ]);
-      // const eth = (await getTokens(CHAINS.ETHEREUM)) ?? [];
-      // setTokensWithBalance([
-      //   ...avalanche,
-      //   ...fantom,
-      //   ...polygon,
-      //   ...iotex,
-      //   ...xdai,
-      //   ...moonriver,
-      //   ...fuse,
-      //   ...bnb,
-      //   ...eth,
-      // ]);
     };
 
     if (address) {

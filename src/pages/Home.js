@@ -5,9 +5,7 @@ export const Home = () => {
     <>
       <div className={"p-10"}>
         <div className="mx-auto container">
-          <h1 className={"my-5 text-6xl font-extrabold ms-5"}>
-            Welcome to TokenGlass
-          </h1>
+          <h1 className={"text-6xl font-extrabold"}>Welcome to TokenGlass</h1>
           <div className="grid grid-cols-3 gap-5">
             <div className="col-span-1 ">
               <h2 className="text-5xl mb-5 mt-auto">Track your portfolio</h2>
