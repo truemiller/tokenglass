@@ -32,7 +32,7 @@ export const CHAINS = {
   },
   BNB: {
     provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://bsc.mytokenpocket.vip",
+      "https://rpc.ankr.com/bsc",
       {
         chainId: 56,
         name: "BNB Chain",

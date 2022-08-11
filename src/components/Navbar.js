@@ -12,7 +12,7 @@ export function Navbar({ setAddress }) {
 
   return (
     <>
-      <nav className="shadow-xl w-full p-3">
+      <nav className="shadow-xl w-full p-3 top-0 sticky bg-white">
         <div className="flex justify-between">
           <a href="/" className="font-bold p-2">
             {APP_NAME}

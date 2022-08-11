@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export const LeftSidebar = () => {
@@ -9,7 +9,8 @@ export const LeftSidebar = () => {
   };
   return (
     <aside
-      className={"bg-white p-3 flex flex-col shadow-2xl min-h-screen h-full"}
+      className={`bg-white p-3 flex flex-col shadow-2xl h-screen z-auto sticky top-0`}
+      style={{ height: "100%", minHeight: "100vh" }}
     >
       <button className={"btn my-4"} onClick={handleToggle}>
         <i className={"fas fa-bars"}></i>
