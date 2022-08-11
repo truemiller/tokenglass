@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TokenRow } from "../components/TokenRow";
 import { NATIVE_TOKENS, TOKENS } from "../consts/tokens";
 import { BigNumber, ethers } from "ethers";
@@ -20,12 +20,31 @@ export default function Wallet({ address }) {
 
   const [totalBalance, setTotalBalance] = useState(0);
 
-  const [avaxTotalBalance, setAvaxTotalBalance] = useState(0);
-  const [bnbTotalBalance, setBnbTotalBalance] = useState(0);
-  const [ethTotalBalance, setEthTotalBalance] = useState(0);
+  const [loadingState, setLoadingState] = useState(null);
 
+  const getChainBalance = useCallback(
+    (chain) => {
+      const filtered = tokensWithBalancePriceAndTotal
+        .filter((token) => token.chain === chain)
+        .map((token) => token.total);
+      if (filtered.length > 0) {
+        return filtered.reduce((a, b) => a + b);
+      } else {
+        return 0;
+      }
+    },
+    [tokensWithBalancePriceAndTotal]
+  );
+
+  const balances = {
+    avalanche: getChainBalance(CHAINS.AVALANCHE),
+    bnb: getChainBalance(CHAINS.BNB),
+    ethereum: getChainBalance(CHAINS.ETHEREUM),
+    fantom: getChainBalance(CHAINS.FANTOM),
+  };
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
+    setLoadingState("Getting tokens");
     const getTokens = async (chain) => {
       const batchSize = 200;
       let tokensInWallet;
@@ -36,7 +55,6 @@ export default function Wallet({ address }) {
       let allResolved = [];
       for (let x = 0; x < runs; x++) {
         tokensInWallet = allTokens.map(async (token, index) => {
-          let tokenPromises = [];
           if (index + batchSize * x <= batchSize + batchSize * x) {
             if (ethers.utils.isAddress(token.address)) {
               token["balance"] = await getBalance(token, address)
@@ -81,7 +99,7 @@ export default function Wallet({ address }) {
     };
 
     if (address) {
-      batch().then((r) => r);
+      batch().then((r) => setLoadingState(null));
     } else setTokensWithBalance([]);
   }, [address]);
 
@@ -89,7 +107,9 @@ export default function Wallet({ address }) {
   useEffect(() => {
     const tokensToUpdate = async () => {
       const ids = tokensWithBalance.map((token) => token.coingecko);
-      const idsString = ids.join(",");
+
+      const idsSet = [...new Set(ids)];
+      const idsString = idsSet.join(",");
       if (idsString.length > 0 && address && tokensWithBalance.length > 0) {
         const coinGeckoPrices = await getCoingeckoPrice(idsString);
         setTokensWithBalanceAndPrice(
@@ -144,8 +164,10 @@ export default function Wallet({ address }) {
   return (
     <div className={"p-10"}>
       <div className="mx-auto container">
-        <div className="hero">
-          <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
+        <div className="flex flex-row">
+          <div className="flex flex-col">
+            <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
+          </div>
         </div>
         <div className={"mt-5 bg-white "}>
           <div className="flex">
@@ -153,15 +175,35 @@ export default function Wallet({ address }) {
               Balance: $ {totalBalance.toLocaleString()}
             </span>
           </div>
+
+          <div className="grid grid-cols-5 gap-4 bg-white shadow-2xl ">
+            {balances.avalanche ? (
+              <div className={"flex flex-col text-sm"}>
+                <img src={CHAINS.AVALANCHE.logo} className={"w-8"} />
+                {balances.avalanche.toLocaleString()}
+              </div>
+            ) : null}
+            {balances.bnb ? (
+              <div className={"flex flex-col text-sm"}>
+                <img src={CHAINS.BNB.logo} className={"w-8"} />
+                {balances.bnb.toLocaleString()}
+              </div>
+            ) : null}
+            {balances.ethereum ? (
+              <div className={"flex flex-col text-sm"}>
+                <img src={CHAINS.ETHEREUM.logo} className={"w-8"} />
+                {balances.ethereum.toLocaleString()}
+              </div>
+            ) : null}
+            {balances.fantom ? (
+              <div className={"flex flex-col text-sm"}>
+                <img src={CHAINS.FANTOM.logo} className={"w-8"} />
+                {balances.fantom.toLocaleString()}
+              </div>
+            ) : null}
+          </div>
+
           <table className={"w-full  bg-white shadow-2xl table"}>
-            <thead className={"text-left w-full "}>
-              <tr className={""}>
-                <th className={"fw-bolder p-3"}>Token</th>
-                <th className={"fw-bolder p-3"}>Balance</th>
-                <th className={"fw-bolder p-3"}>Price</th>
-                <th className={"fw-bolder p-3"}>Total</th>
-              </tr>
-            </thead>
             <tbody>
               {sortedTokensWithBalancePriceAndTotal.map((token) => {
                 return !token.balance ? (
@@ -181,6 +223,19 @@ export default function Wallet({ address }) {
               })}
             </tbody>
           </table>
+          <div className="flex flex-row p-3 content-center">
+            {loadingState ? (
+              <img
+                src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+                alt=""
+                className={"mx-auto"}
+                height={16}
+                style={{ height: 20, width: 20 }}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>
