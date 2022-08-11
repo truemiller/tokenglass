@@ -3789,14 +3789,6 @@ export let TOKENS = [
     coingecko: "baby-shark",
   },
   {
-    name: `Baby Shark Tank`,
-    symbol: "bashtank",
-    logo: "https://assets.coingecko.com/coins/images/15390/small/IqTGmFXy_400x400.jpg?1620703139",
-    chain: CHAINS.BNB,
-    address: "0x484312a0aaeae3ae36a74ff3e294246f35dddf4f",
-    coingecko: "baby-shark-tank",
-  },
-  {
     name: `Baby Shiba Dot`,
     symbol: "bsd",
     logo: "https://assets.coingecko.com/coins/images/20452/small/bsd.png?1637045824",
