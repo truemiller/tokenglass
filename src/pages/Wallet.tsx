@@ -110,7 +110,7 @@ export default function Wallet({ address }: WalletProps) {
           .filter((token: Token) => token["balance"] ?? 0 > 0);
         allResolved = [...allResolved, ...filtered];
       }
-      console.log(allResolved);
+      // console.log(allResolved);
       return allResolved;
     };
 
@@ -126,7 +126,9 @@ export default function Wallet({ address }: WalletProps) {
     };
 
     if (address) {
+      console.log("Before batch");
       batch().then((r) => setLoadingState(null));
+      console.log("After batch");
     } else setTokensWithBalance([]);
   }, [address]);
 
