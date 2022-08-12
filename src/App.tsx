@@ -1,3 +1,4 @@
+import React from "react";
 import { Navbar } from "./components/Navbar";
 import Wallet from "./pages/Wallet";
 import { Home } from "./pages/Home";
@@ -8,7 +9,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 export const AddressContext = createContext(null);
 export const TotalBalanceContext = createContext(0);
 export const TokensContext = createContext([]);
-export default function App() {
+
+export default function App(): JSX.Element {
   //state
   const [address, setAddress] = useState(
     window.ethereum.selectedAddress ?? null

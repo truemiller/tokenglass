@@ -1,4 +1,19 @@
-export const TokenRow = ({ tokenData }) => {
+import React from "react";
+import { Chain } from "../consts/chains";
+
+type TokenRowProps = {
+  tokenData: {
+    name: string;
+    coingecko: string;
+    chain: Chain;
+    symbol: string;
+    balance: number;
+    price: number;
+    total: number;
+  };
+};
+
+export const TokenRow = ({ tokenData }: TokenRowProps) => {
   return (
     <tr key={tokenData.name} className={"w-full hover:bg-gray-100"}>
       <td className={"flex p-3"}>
