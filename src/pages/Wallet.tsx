@@ -1,35 +1,38 @@
-import { useCallback, useEffect, useState } from "react";
-
+import React, { useCallback, useEffect, useState } from "react";
 import { TokenRow } from "../components/TokenRow";
-import { NATIVE_TOKENS, TOKENS } from "../consts/tokens";
+import { Token, TOKENS } from "../consts/tokens";
 import { BigNumber, ethers } from "ethers";
-import { getBalance } from "../helper/EthersHelper";
-import { CHAINS } from "../consts/chains";
-import { getCoingeckoPrice } from "../helper/CoinGeckoHelper";
+import { Chain, CHAINS } from "../consts/chains";
 
-export default function Wallet({ address }) {
-  const [tokensWithBalance, setTokensWithBalance] = useState([]);
-  const [tokensWithBalanceAndPrice, setTokensWithBalanceAndPrice] = useState(
-    []
-  );
+const { getCoingeckoPrice } = require("../helper/CoinGeckoHelper");
+const { getBalance } = require("../helper/EthersHelper");
+
+type WalletProps = {
+  address: string;
+};
+export default function Wallet({ address }: WalletProps) {
+  const [tokensWithBalance, setTokensWithBalance] = useState<Token[]>([]);
+  const [tokensWithBalanceAndPrice, setTokensWithBalanceAndPrice] = useState<
+    Token[]
+  >([]);
   const [tokensWithBalancePriceAndTotal, setTokensWithBalancePriceAndTotal] =
-    useState([]);
+    useState<Token[]>([]);
   const [
     sortedTokensWithBalancePriceAndTotal,
     setSortedTokensWithBalancePriceAndTotal,
-  ] = useState([]);
+  ] = useState<Token[]>([]);
 
-  const [totalBalance, setTotalBalance] = useState(0);
+  const [totalBalance, setTotalBalance] = useState<number>(0);
 
-  const [loadingState, setLoadingState] = useState(null);
+  const [loadingState, setLoadingState] = useState<string | null>(null);
 
   const getChainBalance = useCallback(
-    (chain) => {
+    (chain: any) => {
       const filtered = tokensWithBalancePriceAndTotal
-        .filter((token) => token.chain === chain)
-        .map((token) => token.total);
+        .filter((token: Token) => token.chain === chain)
+        .map((token: Token) => token.total);
       if (filtered.length > 0) {
-        return filtered.reduce((a, b) => a + b);
+        return filtered.reduce((a, b) => (a ?? 0) + (b ?? 0));
       } else {
         return 0;
       }
@@ -46,21 +49,19 @@ export default function Wallet({ address }) {
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
     setLoadingState("Getting tokens");
-    const getTokens = async (chain) => {
+    const getTokens = async (chain: Chain) => {
       const batchSize = 200;
       let tokensInWallet;
-      let allTokens = [...NATIVE_TOKENS, ...TOKENS].filter(
-        (token) => token.chain === chain
-      );
+      let allTokens = TOKENS.filter((token) => token.chain === chain);
       let runs = Math.ceil(allTokens.length / batchSize);
-      let allResolved = [];
+      let allResolved: Token[] = [];
       for (let x = 0; x < runs; x++) {
         tokensInWallet = allTokens.map(async (token, index) => {
           if (index + batchSize * x <= batchSize + batchSize * x) {
-            if (ethers.utils.isAddress(token.address)) {
+            if (ethers.utils.isAddress(token.address ?? "")) {
               token["balance"] = await getBalance(token, address)
-                .then((r) => r)
-                .catch((e) => e);
+                .then((r: any) => r)
+                .catch((e: any) => e);
             } else {
               token["balance"] = await token.chain.provider
                 .getBalance(address)
@@ -81,8 +82,8 @@ export default function Wallet({ address }) {
           .then((r) => r)
           .catch((e) => e);
         let filtered = resolved
-          .filter((token) => token)
-          .filter((token) => token["balance"] > 0);
+          .filter((token: Token) => token)
+          .filter((token: Token) => token["balance"] ?? 0 > 0);
         allResolved = [...allResolved, ...filtered];
       }
       console.log(allResolved);
@@ -90,9 +91,10 @@ export default function Wallet({ address }) {
     };
 
     const batch = async () => {
-      let _tokensWithBalance = [];
+      let _tokensWithBalance: Token[] = [];
       for (let chainKey in CHAINS) {
-        const chain = CHAINS[chainKey];
+        // @ts-ignore
+        const chain: Chain = CHAINS[chainKey];
         const tokens = (await getTokens(chain)) ?? [];
         _tokensWithBalance = [..._tokensWithBalance, ...tokens];
         setTokensWithBalance(_tokensWithBalance);
@@ -107,16 +109,17 @@ export default function Wallet({ address }) {
   // update tokens with price (setTokensWithBalanceAndPrice)
   useEffect(() => {
     const tokensToUpdate = async () => {
-      const ids = tokensWithBalance.map((token) => token.coingecko);
+      const ids = tokensWithBalance.map((token: Token) => token.coingecko);
 
       const idsSet = [...new Set(ids)];
       const idsString = idsSet.join(",");
       if (idsString.length > 0 && address && tokensWithBalance.length > 0) {
         const coinGeckoPrices = await getCoingeckoPrice(idsString);
         setTokensWithBalanceAndPrice(
-          Object.keys(coinGeckoPrices).map((key) => {
-            const token = tokensWithBalance.find(
-              (token) => token["coingecko"] === key
+          Object.keys(coinGeckoPrices).map((key: string) => {
+            // @ts-ignore
+            let token: Token = tokensWithBalance.find(
+              (token: Token) => token["coingecko"] === key
             );
             token["price"] = coinGeckoPrices[key].usd;
             return token;
@@ -134,7 +137,7 @@ export default function Wallet({ address }) {
     if (address) {
       setTokensWithBalancePriceAndTotal(
         tokensWithBalanceAndPrice.map((token) => {
-          token["total"] = token.price * token.balance;
+          token["total"] = (token.price ?? 0) * (token.balance ?? 0);
           return token;
         })
       );
@@ -146,16 +149,19 @@ export default function Wallet({ address }) {
   // sorted update tokens with totals
   useEffect(() => {
     setSortedTokensWithBalancePriceAndTotal(
-      tokensWithBalancePriceAndTotal.sort((a, b) => a.total < b.total)
+      tokensWithBalancePriceAndTotal.sort(
+        (a: Token, b: Token) => (b.total ?? 0) - (a.total ?? 0)
+      )
     );
   }, [address, tokensWithBalancePriceAndTotal]);
 
   // update total balance
   useEffect(() => {
     if (address && tokensWithBalancePriceAndTotal.length > 0) {
-      const sum = tokensWithBalancePriceAndTotal
-        .map((token) => token.total)
-        .reduce((a, b) => a + b);
+      const sum =
+        tokensWithBalancePriceAndTotal
+          .map((token: Token) => token.total)
+          .reduce((a, b) => (a ?? 0) + (b ?? 0)) ?? 0;
       setTotalBalance(sum);
     } else {
       setTotalBalance(0);
@@ -177,28 +183,41 @@ export default function Wallet({ address }) {
             </span>
           </div>
 
-          <div className="grid grid-cols-5 gap-4 bg-white shadow-2xl ">
+          <div className="p-3 grid grid-cols-5 gap-4 bg-white shadow-2xl ">
             {balances.avalanche ? (
-              <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.AVALANCHE.logo} className={"w-8"} />
-                {balances.avalanche.toLocaleString()}
+              <div className={"flex flex-col text-sm text-center"}>
+                <img
+                  src={CHAINS.AVALANCHE.logo}
+                  className={"w-8 mx-auto"}
+                  alt={""}
+                />
+                <span className={""}>
+                  {balances.avalanche.toLocaleString()}
+                </span>
+                <span>
+                  {((balances.avalanche / totalBalance) * 100).toLocaleString()}
+                  %
+                </span>
               </div>
             ) : null}
             {balances.bnb ? (
               <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.BNB.logo} className={"w-8"} />
-                {balances.bnb.toLocaleString()}
+                <img src={CHAINS.BNB.logo} className={"w-8"} alt={""} />
+                <span>{balances.bnb.toLocaleString()}</span>
+                <span>
+                  {((balances.bnb / totalBalance) * 100).toLocaleString()}%
+                </span>
               </div>
             ) : null}
             {balances.ethereum ? (
               <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.ETHEREUM.logo} className={"w-8"} />
+                <img src={CHAINS.ETHEREUM.logo} className={"w-8"} alt={""} />
                 {balances.ethereum.toLocaleString()}
               </div>
             ) : null}
             {balances.fantom ? (
               <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.FANTOM.logo} className={"w-8"} />
+                <img src={CHAINS.FANTOM.logo} className={"w-8"} alt={""} />
                 {balances.fantom.toLocaleString()}
               </div>
             ) : null}
@@ -206,7 +225,7 @@ export default function Wallet({ address }) {
 
           <table className={"w-full  bg-white shadow-2xl table"}>
             <tbody>
-              {sortedTokensWithBalancePriceAndTotal.map((token) => {
+              {sortedTokensWithBalancePriceAndTotal.map((token: any) => {
                 return !token.balance ? (
                   <tr
                     key={

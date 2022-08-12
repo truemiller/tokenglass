@@ -1,6 +1,18 @@
-import { CHAINS } from "./chains";
+import { Chain, CHAINS } from "./chains";
 
-export const NATIVE_TOKENS = [
+export type Token = {
+  name: string;
+  symbol: string;
+  logo: string;
+  chain: Chain;
+  address: string | null;
+  coingecko: string;
+  balance?: number | null;
+  total?: number | null;
+  price?: number | null;
+};
+
+const NATIVE_TOKENS: Token[] = [
   {
     name: "Avalanche",
     symbol: "AVAX",
@@ -75,7 +87,7 @@ export const NATIVE_TOKENS = [
   },
 ];
 
-export let TOKENS = [
+const ARBITRUM_TOKENS: Token[] = [
   {
     name: `AlchemyDAO`,
     symbol: "alch",
@@ -644,142 +656,9 @@ export let TOKENS = [
     address: "0x377c6e37633e390aef9afb4f5e0b16689351eed4",
     coingecko: "zyx",
   },
-  {
-    name: `Allbridge`,
-    symbol: "abr",
-    logo: "https://assets.coingecko.com/coins/images/18690/small/abr.png?1640742053",
-    chain: CHAINS.AURORA,
-    address: "0x2bae00c8bc1868a5f7a216e881bae9e662630111",
-    coingecko: "allbridge",
-  },
-  {
-    name: `Aurora`,
-    symbol: "aurora",
-    logo: "https://assets.coingecko.com/coins/images/20582/small/aurora.jpeg?1637250883",
-    chain: CHAINS.AURORA,
-    address: "0x8bec47865ade3b172a928df8f990bc7f2a3b9f79",
-    coingecko: "aurora-near",
-  },
-  {
-    name: `Beefy.Finance`,
-    symbol: "bifi",
-    logo: "https://assets.coingecko.com/coins/images/12704/small/token.png?1601876182",
-    chain: CHAINS.AURORA,
-    address: "0x218c3c3d49d0e7b37aff0d8bb079de36ae61a4c0",
-    coingecko: "beefy-finance",
-  },
-  {
-    name: `Borealis`,
-    symbol: "brl",
-    logo: "https://assets.coingecko.com/coins/images/22089/small/auroraswap.png?1640774528",
-    chain: CHAINS.AURORA,
-    address: "0x12c87331f086c3c926248f964f8702c0842fd77f",
-    coingecko: "borealis",
-  },
-  {
-    name: `Dai`,
-    symbol: "dai",
-    logo: "https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734",
-    chain: CHAINS.AURORA,
-    address: "0xe3520349f477a5f6eb06107066048508498a291b",
-    coingecko: "dai",
-  },
-  {
-    name: `DODO`,
-    symbol: "dodo",
-    logo: "https://assets.coingecko.com/coins/images/12651/small/dodo_logo.png?1601433025",
-    chain: CHAINS.AURORA,
-    address: "0xe301ed8c7630c9678c39e4e45193d1e7dfb914f7",
-    coingecko: "dodo",
-  },
-  {
-    name: `NearPad`,
-    symbol: "pad",
-    logo: "https://assets.coingecko.com/coins/images/18117/small/coin-on-white.png?1630553114",
-    chain: CHAINS.AURORA,
-    address: "0x885f8cf6e45bdd3fdcdc644efdcd0ac93880c781",
-    coingecko: "nearpad",
-  },
-  {
-    name: `Pickle Finance`,
-    symbol: "pickle",
-    logo: "https://assets.coingecko.com/coins/images/12435/small/0M4W6Yr6_400x400.jpg?1643006080",
-    chain: CHAINS.AURORA,
-    address: "0x291c8fceaca3342b29cc36171deb98106f712c66",
-    coingecko: "pickle-finance",
-  },
-  {
-    name: `Rose`,
-    symbol: "rose",
-    logo: "https://assets.coingecko.com/coins/images/22104/small/rose.PNG?1640827477",
-    chain: CHAINS.AURORA,
-    address: "0xdcd6d4e2b3e1d1e1e6fa8c21c8a323dcbecff970",
-    coingecko: "rose",
-  },
-  {
-    name: `SmartPad`,
-    symbol: "pad",
-    logo: "https://assets.coingecko.com/coins/images/25860/small/wMTpRljt_400x400.png?1654227382",
-    chain: CHAINS.AURORA,
-    address: "0x0fad0ed848a7a16526e8a7574e418b015dbf41b5",
-    coingecko: "smartpad-2",
-  },
-  {
-    name: `Tether`,
-    symbol: "usdt",
-    logo: "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-    chain: CHAINS.AURORA,
-    address: "0x4988a896b1227218e4a686fde5eabdcabd91571f",
-    coingecko: "tether",
-  },
-  {
-    name: `Trisolaris`,
-    symbol: "tri",
-    logo: "https://assets.coingecko.com/coins/images/20607/small/logo_-_2021-11-19T104946.772.png?1637290197",
-    chain: CHAINS.AURORA,
-    address: "0xfa94348467f64d5a457f75f8bc40495d33c65abb",
-    coingecko: "trisolaris",
-  },
-  {
-    name: `USD Coin`,
-    symbol: "usdc",
-    logo: "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
-    chain: CHAINS.AURORA,
-    address: "0xb12bfca5a55806aaf64e99521918a4bf0fc40802",
-    coingecko: "usd-coin",
-  },
-  {
-    name: `WannaSwap`,
-    symbol: "wanna",
-    logo: "https://assets.coingecko.com/coins/images/21955/small/wannaswap.PNG?1640337839",
-    chain: CHAINS.AURORA,
-    address: "0x7faa64faf54750a2e3ee621166635feaf406ab22",
-    coingecko: "wannaswap",
-  },
-  {
-    name: `WETH`,
-    symbol: "weth",
-    logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
-    chain: CHAINS.AURORA,
-    address: "0xc9bdeed33cd01541e1eed10f90519d2c06fe3feb",
-    coingecko: "weth",
-  },
-  {
-    name: `Wrapped Bitcoin`,
-    symbol: "wbtc",
-    logo: "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
-    chain: CHAINS.AURORA,
-    address: "0xf4eb217ba2454613b15dbdea6e5f22276410e89e",
-    coingecko: "wrapped-bitcoin",
-  },
-  {
-    name: `Wrapped Near`,
-    symbol: "wnear",
-    logo: "https://assets.coingecko.com/coins/images/18280/small/EX4mrWMW_400x400.jpg?1631244046",
-    chain: CHAINS.AURORA,
-    address: "0xc42c30ac6cc15fac9bd938618bcaa1a1fae8501d",
-    coingecko: "wrapped-near",
-  },
+];
+
+const AVALANCHE_TOKENS: Token[] = [
   {
     name: `0x`,
     symbol: "zrx",
@@ -2316,6 +2195,9 @@ export let TOKENS = [
     address: "0x59414b3089ce2af0010e7523dea7e2b35d776ec7",
     coingecko: "yield-yak",
   },
+];
+
+const BNB_TOKENS: Token[] = [
   {
     name: `867`,
     symbol: "867",
@@ -24492,430 +24374,9 @@ export let TOKENS = [
     address: "0xe550a593d09fbc8dcd557b5c88cea6946a8b404a",
     coingecko: "tdoge",
   },
-  {
-    name: `Denizlispor Fan Token`,
-    symbol: "dnz",
-    logo: "https://assets.coingecko.com/coins/images/18082/small/dnz.png?1630401926",
-    chain: CHAINS.BITCI,
-    address: "0xb428b0d491516aad256386180945c52423907a61",
-    coingecko: "denizlispor-fan-token",
-  },
-  {
-    name: `Rangers Fan Token`,
-    symbol: "rft",
-    logo: "https://assets.coingecko.com/coins/images/17644/small/rft.png?1628745181",
-    chain: CHAINS.BITCI,
-    address: "0xf930a91a60deb0eb1fe9419a85f95d21badabd34",
-    coingecko: "rangers-fan-token",
-  },
-  {
-    name: `Boba Network`,
-    symbol: "boba",
-    logo: "https://assets.coingecko.com/coins/images/20285/small/BOBA.png?1636811576",
-    chain: CHAINS.BOBA,
-    address: "0x077c28868b84c4b420638ef97041764effbb2428",
-    coingecko: "boba-network",
-  },
-  {
-    name: `BobaDoge`,
-    symbol: "bdoge",
-    logo: "https://assets.coingecko.com/coins/images/20341/small/K4orzzy.png?1636941544",
-    chain: CHAINS.BOBA,
-    address: "0x121636c43e96d97ab00b6c6994cddebef27de1c7",
-    coingecko: "bobadoge",
-  },
-  {
-    name: `OolongSwap`,
-    symbol: "olo",
-    logo: "https://assets.coingecko.com/coins/images/20637/small/Capture.PNG?1637427078",
-    chain: CHAINS.BOBA,
-    address: "0x5008f837883ea9a07271a1b5eb0658404f5a9610",
-    coingecko: "oolongswap",
-  },
-  {
-    name: `Tether`,
-    symbol: "usdt",
-    logo: "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-    chain: CHAINS.BOBA,
-    address: "0x5de1677344d3cb0d7d465c10b72a8f60699c062d",
-    coingecko: "tether",
-  },
-  {
-    name: `USD Coin`,
-    symbol: "usdc",
-    logo: "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
-    chain: CHAINS.BOBA,
-    address: "0x66a2a913e447d6b4bf33efbec43aaef87890fbbc",
-    coingecko: "usd-coin",
-  },
-  {
-    name: `WETH`,
-    symbol: "weth",
-    logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
-    chain: CHAINS.BOBA,
-    address: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000",
-    coingecko: "weth",
-  },
-  {
-    name: `Wrapped Bitcoin`,
-    symbol: "wbtc",
-    logo: "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
-    chain: CHAINS.BOBA,
-    address: "0xdc0486f8bf31df57a952bcd3c1d3e166e3d9ec8b",
-    coingecko: "wrapped-bitcoin",
-  },
-  {
-    name: `Allbridge`,
-    symbol: "abr",
-    logo: "https://assets.coingecko.com/coins/images/18690/small/abr.png?1640742053",
-    chain: CHAINS.CELO,
-    address: "0x6e512bfc33be36f2666754e996ff103ad1680cc9",
-    coingecko: "allbridge",
-  },
-  {
-    name: `Ari Swap`,
-    symbol: "ari",
-    logo: "https://assets.coingecko.com/coins/images/21762/small/ari.PNG?1639990515",
-    chain: CHAINS.CELO,
-    address: "0x20677d4f3d0f08e735ab512393524a3cfceb250c",
-    coingecko: "ari-swap",
-  },
-  {
-    name: `Beefy.Finance`,
-    symbol: "bifi",
-    logo: "https://assets.coingecko.com/coins/images/12704/small/token.png?1601876182",
-    chain: CHAINS.CELO,
-    address: "0x639a647fbe20b6c8ac19e48e2de44ea792c62c5c",
-    coingecko: "beefy-finance",
-  },
-  {
-    name: `Celo`,
-    symbol: "celo",
-    logo: "https://assets.coingecko.com/coins/images/11090/small/icon-celo-CELO-color-500.png?1592293590",
-    chain: CHAINS.CELO,
-    address: "0x471ece3750da237f93b8e339c536989b8978a438",
-    coingecko: "celo",
-  },
-  {
-    name: `Celo Dollar`,
-    symbol: "cusd",
-    logo: "https://assets.coingecko.com/coins/images/13161/small/icon-celo-dollar-color-1000-circle-cropped.png?1605771134",
-    chain: CHAINS.CELO,
-    address: "0x765de816845861e75a25fca122bb6898b8b1282a",
-    coingecko: "celo-dollar",
-  },
-  {
-    name: `Celo Euro`,
-    symbol: "ceur",
-    logo: "https://assets.coingecko.com/coins/images/16756/small/CEUR.png?1624947266",
-    chain: CHAINS.CELO,
-    address: "0xd8763cba276a3738e6de85b4b3bf5fded6d6ca73",
-    coingecko: "celo-euro",
-  },
-  {
-    name: `CeloLaunch`,
-    symbol: "cla",
-    logo: "https://assets.coingecko.com/coins/images/22165/small/93032948.png?1641164800",
-    chain: CHAINS.CELO,
-    address: "0x5927fd244e11db1c7b1215619144d2aabac80a4f",
-    coingecko: "celolaunch",
-  },
-  {
-    name: `CeloStarter`,
-    symbol: "cstar",
-    logo: "https://assets.coingecko.com/coins/images/19492/small/cs_v2_Logo_only.png?1635303588",
-    chain: CHAINS.CELO,
-    address: "0x452ef5a4bd00796e62e5e5758548e0da6e8ccdf3",
-    coingecko: "celostarter",
-  },
-  {
-    name: `ImmortalDAO`,
-    symbol: "immo",
-    logo: "https://assets.coingecko.com/coins/images/22189/small/immortal_logo.png?1641188557",
-    chain: CHAINS.CELO,
-    address: "0xe685d21b7b0fc7a248a6a8e03b8db22d013aa2ee",
-    coingecko: "immortaldao",
-  },
-  {
-    name: `impactMarket`,
-    symbol: "pact",
-    logo: "https://assets.coingecko.com/coins/images/21907/small/PACT_Token_Ticker_Blue_2x.png?1640236076",
-    chain: CHAINS.CELO,
-    address: "0x46c9757c5497c5b1f2eb73ae79b6b67d119b0b58",
-    coingecko: "impactmarket",
-  },
-  {
-    name: `KROWN`,
-    symbol: "krw",
-    logo: "https://assets.coingecko.com/coins/images/16530/small/KRW_token_logo_200x200.png?1624343058",
-    chain: CHAINS.CELO,
-    address: "0xd252e98c5b6ea1e29a7e2789a9ec0493707a60b9",
-    coingecko: "krown",
-  },
-  {
-    name: `Mobius Money`,
-    symbol: "mobi",
-    logo: "https://assets.coingecko.com/coins/images/18467/small/MOBI-200.png?1632116116",
-    chain: CHAINS.CELO,
-    address: "0x73a210637f6f6b7005512677ba6b3c96bb4aa44b",
-    coingecko: "mobius-money",
-  },
-  {
-    name: `Moola CELO AToken`,
-    symbol: "mcelo",
-    logo: "https://assets.coingecko.com/coins/images/18476/small/mcelo.png?1632134461",
-    chain: CHAINS.CELO,
-    address: "0x7037f7296b2fc7908de7b57a89efaa8319f0c500",
-    coingecko: "moola-celo-atoken",
-  },
-  {
-    name: `Moola Market`,
-    symbol: "moo",
-    logo: "https://assets.coingecko.com/coins/images/17719/small/MOO_Logo_blue.png?1629088856",
-    chain: CHAINS.CELO,
-    address: "0x17700282592d6917f6a73d0bf8accf4d578c131e",
-    coingecko: "moola-market",
-  },
-  {
-    name: `PoofCash`,
-    symbol: "poof",
-    logo: "https://assets.coingecko.com/coins/images/18076/small/android-icon-192x192_%282%29.png?1630391973",
-    chain: CHAINS.CELO,
-    address: "0x00400fcbf0816bebb94654259de7273f4a05c762",
-    coingecko: "poofcash",
-  },
-  {
-    name: `Premio`,
-    symbol: "premio",
-    logo: "https://assets.coingecko.com/coins/images/19958/small/premio_61a66349c0.png?1636341034",
-    chain: CHAINS.CELO,
-    address: "0x94140c2ea9d208d8476ca4e3045254169791c59e",
-    coingecko: "premio",
-  },
-  {
-    name: `ReSource Protocol`,
-    symbol: "source",
-    logo: "https://assets.coingecko.com/coins/images/20740/small/source.png?1637749215",
-    chain: CHAINS.CELO,
-    address: "0x74c0c58b99b68cf16a717279ac2d056a34ba2bfe",
-    coingecko: "resource-protocol",
-  },
-  {
-    name: `Sushi`,
-    symbol: "sushi",
-    logo: "https://assets.coingecko.com/coins/images/12271/small/512x512_Logo_no_chop.png?1606986688",
-    chain: CHAINS.CELO,
-    address: "0xd15ec721c2a896512ad29c671997dd68f9593226",
-    coingecko: "sushi",
-  },
-  {
-    name: `Symmetric`,
-    symbol: "symm",
-    logo: "https://assets.coingecko.com/coins/images/18525/small/SYMM-Coin-2.png?1632276841",
-    chain: CHAINS.CELO,
-    address: "0x7c64ad5f9804458b8c9f93f7300c15d55956ac2a",
-    coingecko: "symmetric",
-  },
-  {
-    name: `Ubeswap`,
-    symbol: "ube",
-    logo: "https://assets.coingecko.com/coins/images/15317/small/ubeswap.png?1620395836",
-    chain: CHAINS.CELO,
-    address: "0x00be915b9dcf56a3cbe739d9b9c202ca692409ec",
-    coingecko: "ubeswap",
-  },
-  {
-    name: `WETH`,
-    symbol: "weth",
-    logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
-    chain: CHAINS.CELO,
-    address: "0x2def4285787d58a2f811af24755a8150622f4361",
-    coingecko: "weth",
-  },
-  {
-    name: `Wrapped Bitcoin`,
-    symbol: "wbtc",
-    logo: "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
-    chain: CHAINS.CELO,
-    address: "0xd629eb00deced2a080b7ec630ef6ac117e614f1b",
-    coingecko: "wrapped-bitcoin",
-  },
-  {
-    name: `Agile`,
-    symbol: "agl",
-    logo: "https://assets.coingecko.com/coins/images/21589/small/agile.png?1639543022",
-    chain: CHAINS.CRONOS,
-    address: "0x75c296f46cf985292f54784a1bb9855c3a4e99c8",
-    coingecko: "agile",
-  },
-  {
-    name: `Beefy.Finance`,
-    symbol: "bifi",
-    logo: "https://assets.coingecko.com/coins/images/12704/small/token.png?1601876182",
-    chain: CHAINS.CRONOS,
-    address: "0xe6801928061cdbe32ac5ad0634427e140efd05f9",
-    coingecko: "beefy-finance",
-  },
-  {
-    name: `Binance USD`,
-    symbol: "busd",
-    logo: "https://assets.coingecko.com/coins/images/9576/small/BUSD.png?1568947766",
-    chain: CHAINS.CRONOS,
-    address: "0x6ab6d61428fde76768d7b45d8bfeec19c6ef91a8",
-    coingecko: "binance-usd",
-  },
-  {
-    name: `BiShares`,
-    symbol: "bison",
-    logo: "https://assets.coingecko.com/coins/images/17198/small/bzkeIcC.png?1629882431",
-    chain: CHAINS.CRONOS,
-    address: "0x3405a1bd46b85c5c029483fbecf2f3e611026e45",
-    coingecko: "bishares",
-  },
-  {
-    name: `Bitcoin BR`,
-    symbol: "btcbr",
-    logo: "https://assets.coingecko.com/coins/images/21205/small/200x200.png?1638551617",
-    chain: CHAINS.CRONOS,
-    address: "0xe57425f1598f9b0d6219706b77f4b3da573a3695",
-    coingecko: "bitcoin-br",
-  },
-  {
-    name: `Crodex`,
-    symbol: "crx",
-    logo: "https://assets.coingecko.com/coins/images/21771/small/j9UTZnAh_400x400.jpg?1639996557",
-    chain: CHAINS.CRONOS,
-    address: "0xe243ccab9e66e6cf1215376980811ddf1eb7f689",
-    coingecko: "crodex",
-  },
-  {
-    name: `CroMoon`,
-    symbol: "moon",
-    logo: "https://assets.coingecko.com/coins/images/21818/small/New-CroMoon-Logo-500x500.png?1646272485",
-    chain: CHAINS.CRONOS,
-    address: "0x7d30c36f845d1dee79f852abf3a8a402fadf3b53",
-    coingecko: "cromoon",
-  },
-  {
-    name: `CronaSwap`,
-    symbol: "crona",
-    logo: "https://assets.coingecko.com/coins/images/21098/small/logox200.png?1638324977",
-    chain: CHAINS.CRONOS,
-    address: "0xadbd1231fb360047525bedf962581f3eee7b49fe",
-    coingecko: "cronaswap",
-  },
-  {
-    name: `Crystl Finance`,
-    symbol: "crystl",
-    logo: "https://assets.coingecko.com/coins/images/17023/small/CRYSTL_Rebrand_Logo.png?1651745246",
-    chain: CHAINS.CRONOS,
-    address: "0xcbde0e17d14f49e10a10302a32d17ae88a7ecb8b",
-    coingecko: "crystl-finance",
-  },
-  {
-    name: `Dai`,
-    symbol: "dai",
-    logo: "https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734",
-    chain: CHAINS.CRONOS,
-    address: "0xf2001b145b43032aaf5ee2884e456ccd805f677d",
-    coingecko: "dai",
-  },
-  {
-    name: `DeFi Degen Land`,
-    symbol: "ddl",
-    logo: "https://assets.coingecko.com/coins/images/20871/small/0inlfwNU_400x400.jpg?1637809911",
-    chain: CHAINS.CRONOS,
-    address: "0x4e60216965e37e54dc94a1d9e473211e9dbc35ba",
-    coingecko: "defi-degen-land",
-  },
-  {
-    name: `Elk Finance`,
-    symbol: "elk",
-    logo: "https://assets.coingecko.com/coins/images/17813/small/elk.png?1629336971",
-    chain: CHAINS.CRONOS,
-    address: "0xe1c110e1b1b4a1ded0caf3e42bfbdbb7b5d7ce1c",
-    coingecko: "elk-finance",
-  },
-  {
-    name: `Hibiki Finance`,
-    symbol: "hibiki",
-    logo: "https://assets.coingecko.com/coins/images/17936/small/logo_%281%29.png?1629860624",
-    chain: CHAINS.CRONOS,
-    address: "0x6b66fcb66dba37f99876a15303b759c73fc54ed0",
-    coingecko: "hibiki-finance",
-  },
-  {
-    name: `Liquidus`,
-    symbol: "liq",
-    logo: "https://assets.coingecko.com/coins/images/18749/small/liq.png?1635004173",
-    chain: CHAINS.CRONOS,
-    address: "0xabd380327fe66724ffda91a87c772fb8d00be488",
-    coingecko: "liquidus",
-  },
-  {
-    name: `MMFinance`,
-    symbol: "mmf",
-    logo: "https://assets.coingecko.com/coins/images/22273/small/MMF200X200.png?1650448869",
-    chain: CHAINS.CRONOS,
-    address: "0x97749c9b61f878a880dfe312d2594ae07aed7656",
-    coingecko: "mmfinance",
-  },
-  {
-    name: `Tectonic`,
-    symbol: "tonic",
-    logo: "https://assets.coingecko.com/coins/images/21982/small/TONIC_logo.png?1640575290",
-    chain: CHAINS.CRONOS,
-    address: "0xdd73dea10abc2bff99c60882ec5b2b81bb1dc5b2",
-    coingecko: "tectonic",
-  },
-  {
-    name: `Tether`,
-    symbol: "usdt",
-    logo: "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-    chain: CHAINS.CRONOS,
-    address: "0x66e428c3f67a68878562e79a0234c1f83c208770",
-    coingecko: "tether",
-  },
-  {
-    name: `USD Coin`,
-    symbol: "usdc",
-    logo: "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
-    chain: CHAINS.CRONOS,
-    address: "0xc21223249ca28397b4b6541dffaecc539bff0c59",
-    coingecko: "usd-coin",
-  },
-  {
-    name: `VVS Finance`,
-    symbol: "vvs",
-    logo: "https://assets.coingecko.com/coins/images/20210/small/8glAYOTM_400x400.jpg?1636667919",
-    chain: CHAINS.CRONOS,
-    address: "0x2d03bece6747adc00e1a131bba1469c15fd11e03",
-    coingecko: "vvs-finance",
-  },
-  {
-    name: `WETH`,
-    symbol: "weth",
-    logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
-    chain: CHAINS.CRONOS,
-    address: "0xe44fd7fcb2b1581822d0c862b68222998a0c299a",
-    coingecko: "weth",
-  },
-  {
-    name: `Wrapped Bitcoin`,
-    symbol: "wbtc",
-    logo: "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
-    chain: CHAINS.CRONOS,
-    address: "0x062e66477faf219f25d27dced647bf57c3107d52",
-    coingecko: "wrapped-bitcoin",
-  },
-  {
-    name: `Wrapped CRO`,
-    symbol: "wcro",
-    logo: "https://assets.coingecko.com/coins/images/20401/small/cro.jpg?1636970445",
-    chain: CHAINS.CRONOS,
-    address: "0x5c7f8a570d578ed84e63fdfa7b1ee72deae1ae23",
-    coingecko: "wrapped-cro",
-  },
+];
+
+const ETHEREUM_TOKENS: Token[] = [
   {
     name: `520`,
     symbol: "520",
@@ -50788,6 +50249,9 @@ export let TOKENS = [
     address: "0xf974b5f9ac9c6632fee8b76c61b0242ce69c839d",
     coingecko: "zyx",
   },
+];
+
+const FANTOM_TOKENS: Token[] = [
   {
     name: `0xMonero`,
     symbol: "0xmr",
@@ -51916,6 +51380,9 @@ export let TOKENS = [
     address: "0x09e145a1d53c0045f41aeef25d8ff982ae74dd56",
     coingecko: "zoo-coin",
   },
+];
+
+const FUSE_TOKENS: Token[] = [
   {
     name: `Beefy.Finance`,
     symbol: "bifi",
@@ -51980,14 +51447,9 @@ export let TOKENS = [
     address: "0x6acb34b1df86e254b544189ec32cf737e2482058",
     coingecko: "wbnb",
   },
-  {
-    name: `Chainge Finance`,
-    symbol: "chng",
-    logo: "https://assets.coingecko.com/coins/images/16526/small/symbol-only-on-dark.png?1636532794",
-    chain: CHAINS.FUSION,
-    address: "0xed0294dbd2a0e52a09c3f38a09f6e03de2c44fcf",
-    coingecko: "chainge-finance",
-  },
+];
+
+const HARMONY_TOKENS: Token[] = [
   {
     name: `0x`,
     symbol: "zrx",
@@ -52620,6 +52082,9 @@ export let TOKENS = [
     address: "0xf498a433819a5db3dfcc110100527cf4bfcafe47",
     coingecko: "yieldly",
   },
+];
+
+const HOO_TOKENS: Token[] = [
   {
     name: `Bitcoin BR`,
     symbol: "btcbr",
@@ -52628,6 +52093,9 @@ export let TOKENS = [
     address: "0xe57425f1598f9b0d6219706b77f4b3da573a3695",
     coingecko: "bitcoin-br",
   },
+];
+
+const HUOBI_TOKENS: Token[] = [
   {
     name: `Aave`,
     symbol: "aave",
@@ -53148,6 +52616,9 @@ export let TOKENS = [
     address: "0x9364e119ad76e0346126afcbdf5c9f0189500cc5",
     coingecko: "youswap",
   },
+];
+
+const IOTEX_TOKENS: Token[] = [
   {
     name: `Binance USD`,
     symbol: "busd",
@@ -53308,238 +52779,9 @@ export let TOKENS = [
     address: "0xf87aed04889a1dd0159d9c22b0d57b345ab16ddd",
     coingecko: "zoomswap",
   },
-  {
-    name: `9D NFT`,
-    symbol: "cogi",
-    logo: "https://assets.coingecko.com/coins/images/19619/small/COGI_coin.png?1635496367",
-    chain: CHAINS.KARDIA,
-    address: "0x32063cd7e2db807f0361235c01c10b4f8fe64f8e",
-    coingecko: "cogiverse",
-  },
-  {
-    name: `Baby KShark`,
-    symbol: "bks",
-    logo: "https://assets.coingecko.com/coins/images/17775/small/TKH-0Ju5_400x400.jpg?1629211276",
-    chain: CHAINS.KARDIA,
-    address: "0x7221b169ad5e8415753ebbc583924519afc96b26",
-    coingecko: "baby-kshark",
-  },
-  {
-    name: `Big Digital Shares`,
-    symbol: "bds",
-    logo: "https://assets.coingecko.com/coins/images/17877/small/60ztTDu.jpg?1629702327",
-    chain: CHAINS.KARDIA,
-    address: "0x72b7181bd4a0b67ca7df2c7778d8f70455dc735b",
-    coingecko: "big-digital-shares",
-  },
-  {
-    name: `DareNFT`,
-    symbol: "dnft",
-    logo: "https://assets.coingecko.com/coins/images/19006/small/dnft.PNG?1634170397",
-    chain: CHAINS.KARDIA,
-    address: "0xd8347e9078ca7f41ad017fd74b9b6396e6068d9b",
-    coingecko: "darenft",
-  },
-  {
-    name: `Defily`,
-    symbol: "dfl",
-    logo: "https://assets.coingecko.com/coins/images/18261/small/defily.PNG?1631157196",
-    chain: CHAINS.KARDIA,
-    address: "0xd675ff2b0ff139e14f86d87b7a6049ca7c66d76e",
-    coingecko: "defily",
-  },
-  {
-    name: `Heroes TD`,
-    symbol: "htd",
-    logo: "https://assets.coingecko.com/coins/images/20953/small/htd.png?1638775300",
-    chain: CHAINS.KARDIA,
-    address: "0xe58ea819a98c87ab1a763133a234c3954bb15901",
-    coingecko: "heroes-td",
-  },
-  {
-    name: `KardiaChain`,
-    symbol: "kai",
-    logo: "https://assets.coingecko.com/coins/images/7942/small/kai.png?1647079540",
-    chain: CHAINS.KARDIA,
-    address: "0xaf984e23eaa3e7967f3c5e007fbe397d8566d23d",
-    coingecko: "kardiachain",
-  },
-  {
-    name: `Kephi Gallery`,
-    symbol: "kphi",
-    logo: "https://assets.coingecko.com/coins/images/17696/small/XJb3jROS_400x400.jpg?1628978969",
-    chain: CHAINS.KARDIA,
-    address: "0x6cd689defca80f9f2cbed9d0c6f3b2cf4abc4598",
-    coingecko: "kephi-gallery",
-  },
-  {
-    name: `Kripto Galaxy Battle`,
-    symbol: "kaba",
-    logo: "https://assets.coingecko.com/coins/images/19604/small/YXe-Eret_400x400.jpg?1635491863",
-    chain: CHAINS.KARDIA,
-    address: "0x5c5058de24497359ff64f7318f5c2b5581ff6b05",
-    coingecko: "kripto-galaxy-battle",
-  },
-  {
-    name: `KUSD-T`,
-    symbol: "kusd-t",
-    logo: "https://assets.coingecko.com/coins/images/19627/small/KUSD-T.png?1635499109",
-    chain: CHAINS.KARDIA,
-    address: "0x92364ec610efa050d296f1eeb131f2139fb8810e",
-    coingecko: "kusd-t",
-  },
-  {
-    name: `Lucky Property Development Invest`,
-    symbol: "lpdi",
-    logo: "https://assets.coingecko.com/coins/images/18866/small/lpdi.PNG?1633644330",
-    chain: CHAINS.KARDIA,
-    address: "0x32a6bd9800276be19050bd97459a7a36b26bd899",
-    coingecko: "lucky-property-development-invest",
-  },
-  {
-    name: `Moniwar`,
-    symbol: "mowa",
-    logo: "https://assets.coingecko.com/coins/images/18665/small/spqKFki.png?1634177911",
-    chain: CHAINS.KARDIA,
-    address: "0xff706ec9af6c5c89059479c24068bcd8aae8e1fa",
-    coingecko: "moniwar",
-  },
-  {
-    name: `Moonka`,
-    symbol: "mka",
-    logo: "https://assets.coingecko.com/coins/images/19663/small/icon-mka_12.png?1635736463",
-    chain: CHAINS.KARDIA,
-    address: "0xbfb1398f4755e861620d25a1df6bb8ff25252377",
-    coingecko: "moonka",
-  },
-  {
-    name: `My DeFi Pet`,
-    symbol: "dpet",
-    logo: "https://assets.coingecko.com/coins/images/15321/small/mydefi.PNG?1620512455",
-    chain: CHAINS.KARDIA,
-    address: "0xfb62ae373aca027177d1c18ee0862817f9080d08",
-    coingecko: "my-defi-pet",
-  },
-  {
-    name: `Mytheria`,
-    symbol: "myra",
-    logo: "https://assets.coingecko.com/coins/images/20470/small/mytheria.PNG?1637099647",
-    chain: CHAINS.KARDIA,
-    address: "0x6ef238e9e8cd2a96740897761c18894fc086b9d0",
-    coingecko: "mytheria",
-  },
-  {
-    name: `Real Realm`,
-    symbol: "real",
-    logo: "https://assets.coingecko.com/coins/images/20880/small/vYjuvOhQ_400x400.jpg?1637819845",
-    chain: CHAINS.KARDIA,
-    address: "0x10c2ed4dcb8e81a5ce45d985f907364e1bc3e4e1",
-    coingecko: "real-realm",
-  },
-  {
-    name: `Rice Wallet`,
-    symbol: "rice",
-    logo: "https://assets.coingecko.com/coins/images/17204/small/RICE-200x200.png?1626847877",
-    chain: CHAINS.KARDIA,
-    address: "0xff40318cda551bf168c7cc8b9dc004faa07345ac",
-    coingecko: "rice-wallet",
-  },
-  {
-    name: `SleepEarn Finance`,
-    symbol: "sen",
-    logo: "https://assets.coingecko.com/coins/images/19847/small/sleepearn.PNG?1636035786",
-    chain: CHAINS.KARDIA,
-    address: "0xb697231730c004110a86f51bff4b8dd085c0cb28",
-    coingecko: "sleepearn-finance",
-  },
-  {
-    name: `Tether`,
-    symbol: "usdt",
-    logo: "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-    chain: CHAINS.KARDIA,
-    address: "0x551a5dcac57c66aa010940c2dcff5da9c53aa53b",
-    coingecko: "tether",
-  },
-  {
-    name: `Thetan Arena`,
-    symbol: "thg",
-    logo: "https://assets.coingecko.com/coins/images/18414/small/c4N4n8k-_400x400.png?1631831447",
-    chain: CHAINS.KARDIA,
-    address: "0xf0051fd4758147f1749d1696c9266d047b4c43fa",
-    coingecko: "thetan-arena",
-  },
-  {
-    name: `VNDC`,
-    symbol: "vndc",
-    logo: "https://assets.coingecko.com/coins/images/9670/small/vndc-gold-coin.png?1571032826",
-    chain: CHAINS.KARDIA,
-    address: "0xeff34b63f55200a9d635b8abbbfcc719b4977864",
-    coingecko: "vndc",
-  },
-  {
-    name: `WETH`,
-    symbol: "weth",
-    logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
-    chain: CHAINS.KARDIA,
-    address: "0x1540020a94aa8bc189aa97639da213a4ca49d9a7",
-    coingecko: "weth",
-  },
-  {
-    name: `Cloudbric`,
-    symbol: "clbk",
-    logo: "https://assets.coingecko.com/coins/images/5090/small/7j1i0yIe_400x400.jpg?1606196114",
-    chain: CHAINS.KLAYTN,
-    address: "0xdfb25178d7b59e33f7805c00c4a354ae1c46139a",
-    coingecko: "cloudbric",
-  },
-  {
-    name: `Hiblocks`,
-    symbol: "hibs",
-    logo: "https://assets.coingecko.com/coins/images/11574/small/51367870.png?1591230989",
-    chain: CHAINS.KLAYTN,
-    address: "0xe06b40df899b9717b4e6b50711e1dc72d08184cf",
-    coingecko: "hiblocks",
-  },
-  {
-    name: `Influencer`,
-    symbol: "imi",
-    logo: "https://assets.coingecko.com/coins/images/18865/small/imi.PNG?1633644072",
-    chain: CHAINS.KLAYTN,
-    address: "0xdde2154f47e80c8721c2efbe02834ae056284368",
-    coingecko: "influencer",
-  },
-  {
-    name: `KlaySwap Protocol`,
-    symbol: "ksp",
-    logo: "https://assets.coingecko.com/coins/images/13721/small/1_0Nr1oZEuvrDp7VVv6JjfQg.jpeg?1611182618",
-    chain: CHAINS.KLAYTN,
-    address: "0xc6a2ad8cc6e4a7e08fc37cc5954be07d499e7654",
-    coingecko: "klayswap-protocol",
-  },
-  {
-    name: `PER Project`,
-    symbol: "per",
-    logo: "https://assets.coingecko.com/coins/images/15012/small/per.png?1622474149",
-    chain: CHAINS.KLAYTN,
-    address: "0x7eee60a000986e9efe7f5c90340738558c24317b",
-    coingecko: "per-project",
-  },
-  {
-    name: `Project WITH`,
-    symbol: "wiken",
-    logo: "https://assets.coingecko.com/coins/images/9182/small/2_0C4zaAE66q6I_k4uBmgqkw.png?1564995953",
-    chain: CHAINS.KLAYTN,
-    address: "0x275f942985503d8ce9558f8377cc526a3aba3566",
-    coingecko: "project-with",
-  },
-  {
-    name: `sKLAY`,
-    symbol: "sklay",
-    logo: "https://assets.coingecko.com/coins/images/13912/small/sKLAY_logo.png?1612835545",
-    chain: CHAINS.KLAYTN,
-    address: "0xa323d7386b671e8799dca3582d6658fdcdcd940a",
-    coingecko: "sklay",
-  },
+];
+
+const KUCOIN_TOKENS: Token[] = [
   {
     name: `Bitcoin BR`,
     symbol: "btcbr",
@@ -53604,6 +52846,9 @@ export let TOKENS = [
     address: "0x4446fc4eb47f2f6586f9faab68b3498f86c07521",
     coingecko: "wrapped-kcs",
   },
+];
+
+const METER_TOKENS: Token[] = [
   {
     name: `Binance USD`,
     symbol: "busd",
@@ -53660,6 +52905,9 @@ export let TOKENS = [
     address: "0xf8bbb44e6fd13632d36fe09eb61820f9a44f5d74",
     coingecko: "wbnb",
   },
+];
+
+const ANDROMEDA_TOKENS: Token[] = [
   {
     name: `Beefy.Finance`,
     symbol: "bifi",
@@ -53716,6 +52964,9 @@ export let TOKENS = [
     address: "0x5ce34d9abe4bf239cbc08b89287c87f4cd6d80b7",
     coingecko: "wowswap",
   },
+];
+
+const MOONRIVER_TOKENS: Token[] = [
   {
     name: `Beefy.Finance`,
     symbol: "bifi",
@@ -53916,6 +53167,9 @@ export let TOKENS = [
     address: "0x2bf9b864cdc97b08b6d79ad4663e71b8ab65c45c",
     coingecko: "wbnb",
   },
+];
+
+const OKC_TOKENS: Token[] = [
   {
     name: `Binance USD`,
     symbol: "busd",
@@ -54084,6 +53338,9 @@ export let TOKENS = [
     address: "0x8f8526dbfd6e38e3d8307702ca8469bae6c56c15",
     coingecko: "wrapped-okt",
   },
+];
+
+const OPTIMISM_TOKENS: Token[] = [
   {
     name: `Aelin`,
     symbol: "aelin",
@@ -54228,6 +53485,9 @@ export let TOKENS = [
     address: "0x68f180fcce6836688e9084f035309e29bf0a2095",
     coingecko: "wrapped-bitcoin",
   },
+];
+
+const POLYGON_TOKENS: Token[] = [
   {
     name: `0chain`,
     symbol: "zcn",
@@ -57804,6 +57064,9 @@ export let TOKENS = [
     address: "0xfd4959c06fbcc02250952daebf8e0fb38cf9fd8c",
     coingecko: "zeroswap",
   },
+];
+
+const THETA_TOKENS: Token[] = [
   {
     name: `Binance USD`,
     symbol: "busd",
@@ -57836,86 +57099,9 @@ export let TOKENS = [
     address: "0x3ca3fefa944753b43c751336a5df531bdd6598b6",
     coingecko: "wrapped-usdc",
   },
-  {
-    name: `MASQ`,
-    symbol: "masq",
-    logo: "https://assets.coingecko.com/coins/images/13699/small/masq.png?1648364813",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0xea478716a70dc086707e23de17965acb5c7b7840",
-    coingecko: "masq",
-  },
-  {
-    name: `Mega Lottery Services Global`,
-    symbol: "mlr",
-    logo: "https://assets.coingecko.com/coins/images/11072/small/gg1NiOsG_400x400.jpg?1587958538",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0x5080781e91237b6d7f026d5306b7233e26cd6c16",
-    coingecko: "mega-lottery-services-global",
-  },
-  {
-    name: `Million`,
-    symbol: "mm",
-    logo: "https://assets.coingecko.com/coins/images/16825/small/logo200x200.png?1625834139",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0x0f320856fa4bc7e4030a6ab989d494c5e4d58308",
-    coingecko: "million",
-  },
-  {
-    name: `Serum`,
-    symbol: "srm",
-    logo: "https://assets.coingecko.com/coins/images/11970/small/serum-logo.png?1597121577",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0xc01643ac912b6a8ffc50cf8c1390934a6142bc91",
-    coingecko: "serum",
-  },
-  {
-    name: `Tabank`,
-    symbol: "tab",
-    logo: "https://assets.coingecko.com/coins/images/17549/small/Mat_sau_512.png?1628226185",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0x8103bb77ed2035b5da9a3a65d9c313cb6ee41dbd",
-    coingecko: "tabank",
-  },
-  {
-    name: `Tether`,
-    symbol: "usdt",
-    logo: "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0x381b31409e4d220919b2cff012ed94d70135a59e",
-    coingecko: "tether",
-  },
-  {
-    name: `USD Coin`,
-    symbol: "usdc",
-    logo: "https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0xcca4e6302510d555b654b3eab9c0fcb223bcfdf0",
-    coingecko: "usd-coin",
-  },
-  {
-    name: `WETH`,
-    symbol: "weth",
-    logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
-    coingecko: "weth",
-  },
-  {
-    name: `Wrapped Bitcoin`,
-    symbol: "wbtc",
-    logo: "https://assets.coingecko.com/coins/images/7598/small/wrapped_bitcoin_wbtc.png?1548822744",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0x503b2ddc059b81788fd1239561596614b27faade",
-    coingecko: "wrapped-bitcoin",
-  },
-  {
-    name: `ZoidPay`,
-    symbol: "zpay",
-    logo: "https://assets.coingecko.com/coins/images/16813/small/zpay.png?1647693485",
-    chain: CHAINS.TOMOCHAIN,
-    address: "0xe1a9a5fae06696d314994a9d6915c12a63ad055d",
-    coingecko: "zoid-pay",
-  },
+];
+
+const XDAI_TOKENS: Token[] = [
   {
     name: `0xMonero`,
     symbol: "0xmr",
@@ -58180,4 +57366,27 @@ export let TOKENS = [
     address: "0xbf65bfcb5da067446cee6a706ba3fe2fb1a9fdfd",
     coingecko: "yearn-finance",
   },
+];
+
+export let TOKENS: Token[] = [
+  ...NATIVE_TOKENS,
+  ...ARBITRUM_TOKENS,
+  ...AVALANCHE_TOKENS,
+  ...BNB_TOKENS,
+  ...ETHEREUM_TOKENS,
+  ...FANTOM_TOKENS,
+  ...FUSE_TOKENS,
+  ...HARMONY_TOKENS,
+  ...HOO_TOKENS,
+  ...HUOBI_TOKENS,
+  ...IOTEX_TOKENS,
+  ...KUCOIN_TOKENS,
+  ...METER_TOKENS,
+  ...ANDROMEDA_TOKENS,
+  ...MOONRIVER_TOKENS,
+  ...OKC_TOKENS,
+  ...OPTIMISM_TOKENS,
+  ...POLYGON_TOKENS,
+  ...THETA_TOKENS,
+  ...XDAI_TOKENS,
 ];
