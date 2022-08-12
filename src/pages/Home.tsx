@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-export const Home = () => {
+export default function Home() {
   return (
     <>
       <div className={"p-10"}>
@@ -32,4 +32,4 @@ export const Home = () => {
       </div>
     </>
   );
-};
+}

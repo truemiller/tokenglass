@@ -1,11 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { TokenRow } from "../components/TokenRow";
 import { Token, TOKENS } from "../consts/tokens";
 import { BigNumber, ethers } from "ethers";
 import { Chain, CHAINS } from "../consts/chains";
-
+import { ChainAggregatedElement } from "../components/ChainAggregatedElement";
 const { getCoingeckoPrice } = require("../helper/CoinGeckoHelper");
 const { getBalance } = require("../helper/EthersHelper");
+
+export const TotalBalanceContext = createContext(0);
 
 type WalletProps = {
   address: string;
@@ -32,7 +40,7 @@ export default function Wallet({ address }: WalletProps) {
         .filter((token: Token) => token.chain === chain)
         .map((token: Token) => token.total);
       if (filtered.length > 0) {
-        return filtered.reduce((a, b) => (a ?? 0) + (b ?? 0));
+        return filtered.reduce((a, b) => (a ?? 0) + (b ?? 0)) ?? 0;
       } else {
         return 0;
       }
@@ -41,11 +49,27 @@ export default function Wallet({ address }: WalletProps) {
   );
 
   const balances = {
-    avalanche: getChainBalance(CHAINS.AVALANCHE),
-    bnb: getChainBalance(CHAINS.BNB),
-    ethereum: getChainBalance(CHAINS.ETHEREUM),
-    fantom: getChainBalance(CHAINS.FANTOM),
+    ARBITRUM: getChainBalance(CHAINS.ARBITRUM),
+    AVALANCHE: getChainBalance(CHAINS.AVALANCHE),
+    BNB: getChainBalance(CHAINS.BNB),
+    ETHEREUM: getChainBalance(CHAINS.ETHEREUM),
+    FANTOM: getChainBalance(CHAINS.FANTOM),
+    FUSE: getChainBalance(CHAINS.FUSE),
+    HARMONY: getChainBalance(CHAINS.HARMONY),
+    HOO: getChainBalance(CHAINS.HOO),
+    HUOBI: getChainBalance(CHAINS.HUOBI),
+    IOTEX: getChainBalance(CHAINS.IOTEX),
+    KUCOIN: getChainBalance(CHAINS.KUCOIN),
+    METER: getChainBalance(CHAINS.METER),
+    ANDROMEDA: getChainBalance(CHAINS.ANDROMEDA),
+    MOONRIVER: getChainBalance(CHAINS.MOONRIVER),
+    OKC: getChainBalance(CHAINS.OKC),
+    OPTIMISM: getChainBalance(CHAINS.OPTIMISM),
+    POLYGON: getChainBalance(CHAINS.POLYGON),
+    THETA: getChainBalance(CHAINS.THETA),
+    XDAI: getChainBalance(CHAINS.XDAI),
   };
+
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
     setLoadingState("Getting tokens");
@@ -183,47 +207,110 @@ export default function Wallet({ address }: WalletProps) {
             </span>
           </div>
 
-          <div className="p-3 grid grid-cols-5 gap-4 bg-white shadow-2xl ">
-            {balances.avalanche ? (
-              <div className={"flex flex-col text-sm text-center"}>
-                <img
-                  src={CHAINS.AVALANCHE.logo}
-                  className={"w-8 mx-auto"}
-                  alt={""}
-                />
-                <span className={""}>
-                  {balances.avalanche.toLocaleString()}
-                </span>
-                <span>
-                  {((balances.avalanche / totalBalance) * 100).toLocaleString()}
-                  %
-                </span>
-              </div>
-            ) : null}
-            {balances.bnb ? (
-              <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.BNB.logo} className={"w-8"} alt={""} />
-                <span>{balances.bnb.toLocaleString()}</span>
-                <span>
-                  {((balances.bnb / totalBalance) * 100).toLocaleString()}%
-                </span>
-              </div>
-            ) : null}
-            {balances.ethereum ? (
-              <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.ETHEREUM.logo} className={"w-8"} alt={""} />
-                {balances.ethereum.toLocaleString()}
-              </div>
-            ) : null}
-            {balances.fantom ? (
-              <div className={"flex flex-col text-sm"}>
-                <img src={CHAINS.FANTOM.logo} className={"w-8"} alt={""} />
-                {balances.fantom.toLocaleString()}
-              </div>
-            ) : null}
+          <div className="grid grid-cols-5 bg-white shadow-2xl ">
+            <ChainAggregatedElement
+              chain={CHAINS.ANDROMEDA}
+              balance={getChainBalance(CHAINS.ANDROMEDA)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.ARBITRUM}
+              balance={getChainBalance(CHAINS.ARBITRUM)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.ANDROMEDA}
+              balance={getChainBalance(CHAINS.ANDROMEDA)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.AVALANCHE}
+              balance={getChainBalance(CHAINS.AVALANCHE)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.BNB}
+              balance={getChainBalance(CHAINS.BNB)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.ETHEREUM}
+              balance={getChainBalance(CHAINS.ETHEREUM)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.FANTOM}
+              balance={getChainBalance(CHAINS.FANTOM)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.FUSE}
+              balance={getChainBalance(CHAINS.FUSE)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.HARMONY}
+              balance={getChainBalance(CHAINS.HARMONY)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.HOO}
+              balance={getChainBalance(CHAINS.HOO)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.HUOBI}
+              balance={getChainBalance(CHAINS.HUOBI)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.IOTEX}
+              balance={getChainBalance(CHAINS.IOTEX)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.KUCOIN}
+              balance={getChainBalance(CHAINS.KUCOIN)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.METER}
+              balance={getChainBalance(CHAINS.METER)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.MOONRIVER}
+              balance={getChainBalance(CHAINS.MOONRIVER)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.OKC}
+              balance={getChainBalance(CHAINS.OKC)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.OPTIMISM}
+              balance={getChainBalance(CHAINS.OPTIMISM)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.POLYGON}
+              balance={getChainBalance(CHAINS.POLYGON)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.THETA}
+              balance={getChainBalance(CHAINS.THETA)}
+              totalBalance={totalBalance}
+            />
+            <ChainAggregatedElement
+              chain={CHAINS.XDAI}
+              balance={getChainBalance(CHAINS.XDAI)}
+              totalBalance={totalBalance}
+            />
           </div>
 
-          <table className={"w-full  bg-white shadow-2xl table"}>
+          <table className={"w-full bg-white shadow-2xl table"}>
             <tbody>
               {sortedTokensWithBalancePriceAndTotal.map((token: any) => {
                 return !token.balance ? (
