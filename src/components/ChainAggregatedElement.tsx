@@ -1,6 +1,5 @@
 import { Chain } from "../consts/chains";
-import React, { useContext } from "react";
-import { TotalBalanceContext } from "../App";
+import React from "react";
 
 type ChainAggregatedElementProps = {
   chain: Chain;
