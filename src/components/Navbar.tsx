@@ -1,11 +1,15 @@
 import { APP_NAME } from "../consts/config";
 import { useContext } from "react";
 import { AddressContext } from "../App";
+import React from "react";
 
-export function Navbar({ setAddress }) {
+type NavbarProps = {
+  setAddress: Function;
+};
+export function Navbar({ setAddress }: NavbarProps) {
   const address = useContext(AddressContext);
-  const handleConnect = (e) => {
-    window.ethereum.request({ method: "eth_requestAccounts" }).then((r) => {
+  const handleConnect = () => {
+    window.ethereum.request({ method: "eth_requestAccounts" }).then(() => {
       setAddress(window.ethereum.selectedAddress);
     });
   };
