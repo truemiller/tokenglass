@@ -7,7 +7,7 @@ import { Footer } from "./components/Footer";
 const Home = lazy((): Promise<any> => {
   return import("./pages/Home");
 });
-const Wallet = lazy((): Promise<any> => {
+const Dashboard = lazy((): Promise<any> => {
   return import("./pages/Dashboard");
 });
 const RPC = lazy((): Promise<any> => {
@@ -36,8 +36,8 @@ export default function App(): JSX.Element {
               <Routes>
                 <Route path={"/"} element={<Home />} />
                 <Route
-                  path={"/wallet"}
-                  element={<Wallet address={address} />}
+                  path={"/dashboard"}
+                  element={<Dashboard address={address} />}
                 />
                 <Route path={"/rpc"} element={<RPC />} />
               </Routes>

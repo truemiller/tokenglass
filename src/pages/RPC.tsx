@@ -48,17 +48,17 @@ export default function RPC(): ReactNode {
               a.network.localeCompare(b.network)
             ).map((rpc_network: any) => {
               return (
-                <span
+                <button
                   key={rpc_network.slug}
-                  className={`p-3 border mb-2 mr-2 shadow rounded-lg ${
+                  className={`p-3 border mb-2 mr-2 shadow rounded-xl ${
                     filter === rpc_network.slug
                       ? "bg-blue-900 text-white"
-                      : "hover:bg-gray-100 text-blue-400"
+                      : "hover:bg-gray-100 text-blue-500 bg-white"
                   }`}
                   onClick={() => handleFilterClick(rpc_network.slug)}
                 >
                   {rpc_network.network}
-                </span>
+                </button>
               );
             })}
             <div className="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
@@ -66,7 +66,10 @@ export default function RPC(): ReactNode {
                 (rpc) => rpc.network === filter || filter === ""
               ).map((rpc) => {
                 return (
-                  <div key={rpc.url} className={"border p-3 rounded-lg shadow"}>
+                  <div
+                    key={rpc.url}
+                    className={"border p-3 rounded-xl shadow bg-white"}
+                  >
                     <dl>
                       <dt className={"font-extrabold"}>Network</dt>
                       <dd>{rpc.name}</dd>

@@ -2195,6 +2195,14 @@ const AVALANCHE_TOKENS: Token[] = [
     address: "0x59414b3089ce2af0010e7523dea7e2b35d776ec7",
     coingecko: "yield-yak",
   },
+  {
+    name: `ZooKeeper`,
+    symbol: "zoo",
+    logo: "/logos/zookeeper.png",
+    chain: CHAINS.AVALANCHE,
+    address: "0x1b88d7ad51626044ec62ef9803ea264da4442f32",
+    coingecko: "zookeeper",
+  },
 ];
 
 const BNB_TOKENS: Token[] = [

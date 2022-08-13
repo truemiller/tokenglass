@@ -16,7 +16,7 @@ export function Navbar({ setAddress }: NavbarProps) {
 
   return (
     <>
-      <nav className="w-full shadow-2xl p-3 top-0 sticky bg-white">
+      <nav className="w-full shadow p-3 top-0 sticky bg-white">
         <div className="flex justify-between">
           <a href="/" className="font-bold p-2">
             {APP_NAME}
@@ -24,7 +24,7 @@ export function Navbar({ setAddress }: NavbarProps) {
           {address ? (
             <button
               className={
-                "btn btn-danger rounded p-2 bg-red-600 hover:bg-red-900 text-white"
+                "btn btn-danger rounded-xl p-2 bg-red-600 hover:bg-red-900 text-white"
               }
               onClick={() => setAddress(null)}
             >
@@ -32,7 +32,7 @@ export function Navbar({ setAddress }: NavbarProps) {
             </button>
           ) : (
             <button
-              className="bg-blue-600 p-2 rounded text-white hover:bg-blue-900"
+              className="bg-blue-700 p-2 rounded-xl text-white hover:bg-blue-900"
               onClick={handleConnect}
             >
               Connect
