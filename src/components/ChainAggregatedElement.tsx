@@ -18,7 +18,7 @@ export const ChainAggregatedElement = ({
         src={chain.logo}
         alt=""
         style={{ width: 32, height: 32 }}
-        className={"rounded-circle"}
+        className={"rounded-circle my-auto"}
       />
       <div className={"ml-2 flex flex-col"}>
         <span>{chain.provider.network.name}</span>

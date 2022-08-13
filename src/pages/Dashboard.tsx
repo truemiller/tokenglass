@@ -13,7 +13,7 @@ export const TotalBalanceContext = createContext(0);
 type WalletProps = {
   address: string;
 };
-export default function Wallet({ address }: WalletProps) {
+export default function Dashboard({ address }: WalletProps) {
   const [tokensWithBalance, setTokensWithBalance] = useState<Token[]>([]);
   const [tokensWithBalanceAndPrice, setTokensWithBalanceAndPrice] = useState<
     Token[]
@@ -204,7 +204,7 @@ export default function Wallet({ address }: WalletProps) {
             </span>
           </div>
 
-          <div className="grid grid-cols-5 bg-white shadow-2xl ">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-white shadow-2xl ">
             <ChainAggregatedElement
               chain={CHAINS.ANDROMEDA}
               balance={getChainBalance(CHAINS.ANDROMEDA)}
@@ -308,6 +308,14 @@ export default function Wallet({ address }: WalletProps) {
           </div>
 
           <table className={"w-full bg-white shadow-2xl table"}>
+            <thead>
+              <tr>
+                <th className={"text-left p-3"}>Token</th>
+                <th className={"text-left py-3"}>Balance</th>
+                <th className={"text-left py-3"}>Price</th>
+                <th className={"text-left py-3"}>Total</th>
+              </tr>
+            </thead>
             <tbody>
               {sortedTokensWithBalancePriceAndTotal.map((token: any) => {
                 return !token.balance ? (
