@@ -52,7 +52,7 @@ export default function RPC(): ReactNode {
                   key={rpc_network.slug}
                   className={`p-3 border mb-2 mr-2 shadow rounded-xl ${
                     filter === rpc_network.slug
-                      ? "bg-blue-900 text-white"
+                      ? "bg-blue-700 text-white"
                       : "hover:bg-gray-100 text-blue-500 bg-white"
                   }`}
                   onClick={() => handleFilterClick(rpc_network.slug)}

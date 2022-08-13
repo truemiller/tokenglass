@@ -13,6 +13,9 @@ const Dashboard = lazy((): Promise<any> => {
 const RPC = lazy((): Promise<any> => {
   return import("./pages/RPC");
 });
+const Proposals = lazy((): Promise<any> => {
+  return import("./pages/Proposals");
+});
 
 //contexts
 export const AddressContext = createContext(null);
@@ -40,6 +43,7 @@ export default function App(): JSX.Element {
                   element={<Dashboard address={address} />}
                 />
                 <Route path={"/rpc"} element={<RPC />} />
+                <Route path={"/proposals"} element={<Proposals />} />
               </Routes>
             </Suspense>
             <Footer />

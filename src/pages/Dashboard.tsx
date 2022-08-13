@@ -191,89 +191,91 @@ export default function Dashboard({ address }: WalletProps) {
   }, [address, tokensWithBalancePriceAndTotal]);
 
   return (
-    <div className={"p-10"}>
-      <div className="mx-auto container">
-        <div className="flex flex-row">
-          <div className="flex flex-col">
-            <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
+    <>
+      <div className={"p-10"}>
+        <div className="mx-auto container">
+          <div className="flex flex-row">
+            <div className="flex flex-col">
+              <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
+            </div>
+          </div>
+          <div
+            className={"mt-5 bg-white shadow-2xl p-5 rounded-xl flex flex-col"}
+          >
+            {address ? (
+              <>
+                <div className="flex">
+                  <span className={"font-extrabold text-xl"}>
+                    Balance: $ {totalBalance.toLocaleString()}
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-white">
+                  {Object.keys(CHAINS)
+                    //@ts-ignore
+                    .map((chainKey) => CHAINS[chainKey])
+                    .map((chain) => (
+                      <ChainAggregatedElement
+                        chain={chain}
+                        balance={getChainBalance(chain)}
+                        totalBalance={totalBalance}
+                      />
+                    ))}
+                </div>
+                <table className={"w-full bg-white  table"}>
+                  <thead>
+                    <tr>
+                      <th className={"text-left p-3"}>Token</th>
+                      <th className={"text-left py-3"}>Balance</th>
+                      <th className={"text-left py-3"}>Price</th>
+                      <th className={"text-left py-3"}>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortedTokensWithBalancePriceAndTotal.map((token: any) => {
+                      return !token.balance ? (
+                        <tr
+                          key={
+                            token.name +
+                            ":" +
+                            token.chain.provider.network.chainId
+                          }
+                        ></tr>
+                      ) : (
+                        <TokenRow
+                          key={
+                            token.name +
+                            ":" +
+                            token.chain.provider.network.chainId
+                          }
+                          tokenData={token}
+                        />
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <div className="flex flex-row p-3 content-center">
+                  {loadingState ? (
+                    <img
+                      src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
+                      alt=""
+                      className={"mx-auto"}
+                      height={16}
+                      style={{ height: 20, width: 20 }}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </>
+            ) : (
+              <p>
+                Please <strong>connect your Metamask</strong> to TokenGlass to
+                view your portfolio.
+              </p>
+            )}
           </div>
         </div>
-        <div
-          className={"mt-5 bg-white shadow-2xl p-5 rounded-xl flex flex-col"}
-        >
-          {address ? (
-            <>
-              <div className="flex">
-                <span className={"font-extrabold text-xl"}>
-                  Balance: $ {totalBalance.toLocaleString()}
-                </span>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 bg-white">
-                {Object.keys(CHAINS)
-                  //@ts-ignore
-                  .map((chainKey) => CHAINS[chainKey])
-                  .map((chain) => (
-                    <ChainAggregatedElement
-                      chain={chain}
-                      balance={getChainBalance(chain)}
-                      totalBalance={totalBalance}
-                    />
-                  ))}
-              </div>
-              <table className={"w-full bg-white  table"}>
-                <thead>
-                  <tr>
-                    <th className={"text-left p-3"}>Token</th>
-                    <th className={"text-left py-3"}>Balance</th>
-                    <th className={"text-left py-3"}>Price</th>
-                    <th className={"text-left py-3"}>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sortedTokensWithBalancePriceAndTotal.map((token: any) => {
-                    return !token.balance ? (
-                      <tr
-                        key={
-                          token.name +
-                          ":" +
-                          token.chain.provider.network.chainId
-                        }
-                      ></tr>
-                    ) : (
-                      <TokenRow
-                        key={
-                          token.name +
-                          ":" +
-                          token.chain.provider.network.chainId
-                        }
-                        tokenData={token}
-                      />
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div className="flex flex-row p-3 content-center">
-                {loadingState ? (
-                  <img
-                    src="https://cutewallpaper.org/21/loading-gif-transparent-background/Free-Content-Discovery-Influencer-Marketing-Tool-Buzzsumo-.gif"
-                    alt=""
-                    className={"mx-auto"}
-                    height={16}
-                    style={{ height: 20, width: 20 }}
-                  />
-                ) : (
-                  ""
-                )}
-              </div>
-            </>
-          ) : (
-            <p>
-              Please <strong>connect your Metamask</strong> to TokenGlass to
-              view your portfolio.
-            </p>
-          )}
-        </div>
       </div>
-    </div>
+    </>
   );
 }

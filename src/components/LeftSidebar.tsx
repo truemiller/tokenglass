@@ -23,6 +23,11 @@ const LINKS: MenuLink[] = [
     link: "/rpc",
     fa: "fas fa-server",
   },
+  {
+    title: "Proposals",
+    link: "/proposals",
+    fa: "fas fa-check-to-slot",
+  },
 ];
 
 export const LeftSidebar = () => {
@@ -44,7 +49,7 @@ export const LeftSidebar = () => {
         return (
           <Link to={link.link}>
             <button
-              className={`flex w-full p-3 hover:text-blue-500 rounded-xl ${
+              className={`flex w-full p-3 hover:text-blue-700 rounded-xl ${
                 currentRoute === `${link.link}` ? "bg-gray-100" : ""
               }`}
             >

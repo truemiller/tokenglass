@@ -24,7 +24,7 @@ export function Navbar({ setAddress }: NavbarProps) {
           {address ? (
             <button
               className={
-                "btn btn-danger rounded-full p-3 px-5 bg-red-600 hover:bg-red-900 text-white"
+                "btn btn-danger rounded-full p-2 px-5 bg-red-600 hover:bg-red-900 text-white"
               }
               onClick={() => setAddress(null)}
             >
@@ -32,7 +32,7 @@ export function Navbar({ setAddress }: NavbarProps) {
             </button>
           ) : (
             <button
-              className="bg-blue-700 p-3 px-5 rounded-full text-white hover:bg-blue-900"
+              className="bg-blue-700 p-2 px-5 rounded-full text-white hover:bg-blue-900"
               onClick={handleConnect}
             >
               Connect
