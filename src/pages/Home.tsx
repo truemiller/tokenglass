@@ -26,7 +26,7 @@ export default function Home() {
                 chains. We don't log your data, the app is fully decentralized.
               </p>
               <Link to={"/dashboard"}>
-                <button className="p-3 bg-blue-900 text-white hover:bg-gray-900">
+                <button className="p-3 px-5 rounded-full bg-blue-700 text-white hover:bg-blue-900">
                   Try it out
                 </button>
               </Link>
@@ -35,7 +35,7 @@ export default function Home() {
               <img
                 src="/screenshots/portfolio.png"
                 alt=""
-                className={"shadow-2xl w-full"}
+                className={"shadow w-full rounded-xl"}
               />
             </div>
           </div>
@@ -43,8 +43,12 @@ export default function Home() {
             <div className=""></div>
             <div className="">
               <div className="grid grid-cols-2 gap-5">
-                <h2 className={"text-5xl"}>{tokenCount} assets tracked</h2>
-                <h2 className={"text-5xl"}>{rpcCount} RPCs tracked</h2>
+                <div className="bg-white p-3 shadow rounded-xl">
+                  <h2 className={"text-5xl"}>{tokenCount} assets </h2>
+                </div>
+                <div className="bg-white p-3 shadow rounded-xl">
+                  <h2 className={"text-5xl"}>{rpcCount} RPCs </h2>
+                </div>
               </div>
             </div>
           </div>
