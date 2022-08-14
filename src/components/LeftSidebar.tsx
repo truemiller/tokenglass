@@ -52,7 +52,7 @@ export const LeftSidebar = () => {
                 currentRoute === `${link.link}` ? "bg-gray-100" : ""
               }`}
             >
-              <i className={`${link.fa} mt-1`}></i>
+              <i className={`${link.fa}  `}></i>
               {toggle ? <span className={"ml-2"}> {link.title}</span> : null}
             </button>
           </Link>

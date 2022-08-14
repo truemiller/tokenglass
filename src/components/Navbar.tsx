@@ -9,8 +9,8 @@ type NavbarProps = {
 export function Navbar({ setAddress }: NavbarProps) {
   const address = useContext(AddressContext);
   const handleConnect = () => {
-    window.ethereum.request({ method: "eth_requestAccounts" }).then(() => {
-      setAddress(window.ethereum.selectedAddress);
+    window?.ethereum.request({ method: "eth_requestAccounts" }).then(() => {
+      setAddress(window?.ethereum.selectedAddress);
     });
   };
 

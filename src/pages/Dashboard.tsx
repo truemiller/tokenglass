@@ -1,9 +1,9 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
-import { TokenRow } from "../components/TokenRow";
+import { TokenRow } from "../components/dashboard/TokenRow";
 import { Token, TOKENS } from "../consts/tokens";
 import { BigNumber, ethers } from "ethers";
 import { Chain, CHAINS } from "../consts/chains";
-import { ChainAggregatedElement } from "../components/ChainAggregatedElement";
+import { ChainAggregatedElement } from "../components/dashboard/ChainAggregatedElement";
 
 const { getCoingeckoPrice } = require("../helper/CoinGeckoHelper");
 const { getBalance } = require("../helper/EthersHelper");
@@ -96,7 +96,7 @@ export default function Dashboard({ address }: WalletProps) {
   useEffect(() => {
     setLoadingState("Getting tokens");
     const getTokens = async (chain: Chain) => {
-      const batchSize = 200;
+      const batchSize = 150;
       let tokensInWallet;
       let allTokens = TOKENS.filter((token) => token.chain === chain);
       let runs = Math.ceil(allTokens.length / batchSize);

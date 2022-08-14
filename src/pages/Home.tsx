@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useMemo } from "react";
 import { TOKENS } from "../consts/tokens";
 import { RPCS } from "../consts/rpcs";
+import { CHAINS } from "../consts/chains";
 
 export default function Home() {
   const tokenCount = useMemo(() => {
@@ -9,6 +10,9 @@ export default function Home() {
   }, []);
   const rpcCount = useMemo(() => {
     return RPCS.length;
+  }, []);
+  const chainCount = useMemo(() => {
+    return Object.keys(CHAINS).length;
   }, []);
 
   return (
@@ -29,7 +33,7 @@ export default function Home() {
                   View portfolio
                 </button>
                 <button className="ml-5 p-3 px-5 rounded-full bg-blue-700 text-white hover:bg-blue-900">
-                  Fuck a goat
+                  Coming soon
                 </button>
               </Link>
             </div>
@@ -46,10 +50,16 @@ export default function Home() {
             <div className="">
               <div className="grid grid-cols-2 gap-5">
                 <div className="bg-white p-3 shadow rounded-xl">
-                  <h2 className={"text-5xl"}>{tokenCount} assets </h2>
+                  <i className="fas fa-coins"></i>
+                  <h2 className={"font-extrabold"}>{tokenCount} assets </h2>
                 </div>
                 <div className="bg-white p-3 shadow rounded-xl">
-                  <h2 className={"text-5xl"}>{rpcCount} RPCs </h2>
+                  <i className={"fas fa-link"}></i>
+                  <h2 className={"font-extrabold"}>{chainCount} chains </h2>
+                </div>
+                <div className="bg-white p-3 shadow rounded-xl">
+                  <i className={"fas fa-server"}></i>
+                  <h2 className={"font-extrabold"}>{rpcCount} RPCs </h2>
                 </div>
               </div>
             </div>
