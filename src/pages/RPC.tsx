@@ -50,7 +50,7 @@ export default function RPC(): ReactNode {
               return (
                 <button
                   key={rpc_network.slug}
-                  className={`p-3 border mb-2 mr-2 shadow-2xl rounded-xl ${
+                  className={`p-3 border mb-2 mr-2 border-b-4 rounded-xl ${
                     filter === rpc_network.slug
                       ? "bg-blue-700 text-white"
                       : "hover:bg-gray-100 text-blue-500 bg-white"
@@ -68,7 +68,7 @@ export default function RPC(): ReactNode {
                 return (
                   <div
                     key={rpc.url}
-                    className={"border p-3 rounded-xl shadow-2xl bg-white"}
+                    className={"border p-3 rounded-xl border-b-4 bg-white"}
                   >
                     <dl>
                       <dt className={"font-extrabold"}>Network</dt>

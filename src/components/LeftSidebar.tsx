@@ -37,7 +37,7 @@ export const LeftSidebar = () => {
   };
   return (
     <aside
-      className={`bg-white p-3 flex flex-col shadow-2xl h-screen z-10 sticky top-0`}
+      className={`bg-white p-3 flex flex-col border h-screen z-10 sticky top-0`}
       style={{ height: "100%", minHeight: "100vh" }}
     >
       <button className={"btn my-4"} onClick={handleToggle}>

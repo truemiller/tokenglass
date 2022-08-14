@@ -298,7 +298,7 @@ export default function Dashboard({ address }: WalletProps) {
             </div>
           </div>
           <div
-            className={"mt-5 bg-white shadow-2xl p-5 rounded-xl flex flex-col"}
+            className={"mt-5 border border-b-4 p-5 rounded-xl flex flex-col"}
           >
             {address ? (
               <>
@@ -313,6 +313,7 @@ export default function Dashboard({ address }: WalletProps) {
                     .map((chainKey) => CHAINS[chainKey])
                     .map((chain) => (
                       <ChainAggregatedElement
+                        key={chain.title}
                         chain={chain}
                         balance={getChainBalance(chain)}
                         totalBalance={totalBalance}

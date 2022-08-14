@@ -16,7 +16,7 @@ export function Navbar({ setAddress }: NavbarProps) {
 
   return (
     <>
-      <nav className="w-full shadow p-3 top-0 sticky bg-white">
+      <nav className="w-full border-b-4 p-3 top-0 sticky bg-white">
         <div className="container mx-auto">
           <div className="flex justify-between">
             <a href="/" className="font-bold p-2">

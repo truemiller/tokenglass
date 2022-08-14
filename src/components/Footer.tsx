@@ -4,7 +4,7 @@ export function Footer(): JSX.Element {
   return (
     <>
       <footer
-        className={"mt-auto p-3 shadow-2xl flex flex-row justify-end bg-white"}
+        className={"mt-auto p-3 border-t flex flex-row justify-end bg-white"}
       >
         <span className={"p-3 text-gray-400"}>Twitter</span>
         <span className={"p-3 text-gray-400"}>About</span>
