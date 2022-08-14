@@ -29,10 +29,10 @@ export default function Home() {
                 our easy-to-use platform.
               </p>
               <Link to={"/dashboard"}>
-                <button className="p-3 px-5 rounded-full bg-blue-700 text-white hover:bg-blue-900">
+                <button className="p-3 px-5 rounded-full bg-blue-700 border border-b-4 text-white hover:bg-blue-900">
                   View portfolio
                 </button>
-                <button className="ml-5 p-3 px-5 rounded-full bg-blue-700 text-white hover:bg-blue-900">
+                <button className="ml-5 p-3 px-5 rounded-full bg-blue-700 border border-b-4 text-white hover:bg-blue-900">
                   Coming soon
                 </button>
               </Link>
@@ -41,7 +41,7 @@ export default function Home() {
               <img
                 src="/screenshots/portfolio.png"
                 alt=""
-                className={"shadow w-full rounded-xl"}
+                className={"w-full border border-b-4 rounded-xl"}
               />
             </div>
           </div>
@@ -49,15 +49,15 @@ export default function Home() {
             <div className=""></div>
             <div className="">
               <div className="grid grid-cols-2 gap-5">
-                <div className="bg-white p-3 shadow rounded-xl">
+                <div className="bg-white p-3 border border-b-4 rounded-xl">
                   <i className="fas fa-coins"></i>
                   <h2 className={"font-extrabold"}>{tokenCount} assets </h2>
                 </div>
-                <div className="bg-white p-3 shadow rounded-xl">
+                <div className="bg-white p-3 border border-b-4 rounded-xl">
                   <i className={"fas fa-link"}></i>
                   <h2 className={"font-extrabold"}>{chainCount} chains </h2>
                 </div>
-                <div className="bg-white p-3 shadow rounded-xl">
+                <div className="bg-white p-3 border border-b-4 rounded-xl">
                   <i className={"fas fa-server"}></i>
                   <h2 className={"font-extrabold"}>{rpcCount} RPCs </h2>
                 </div>
