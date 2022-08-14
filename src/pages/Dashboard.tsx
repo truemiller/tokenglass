@@ -96,12 +96,12 @@ export default function Dashboard({ address }: WalletProps) {
   useEffect(() => {
     setLoadingState("Getting tokens");
     const getTokens = async (chain: Chain) => {
-      const batchSize = 150;
+      const batchSize = 200;
       let tokensInWallet;
       let allTokens = TOKENS.filter((token) => token.chain === chain);
       let runs = Math.ceil(allTokens.length / batchSize);
       let allResolved: Token[] = [];
-      for (let x = 0; x < runs; x++) {
+      for (let x = 0; x <= runs; x++) {
         tokensInWallet = allTokens.map(async (token, index) => {
           if (index + batchSize * x <= batchSize + batchSize * x) {
             if (ethers.utils.isAddress(token.address ?? "")) {
@@ -184,6 +184,7 @@ export default function Dashboard({ address }: WalletProps) {
     }
   }, [address]);
 
+  // compile seperate token balances into one list as dependencies change
   useEffect(() => {
     setTokensWithBalance([
       ...avalanceTokensWithBalance,
@@ -205,6 +206,7 @@ export default function Dashboard({ address }: WalletProps) {
       ...xdaiTokensWithBalance,
     ]);
   }, [
+    address,
     avalanceTokensWithBalance,
     fantomTokensWithBalance,
     bnbTokensWithBalance,
