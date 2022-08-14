@@ -14,6 +14,55 @@ type WalletProps = {
   address: string;
 };
 export default function Dashboard({ address }: WalletProps) {
+  const [avalanceTokensWithBalance, setAvalancheTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [bnbTokensWithBalance, setBnbTokensWithBalance] = useState<Token[]>([]);
+  const [fantomTokensWithBalance, setFantomTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [ethereumTokensWithBalance, setEthereumTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [iotexTokensWithBalance, setIotexTokensWithBalance] = useState<Token[]>(
+    []
+  );
+  const [moonriverTokensWithBalance, setMoonriverTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [arbitrumTokensWithBalance, setArbitrumTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [fuseTokensWithBalance, setFuseTokensWithBalance] = useState<Token[]>(
+    []
+  );
+  const [harmonyTokensWithBalance, setHarmonyTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [hooTokensWithBalance, setHooTokensWithBalance] = useState<Token[]>([]);
+  const [kucoinTokensWithBalance, setKucoinTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [meterTokensWithBalance, setMeterTokensWithBalance] = useState<Token[]>(
+    []
+  );
+  const [andromedaTokensWithBalance, setAndromedaTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [okcTokensWithBalance, setOkcTokensWithBalance] = useState<Token[]>([]);
+  const [optimismTokensWithBalance, setOptimismTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [xdaiTokensWithBalance, setXdaiTokensWithBalance] = useState<Token[]>(
+    []
+  );
+  const [polygonTokensWithBalance, setPolygonTokensWithBalance] = useState<
+    Token[]
+  >([]);
+  const [thetaTokensWithBalance, setThetaTokensWithBalance] = useState<Token[]>(
+    []
+  );
+
   const [tokensWithBalance, setTokensWithBalance] = useState<Token[]>([]);
   const [tokensWithBalanceAndPrice, setTokensWithBalanceAndPrice] = useState<
     Token[]
@@ -42,28 +91,6 @@ export default function Dashboard({ address }: WalletProps) {
     },
     [tokensWithBalancePriceAndTotal]
   );
-
-  const balances = {
-    ARBITRUM: getChainBalance(CHAINS.ARBITRUM),
-    AVALANCHE: getChainBalance(CHAINS.AVALANCHE),
-    BNB: getChainBalance(CHAINS.BNB),
-    ETHEREUM: getChainBalance(CHAINS.ETHEREUM),
-    FANTOM: getChainBalance(CHAINS.FANTOM),
-    FUSE: getChainBalance(CHAINS.FUSE),
-    HARMONY: getChainBalance(CHAINS.HARMONY),
-    HOO: getChainBalance(CHAINS.HOO),
-    HUOBI: getChainBalance(CHAINS.HUOBI),
-    IOTEX: getChainBalance(CHAINS.IOTEX),
-    KUCOIN: getChainBalance(CHAINS.KUCOIN),
-    METER: getChainBalance(CHAINS.METER),
-    ANDROMEDA: getChainBalance(CHAINS.ANDROMEDA),
-    MOONRIVER: getChainBalance(CHAINS.MOONRIVER),
-    OKC: getChainBalance(CHAINS.OKC),
-    OPTIMISM: getChainBalance(CHAINS.OPTIMISM),
-    POLYGON: getChainBalance(CHAINS.POLYGON),
-    THETA: getChainBalance(CHAINS.THETA),
-    XDAI: getChainBalance(CHAINS.XDAI),
-  };
 
   // update tokens with balance (setTokensWithBalance)
   useEffect(() => {
@@ -110,23 +137,92 @@ export default function Dashboard({ address }: WalletProps) {
       return allResolved;
     };
 
-    const batch = async () => {
+    const batch = async (chain: Chain) => {
       let _tokensWithBalance: Token[] = [];
-      for (let chainKey in CHAINS) {
-        // @ts-ignore
-        const chain: Chain = CHAINS[chainKey];
-        const tokens = (await getTokens(chain)) ?? [];
-        _tokensWithBalance = [..._tokensWithBalance, ...tokens];
-        setTokensWithBalance(_tokensWithBalance);
-      }
+      const tokens = (await getTokens(chain)) ?? [];
+      _tokensWithBalance = [..._tokensWithBalance, ...tokens];
+      return _tokensWithBalance;
     };
 
     if (address) {
-      console.log("Before batch");
-      batch().then((r) => setLoadingState(null));
-      console.log("After batch");
-    } else setTokensWithBalance([]);
+      batch(CHAINS.AVALANCHE).then((r) => setAvalancheTokensWithBalance(r));
+      batch(CHAINS.ARBITRUM).then((r) => setArbitrumTokensWithBalance(r));
+      batch(CHAINS.BNB).then((r) => setBnbTokensWithBalance(r));
+      batch(CHAINS.FANTOM).then((r) => setFantomTokensWithBalance(r));
+      batch(CHAINS.ETHEREUM).then((r) => setEthereumTokensWithBalance(r));
+      batch(CHAINS.IOTEX).then((r) => setIotexTokensWithBalance(r));
+      batch(CHAINS.MOONRIVER).then((r) => setMoonriverTokensWithBalance(r));
+      batch(CHAINS.FUSE).then((r) => setFuseTokensWithBalance(r));
+      batch(CHAINS.HARMONY).then((r) => setHarmonyTokensWithBalance(r));
+      batch(CHAINS.HOO).then((r) => setHooTokensWithBalance(r));
+      batch(CHAINS.KUCOIN).then((r) => setKucoinTokensWithBalance(r));
+      batch(CHAINS.METER).then((r) => setMeterTokensWithBalance(r));
+      batch(CHAINS.ANDROMEDA).then((r) => setAndromedaTokensWithBalance(r));
+      batch(CHAINS.OKC).then((r) => setOkcTokensWithBalance(r));
+      batch(CHAINS.OPTIMISM).then((r) => setOptimismTokensWithBalance(r));
+      batch(CHAINS.POLYGON).then((r) => setPolygonTokensWithBalance(r));
+      batch(CHAINS.THETA).then((r) => setThetaTokensWithBalance(r));
+      batch(CHAINS.XDAI).then((r) => setXdaiTokensWithBalance(r));
+    } else {
+      setAvalancheTokensWithBalance([]);
+      setFantomTokensWithBalance([]);
+      setBnbTokensWithBalance([]);
+      setEthereumTokensWithBalance([]);
+      setIotexTokensWithBalance([]);
+      setMoonriverTokensWithBalance([]);
+      setFuseTokensWithBalance([]);
+      setHarmonyTokensWithBalance([]);
+      setHooTokensWithBalance([]);
+      setKucoinTokensWithBalance([]);
+      setMeterTokensWithBalance([]);
+      setAndromedaTokensWithBalance([]);
+      setOkcTokensWithBalance([]);
+      setOptimismTokensWithBalance([]);
+      setPolygonTokensWithBalance([]);
+      setThetaTokensWithBalance([]);
+      setXdaiTokensWithBalance([]);
+    }
   }, [address]);
+
+  useEffect(() => {
+    setTokensWithBalance([
+      ...avalanceTokensWithBalance,
+      ...fantomTokensWithBalance,
+      ...bnbTokensWithBalance,
+      ...ethereumTokensWithBalance,
+      ...iotexTokensWithBalance,
+      ...moonriverTokensWithBalance,
+      ...fuseTokensWithBalance,
+      ...harmonyTokensWithBalance,
+      ...hooTokensWithBalance,
+      ...kucoinTokensWithBalance,
+      ...meterTokensWithBalance,
+      ...andromedaTokensWithBalance,
+      ...okcTokensWithBalance,
+      ...optimismTokensWithBalance,
+      ...polygonTokensWithBalance,
+      ...thetaTokensWithBalance,
+      ...xdaiTokensWithBalance,
+    ]);
+  }, [
+    avalanceTokensWithBalance,
+    fantomTokensWithBalance,
+    bnbTokensWithBalance,
+    ethereumTokensWithBalance,
+    iotexTokensWithBalance,
+    moonriverTokensWithBalance,
+    fuseTokensWithBalance,
+    harmonyTokensWithBalance,
+    hooTokensWithBalance,
+    kucoinTokensWithBalance,
+    meterTokensWithBalance,
+    andromedaTokensWithBalance,
+    okcTokensWithBalance,
+    optimismTokensWithBalance,
+    polygonTokensWithBalance,
+    thetaTokensWithBalance,
+    xdaiTokensWithBalance,
+  ]);
 
   // update tokens with price (setTokensWithBalanceAndPrice)
   useEffect(() => {

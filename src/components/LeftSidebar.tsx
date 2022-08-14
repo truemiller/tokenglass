@@ -46,7 +46,7 @@ export const LeftSidebar = () => {
 
       {LINKS.map((link) => {
         return (
-          <Link to={link.link}>
+          <Link key={link.title} to={link.link}>
             <button
               className={`flex w-full p-3 hover:text-blue-700 rounded-xl ${
                 currentRoute === `${link.link}` ? "bg-gray-100" : ""
