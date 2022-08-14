@@ -1,10 +1,22 @@
-import React, { Suspense, lazy } from "react";
+import React, { createContext, lazy, Suspense, useState } from "react";
 import { Navbar } from "./components/Navbar";
-import { createContext, useState } from "react";
 import { LeftSidebar } from "./components/LeftSidebar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Wallet from "./pages/Wallet";
+import { Footer } from "./components/Footer";
+
+const Home = lazy((): Promise<any> => {
+  return import("./pages/Home");
+});
+const Dashboard = lazy((): Promise<any> => {
+  return import("./pages/Dashboard");
+});
+const RPC = lazy((): Promise<any> => {
+  return import("./pages/RPC");
+});
+const Proposals = lazy((): Promise<any> => {
+  return import("./pages/Proposals");
+});
+
 //contexts
 export const AddressContext = createContext(null);
 export const TotalBalanceContext = createContext(0);
@@ -21,17 +33,20 @@ export default function App(): JSX.Element {
       <AddressContext.Provider value={address}>
         <div className="flex flex-row">
           <LeftSidebar />
-          <main className={"w-full bg-light"}>
+          <main className={"flex flex-col bg-light w-full"}>
             <Navbar setAddress={setAddress}></Navbar>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<span className={"m-auto"}>Loading...</span>}>
               <Routes>
                 <Route path={"/"} element={<Home />} />
                 <Route
-                  path={"/wallet"}
-                  element={<Wallet address={address} />}
+                  path={"/dashboard"}
+                  element={<Dashboard address={address} />}
                 />
+                <Route path={"/rpc"} element={<RPC />} />
+                <Route path={"/proposals"} element={<Proposals />} />
               </Routes>
             </Suspense>
+            <Footer />
           </main>
         </div>
       </AddressContext.Provider>
