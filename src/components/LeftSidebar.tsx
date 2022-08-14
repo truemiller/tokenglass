@@ -30,14 +30,14 @@ const LINKS: MenuLink[] = [
 ];
 
 export const LeftSidebar = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const currentRoute = useLocation().pathname;
   const handleToggle = () => {
     setToggle(!toggle);
   };
   return (
     <aside
-      className={`bg-white p-3 flex flex-col shadow-2xl h-screen z-10 sticky top-0`}
+      className={`bg-white p-3 flex flex-col border h-screen z-10 sticky top-0`}
       style={{ height: "100%", minHeight: "100vh" }}
     >
       <button className={"btn my-4"} onClick={handleToggle}>
@@ -52,7 +52,7 @@ export const LeftSidebar = () => {
                 currentRoute === `${link.link}` ? "bg-gray-100" : ""
               }`}
             >
-              <i className={`${link.fa} mt-1`}></i>
+              <i className={`${link.fa}  `}></i>
               {toggle ? <span className={"ml-2"}> {link.title}</span> : null}
             </button>
           </Link>

@@ -2084,7 +2084,7 @@ const AVALANCHE_TOKENS: Token[] = [
     coingecko: "wasdaq-finance",
   },
   {
-    name: `WETH`,
+    name: `WETH.e`,
     symbol: "weth",
     logo: "https://assets.coingecko.com/coins/images/2518/small/weth.png?1628852295",
     chain: CHAINS.AVALANCHE,

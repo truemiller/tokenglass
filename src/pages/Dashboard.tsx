@@ -1,9 +1,9 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
-import { TokenRow } from "../components/TokenRow";
+import { TokenRow } from "../components/dashboard/TokenRow";
 import { Token, TOKENS } from "../consts/tokens";
 import { BigNumber, ethers } from "ethers";
 import { Chain, CHAINS } from "../consts/chains";
-import { ChainAggregatedElement } from "../components/ChainAggregatedElement";
+import { ChainAggregatedElement } from "../components/dashboard/ChainAggregatedElement";
 
 const { getCoingeckoPrice } = require("../helper/CoinGeckoHelper");
 const { getBalance } = require("../helper/EthersHelper");
@@ -101,7 +101,7 @@ export default function Dashboard({ address }: WalletProps) {
       let allTokens = TOKENS.filter((token) => token.chain === chain);
       let runs = Math.ceil(allTokens.length / batchSize);
       let allResolved: Token[] = [];
-      for (let x = 0; x < runs; x++) {
+      for (let x = 0; x <= runs; x++) {
         tokensInWallet = allTokens.map(async (token, index) => {
           if (index + batchSize * x <= batchSize + batchSize * x) {
             if (ethers.utils.isAddress(token.address ?? "")) {
@@ -184,6 +184,7 @@ export default function Dashboard({ address }: WalletProps) {
     }
   }, [address]);
 
+  // compile seperate token balances into one list as dependencies change
   useEffect(() => {
     setTokensWithBalance([
       ...avalanceTokensWithBalance,
@@ -205,6 +206,7 @@ export default function Dashboard({ address }: WalletProps) {
       ...xdaiTokensWithBalance,
     ]);
   }, [
+    address,
     avalanceTokensWithBalance,
     fantomTokensWithBalance,
     bnbTokensWithBalance,
@@ -296,7 +298,7 @@ export default function Dashboard({ address }: WalletProps) {
             </div>
           </div>
           <div
-            className={"mt-5 bg-white shadow-2xl p-5 rounded-xl flex flex-col"}
+            className={"mt-5 border border-b-4 p-5 rounded-xl flex flex-col"}
           >
             {address ? (
               <>
@@ -311,6 +313,7 @@ export default function Dashboard({ address }: WalletProps) {
                     .map((chainKey) => CHAINS[chainKey])
                     .map((chain) => (
                       <ChainAggregatedElement
+                        key={chain.title}
                         chain={chain}
                         balance={getChainBalance(chain)}
                         totalBalance={totalBalance}

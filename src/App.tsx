@@ -25,7 +25,7 @@ export const TokensContext = createContext([]);
 export default function App(): JSX.Element {
   //state
   const [address, setAddress] = useState(
-    window.ethereum.selectedAddress ?? null
+    window?.ethereum?.selectedAddress ?? null
   );
 
   return (
