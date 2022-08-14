@@ -15,14 +15,11 @@ export default function Home() {
     <>
       <div className={"p-10"}>
         <div className="mx-auto container">
-          {/*<h1 className={"text-6xl font-extrabold mb-5"}>*/}
-          {/*  Welcome to TokenGlass*/}
-          {/*</h1>*/}
           <div className="grid grid-cols-2 gap-5 mb-5">
             <div className="my-auto  p-3 ">
-              <h2 className="text-5xl mb-5 mt-auto font-extrabold">
+              <h1 className="text-6xl mb-5 mt-auto font-extrabold">
                 Crypto portfolio tracker
-              </h2>
+              </h1>
               <p className={"mb-5"}>
                 Keep track of your profits, losses, and portfolio valuation with
                 our easy-to-use platform.
@@ -32,7 +29,7 @@ export default function Home() {
                   View portfolio
                 </button>
                 <button className="ml-5 p-3 px-5 rounded-full bg-blue-700 text-white hover:bg-blue-900">
-                  Login
+                  Fuck a goat
                 </button>
               </Link>
             </div>
