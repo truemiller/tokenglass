@@ -28,10 +28,10 @@ export default function RPC(): ReactNode {
       rpcUrls: [`${rpc.url}`],
     };
 
-    window.ethereum
+    window?.ethereum
       .request({ method: "eth_requestAccounts" })
       .then((p: any) => {
-        window.ethereum.request({
+        window?.ethereum.request({
           method: "wallet_addEthereumChain",
           params: [params, p],
         });

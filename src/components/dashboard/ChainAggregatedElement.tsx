@@ -1,4 +1,4 @@
-import { Chain } from "../consts/chains";
+import { Chain } from "../../consts/chains";
 import React from "react";
 
 type ChainAggregatedElementProps = {

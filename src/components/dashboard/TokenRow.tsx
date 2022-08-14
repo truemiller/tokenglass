@@ -1,5 +1,5 @@
 import React from "react";
-import { Chain } from "../consts/chains";
+import { Chain } from "../../consts/chains";
 
 type TokenRowProps = {
   tokenData: {
