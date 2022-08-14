@@ -30,7 +30,7 @@ const LINKS: MenuLink[] = [
 ];
 
 export const LeftSidebar = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const currentRoute = useLocation().pathname;
   const handleToggle = () => {
     setToggle(!toggle);
