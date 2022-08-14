@@ -4,9 +4,3 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background: url("https://programmer.ink/images/think/98b41a0cf813eaa37b0d44100094e874.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-}
-
