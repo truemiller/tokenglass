@@ -7,14 +7,20 @@ import { Footer } from "./components/Footer";
 const Home = lazy((): Promise<any> => {
   return import("./pages/Home");
 });
-const Dashboard = lazy((): Promise<any> => {
-  return import("./pages/Dashboard");
+const Portfolio = lazy((): Promise<any> => {
+  return import("./pages/Portfolio");
 });
 const RPC = lazy((): Promise<any> => {
   return import("./pages/RPC");
 });
 const Proposals = lazy((): Promise<any> => {
   return import("./pages/Proposals");
+});
+const About = lazy((): Promise<any> => {
+  return import("./pages/About");
+});
+const Team = lazy((): Promise<any> => {
+  return import("./pages/Team");
 });
 
 //contexts
@@ -31,7 +37,7 @@ export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <AddressContext.Provider value={address}>
-        <div className="flex flex-row">
+        <div className="flex flex-row bg-gray-50">
           <LeftSidebar />
           <main className={"flex flex-col bg-light w-full"}>
             <Navbar setAddress={setAddress}></Navbar>
@@ -39,11 +45,13 @@ export default function App(): JSX.Element {
               <Routes>
                 <Route path={"/"} element={<Home />} />
                 <Route
-                  path={"/dashboard"}
-                  element={<Dashboard address={address} />}
+                  path={"/portfolio"}
+                  element={<Portfolio address={address} />}
                 />
                 <Route path={"/rpc"} element={<RPC />} />
                 <Route path={"/proposals"} element={<Proposals />} />
+                <Route path={"/about"} element={<About />} />
+                <Route path={"/team"} element={<Team />} />
               </Routes>
             </Suspense>
             <Footer />

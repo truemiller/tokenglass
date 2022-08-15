@@ -13,7 +13,7 @@ export const TotalBalanceContext = createContext(0);
 type WalletProps = {
   address: string;
 };
-export default function Dashboard({ address }: WalletProps) {
+export default function Portfolio({ address }: WalletProps) {
   const [avalanceTokensWithBalance, setAvalancheTokensWithBalance] = useState<
     Token[]
   >([]);
@@ -188,6 +188,7 @@ export default function Dashboard({ address }: WalletProps) {
   useEffect(() => {
     setTokensWithBalance([
       ...avalanceTokensWithBalance,
+      ...arbitrumTokensWithBalance,
       ...fantomTokensWithBalance,
       ...bnbTokensWithBalance,
       ...ethereumTokensWithBalance,
@@ -208,6 +209,7 @@ export default function Dashboard({ address }: WalletProps) {
   }, [
     address,
     avalanceTokensWithBalance,
+    arbitrumTokensWithBalance,
     fantomTokensWithBalance,
     bnbTokensWithBalance,
     ethereumTokensWithBalance,
@@ -288,6 +290,7 @@ export default function Dashboard({ address }: WalletProps) {
     }
   }, [address, tokensWithBalancePriceAndTotal]);
 
+  // @ts-ignore
   return (
     <>
       <div className={"p-10"}>
@@ -298,7 +301,9 @@ export default function Dashboard({ address }: WalletProps) {
             </div>
           </div>
           <div
-            className={"mt-5 border border-b-4 p-5 rounded-xl flex flex-col"}
+            className={
+              "mt-5 border border-b-4 bg-white p-5 rounded-xl flex flex-col"
+            }
           >
             {address ? (
               <>
@@ -311,6 +316,10 @@ export default function Dashboard({ address }: WalletProps) {
                   {Object.keys(CHAINS)
                     //@ts-ignore
                     .map((chainKey) => CHAINS[chainKey])
+                    //@ts-ignore
+                    .sort((a: Chain, b: Chain) => {
+                      return getChainBalance(a) < getChainBalance(b);
+                    })
                     .map((chain) => (
                       <ChainAggregatedElement
                         key={chain.title}

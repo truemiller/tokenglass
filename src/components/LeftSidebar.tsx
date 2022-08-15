@@ -13,8 +13,8 @@ const LINKS: MenuLink[] = [
     fa: "fas fa-home",
   },
   {
-    title: "Dashboard",
-    link: "/dashboard",
+    title: "Portfolio",
+    link: "/portfolio",
     fa: "fas fa-pie-chart",
   },
   {
