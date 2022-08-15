@@ -8,11 +8,6 @@ type MenuLink = {
 };
 const LINKS: MenuLink[] = [
   {
-    title: "Home",
-    link: "/",
-    fa: "fas fa-home",
-  },
-  {
     title: "Portfolio",
     link: "/portfolio",
     fa: "fas fa-pie-chart",

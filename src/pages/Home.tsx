@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <div className={"p-10"}>
         <div className="mx-auto container">
-          <div className="grid grid-cols-2 gap-5 mb-5">
+          <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5 mb-5">
             <div className="my-auto  p-3 ">
               <h1 className="text-6xl mb-5 mt-auto font-extrabold">
                 Crypto portfolio tracker
