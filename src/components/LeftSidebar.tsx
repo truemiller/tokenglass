@@ -33,10 +33,14 @@ export const LeftSidebar = () => {
   return (
     <aside
       className={`bg-white p-3 flex flex-col border h-screen z-10 sticky top-0`}
-      style={{ height: "100%", minHeight: "100vh" }}
+      style={{
+        height: "100%",
+        minHeight: "100vh",
+        transition: "width 2s",
+      }}
     >
       <button className={"btn my-4"} onClick={handleToggle}>
-        <i className={"fas fa-bars"}></i>
+        <i className={`fas fa-bars ${toggle ? "rotate-90" : ""}`}></i>
       </button>
 
       {LINKS.map((link) => {
@@ -47,7 +51,7 @@ export const LeftSidebar = () => {
                 currentRoute === `${link.link}` ? "bg-gray-100" : ""
               }`}
             >
-              <i className={`${link.fa}  `}></i>
+              <i className={`${link.fa} my-auto`}></i>
               {toggle ? <span className={"ml-2"}> {link.title}</span> : null}
             </button>
           </Link>

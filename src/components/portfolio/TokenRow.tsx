@@ -16,11 +16,11 @@ type TokenRowProps = {
 export const TokenRow = ({ tokenData }: TokenRowProps) => {
   return (
     <tr key={tokenData.name} className={"w-full hover:bg-gray-100"}>
-      <td className={"flex p-3"}>
+      <td className={"flex p-1"}>
         <img
           src={`/logos/${tokenData.coingecko}.png`}
           alt=""
-          className={"rounded-full w-8 h-8 border-2 border-black"}
+          className={"rounded-full w-8 h-8 border-2 border-black my-auto"}
           loading={"lazy"}
         />
         <img

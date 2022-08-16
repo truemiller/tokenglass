@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { TOKENS } from "../consts/tokens";
 import { RPCS } from "../consts/rpcs";
 import { CHAINS } from "../consts/chains";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const tokenCount = useMemo(() => {
@@ -17,6 +18,9 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Token Glass</title>
+      </Helmet>
       <div className={"p-10"}>
         <div className="mx-auto container">
           <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5 mb-5">
@@ -28,12 +32,9 @@ export default function Home() {
                 Keep track of your profits, losses, and portfolio valuation with
                 our easy-to-use platform.
               </p>
-              <Link to={"/dashboard"}>
-                <button className="p-3 px-5 rounded-full bg-blue-700 border border-b-4 text-white hover:bg-blue-900">
+              <Link to={"/portfolio"}>
+                <button className="p-3 px-5  bg-blue-700 border border-b-4 text-white hover:bg-blue-900">
                   View portfolio
-                </button>
-                <button className="ml-5 p-3 px-5 rounded-full bg-blue-700 border border-b-4 text-white hover:bg-blue-900">
-                  Coming soon
                 </button>
               </Link>
             </div>
@@ -45,7 +46,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2">
+          <div className="grid md:grid-cols-2 sm:grid-cols-1 ">
             <div className=""></div>
             <div className="">
               <div className="grid grid-cols-2 gap-5">

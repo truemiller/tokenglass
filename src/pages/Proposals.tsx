@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CHAINS } from "../consts/chains";
 import { TokenListingProposalForm } from "../components/proposals/TokenListingProposalForm";
 import { ChainListingProposalForm } from "../components/proposals/ChainListingProposalForm";
+import { Helmet } from "react-helmet";
 
 const PROPOSAL_TYPES = {
   TOKEN_LISTING: {
@@ -34,6 +34,9 @@ export default function Proposals(): JSX.Element {
 
   return (
     <>
+      <Helmet>
+        <title>Token Glass - Proposals</title>
+      </Helmet>
       <div className="p-10">
         <div className="container mx-auto">
           <h1 className="text-6xl font-extrabold mb-5">Proposals</h1>
