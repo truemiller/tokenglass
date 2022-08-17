@@ -1,4 +1,10 @@
-import React, { createContext, lazy, Suspense, useState } from "react";
+import React, {
+  createContext,
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
 import { Navbar } from "./components/Navbar";
 import { LeftSidebar } from "./components/LeftSidebar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -24,20 +30,26 @@ const Team = lazy((): Promise<any> => {
 });
 
 //contexts
-export const AddressContext = createContext(null);
+export const AddressContext = createContext("");
 export const TotalBalanceContext = createContext(0);
 export const TokensContext = createContext([]);
 
 export default function App(): JSX.Element {
   //state
-  const [address, setAddress] = useState(
-    window?.ethereum?.selectedAddress ?? null
-  );
+  const [address, setAddress] = useState<string>("");
+
+  useEffect(() => {
+    window?.ethereum
+      .request({ method: "eth_requestAccounts" })
+      .then((r: any) => {
+        setAddress(r[0]);
+      });
+  }, []);
 
   return (
     <BrowserRouter>
       <AddressContext.Provider value={address}>
-        <div className="flex flex-row bg-gray-50">
+        <div className="flex flex-row bg-gray-100">
           <LeftSidebar />
           <main className={"flex flex-col bg-light w-full"}>
             <Navbar setAddress={setAddress}></Navbar>

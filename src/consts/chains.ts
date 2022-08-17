@@ -38,7 +38,7 @@ export const CHAINS = {
   },
   ETHEREUM: {
     provider: new ethers.providers.JsonRpcBatchProvider(
-      "https://eth-mainnet.gateway.pokt.network/v1/5f3453978e354ab992c4da79",
+      "https://rpc.ankr.com/eth",
       {
         chainId: 1,
         name: "Ethereum",

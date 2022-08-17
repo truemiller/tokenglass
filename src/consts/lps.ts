@@ -14,7 +14,7 @@ const LPS: LP[] = [
   {
     name: "WAVAX/ELK",
     address: "0x6a0c03c0b933875daf767bb90584ba696b713243",
-    token_1: AVALANCHE_TOKENS.find((token) => token.address === ""),
-    token_2: AVALANCHE_TOKENS.find((token) => token.address === ""),
+    token_1: AVALANCHE_TOKENS.find((token) => token.symbol === "wavax"),
+    token_2: AVALANCHE_TOKENS.find((token) => token.symbol === "elk"),
   },
 ];
