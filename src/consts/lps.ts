@@ -1,14 +1,20 @@
 import { CHAINS } from "./chains";
-import { ethers } from "ethers";
+import { Contract, ethers } from "ethers";
 import LPABI from "../data/abis/lpabi.json";
+import { AVALANCHE_TOKENS, Token, TOKENS } from "./tokens";
 
-const LPS = [
+type LP = {
+  name: string;
+  address: string;
+  token_1: Token | any;
+  token_2: Token | any;
+};
+
+const LPS: LP[] = [
   {
     name: "WAVAX/ELK",
-    contract: new ethers.Contract(
-      "0x6a0c03c0b933875daf767bb90584ba696b713243",
-      LPABI,
-      CHAINS.AVALANCHE.provider
-    ),
+    address: "0x6a0c03c0b933875daf767bb90584ba696b713243",
+    token_1: AVALANCHE_TOKENS.find((token) => token.address === ""),
+    token_2: AVALANCHE_TOKENS.find((token) => token.address === ""),
   },
 ];

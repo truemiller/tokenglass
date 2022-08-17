@@ -16,9 +16,11 @@ const PROPOSAL_TYPES = {
 
 const DEMO_PROPOSALS = [
   {
+    id: 1,
     title: "Change the blue",
   },
   {
+    id: 2,
     title: "Hire a CMO",
   },
 ];
@@ -40,12 +42,15 @@ export default function Proposals(): JSX.Element {
       <div className="p-10">
         <div className="container mx-auto">
           <h1 className="text-6xl font-extrabold mb-5">Proposals</h1>
-          <div className="grid grid-cols-4 gap-5">
-            <div className="md:col-span-3 sm:col-span-2">
+          <div className="flex flex-row gap-5">
+            <div className="md:w-3/4 flex flex-col">
               <h2 className={"font-extrabold mb-5"}>Current Proposals</h2>
               {DEMO_PROPOSALS.map((proposal: any) => {
                 return (
-                  <div className="p-3 my-5 rounded-xl flex flex-row">
+                  <div
+                    key={proposal.id}
+                    className="p-3 my-5 rounded-xl flex flex-row"
+                  >
                     <button className="p-3 bg-white border border-b-4 rounded-xl flex flex-col mr-2">
                       0<i className="fas fa-thumbs-up"></i>
                     </button>
@@ -54,7 +59,7 @@ export default function Proposals(): JSX.Element {
                 );
               })}
             </div>
-            <div className="md:col-span-1 sm:col-span-2 p-3 bg-white rounded-xl border border-b-4 flex flex-col">
+            <div className="md:w-1/4  flex flex-col">
               <h2 className={"font-extrabold"}>Submit</h2>
 
               <label htmlFor="proposal_type" className={" py-3"}>

@@ -15,6 +15,8 @@ type WalletProps = {
 };
 export default function Portfolio({ address }: WalletProps) {
   const [tokens, setTokens] = useState<Token[]>([]);
+  const [lps, setLPs] = useState([]);
+  const [farms, setFarms] = useState([]);
   const totalBalance = useMemo(() => {
     return (
       tokens

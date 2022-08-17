@@ -21,7 +21,7 @@ export function TokenListingProposalForm(): JSX.Element {
       <select className={"p-3 bg-gray-100 rounded-xl"} required={true}>
         {Object.keys(CHAINS).map((chain: string) => {
           return (
-            <option value={1}>
+            <option key={chain} value={1}>
               {
                 // @ts-ignore
                 CHAINS[chain].provider.network.name

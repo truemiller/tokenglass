@@ -83,7 +83,7 @@ export function Tokens({
   useEffect(() => {
     setLoadingState("Getting tokens");
     const getTokens = async (chain: Chain) => {
-      const batchSize = 500;
+      const batchSize = 200;
       let tokensInWallet;
       let allTokens = TOKENS.filter((token) => token.chain === chain);
       let runs = Math.ceil(allTokens.length / batchSize);
