@@ -51,7 +51,7 @@ export default function App(): JSX.Element {
       <AddressContext.Provider value={address}>
         <div className="flex flex-row bg-gray-100">
           <LeftSidebar />
-          <main className={"flex flex-col bg-light w-full"}>
+          <main className={"flex flex-col  w-full"}>
             <Navbar setAddress={setAddress}></Navbar>
             <Suspense fallback={<span className={"m-auto"}>Loading...</span>}>
               <Routes>

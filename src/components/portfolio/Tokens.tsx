@@ -279,7 +279,7 @@ export function Tokens({
 
   return (
     <>
-      <table className={"w-full bg-white table"}>
+      <table className={"w-full  table"}>
         <thead>
           <tr>
             <th className={"text-left"}>Token</th>

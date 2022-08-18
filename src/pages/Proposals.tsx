@@ -31,9 +31,10 @@ export default function Proposals(): JSX.Element {
         <title>Token Glass - Proposals</title>
       </Helmet>
       <div className="p-10">
-        {address ? (
-          <div className="container mx-auto">
-            <h1 className="text-6xl font-extrabold mb-5">Proposals</h1>
+        <div className="container mx-auto">
+          <h1 className="text-6xl font-extrabold mb-5">Proposals</h1>
+
+          {address ? (
             <div className="flex flex-row gap-5">
               <div className="md:w-3/4 flex flex-col">
                 {proposals
@@ -88,10 +89,12 @@ export default function Proposals(): JSX.Element {
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          "Connect your metamask to TokenGlass to partake in governance."
-        )}
+          ) : (
+            <div className={"container mx-auto"}>
+              "Connect your metamask to TokenGlass to partake in governance."
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

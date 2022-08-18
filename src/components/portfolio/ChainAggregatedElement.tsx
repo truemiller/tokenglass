@@ -13,7 +13,7 @@ export const ChainAggregatedElement = ({
   totalBalance,
 }: ChainAggregatedElementProps) => {
   return balance ? (
-    <div className={"flex flex-row hover:bg-gray-100 p-3"}>
+    <div className={"flex flex-row  p-3"}>
       <img
         src={chain.logo}
         alt=""
