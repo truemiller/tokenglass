@@ -49,13 +49,10 @@ export default function Proposals(): JSX.Element {
                           key={proposal.id}
                           className="p-3 rounded-xl flex flex-row"
                         >
-                          {/*<button className="p-3 bg-white border border-b-4 rounded-xl mr-2 h-fit">*/}
-                          {/*  0<i className="fas fa-thumbs-up"></i>*/}
-                          {/*</button>*/}
                           <div className="flex flex-col w-full">
                             <strong>{proposal.title}</strong>
                             <div className={""}>
-                              <p className={"text-gray-700 break-all"}>
+                              <p className={"text-gray-700 break-all my-3"}>
                                 {proposal.description}
                               </p>
                             </div>
@@ -92,7 +89,9 @@ export default function Proposals(): JSX.Element {
               </div>
             </div>
           </div>
-        ) : null}
+        ) : (
+          "Connect your metamask to TokenGlass to partake in governance."
+        )}
       </div>
     </>
   );
