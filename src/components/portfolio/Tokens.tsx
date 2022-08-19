@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Token, TOKENS } from "../../consts/tokens";
 import { Chain, CHAINS } from "../../consts/chains";
 import { BigNumber, ethers } from "ethers";
@@ -279,30 +279,32 @@ export function Tokens({
 
   return (
     <>
-      <table className={"w-full table"}>
-        <thead>
-          <tr>
-            <th className={"text-left"}>Token</th>
-            <th className={"text-left"}>Balance</th>
-            <th className={"text-left"}>Price</th>
-            <th className={"text-left"}>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tokens.map((token: any) => {
-            return !token.balance ? (
-              <tr
-                key={token.name + ":" + token.chain.provider.network.chainId}
-              ></tr>
-            ) : (
-              <TokenRow
-                key={token.name + ":" + token.chain.provider.network.chainId}
-                tokenData={token}
-              />
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col">
+        <table className={"w-full table"}>
+          <thead>
+            <tr>
+              <th className={"text-left"}>Token</th>
+              <th className={"text-left"}>Balance</th>
+              <th className={"text-left"}>Price</th>
+              <th className={"text-left"}>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tokens.map((token: any) => {
+              return !token.balance ? (
+                <tr
+                  key={token.name + ":" + token.chain.provider.network.chainId}
+                ></tr>
+              ) : (
+                <TokenRow
+                  key={token.name + ":" + token.chain.provider.network.chainId}
+                  tokenData={token}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

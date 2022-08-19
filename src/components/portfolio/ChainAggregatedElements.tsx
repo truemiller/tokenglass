@@ -26,22 +26,24 @@ export function ChainAggregatedElements({
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
-        {Object.keys(CHAINS)
-          //@ts-ignore
-          .map((chainKey) => CHAINS[chainKey])
-          //@ts-ignore
-          .sort((a: Chain, b: Chain) => {
-            return getChainBalance(a) < getChainBalance(b);
-          })
-          .map((chain) => (
-            <ChainAggregatedElement
-              key={chain.provider.network.name}
-              chain={chain}
-              balance={getChainBalance(chain)}
-              totalBalance={totalBalance}
-            />
-          ))}
+      <div className={"m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"}>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
+          {Object.keys(CHAINS)
+            //@ts-ignore
+            .map((chainKey) => CHAINS[chainKey])
+            //@ts-ignore
+            .sort((a: Chain, b: Chain) => {
+              return getChainBalance(a) < getChainBalance(b);
+            })
+            .map((chain) => (
+              <ChainAggregatedElement
+                key={chain.provider.network.name}
+                chain={chain}
+                balance={getChainBalance(chain)}
+                totalBalance={totalBalance}
+              />
+            ))}
+        </div>
       </div>
     </>
   );

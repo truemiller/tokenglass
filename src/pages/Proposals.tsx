@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { API_URL } from "../consts/config";
+import { API_URL, APP_NAME } from "../consts/config";
 import { GenericProposalForm } from "../components/proposals/GenericProposalForm";
 import { AddressContext } from "../App";
 import moment from "moment";
-
-import { Doughnut } from "react-chartjs-2";
 
 export default function Proposals(): JSX.Element {
   const address = useContext(AddressContext);
@@ -28,7 +26,7 @@ export default function Proposals(): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>Token Glass - Proposals</title>
+        <title>{APP_NAME} - Proposals</title>
       </Helmet>
       <div className="p-10">
         <div className="container mx-auto">
@@ -96,7 +94,9 @@ export default function Proposals(): JSX.Element {
             </div>
           ) : (
             <div className={"container mx-auto"}>
-              "Connect your metamask to TokenGlass to partake in governance."
+              <div className={"bg-white rounded-xl p-3 shadow-xl"}>
+                Connect your metamask to TokenGlass to partake in governance.
+              </div>
             </div>
           )}
         </div>

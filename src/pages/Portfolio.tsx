@@ -41,32 +41,19 @@ export default function Portfolio({ address }: WalletProps) {
           {address ? (
             <div className={"flex flex-row flex-wrap"}>
               <div className="w-full lg:w-1/2">
-                <div
-                  className={
-                    "m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"
-                  }
-                >
-                  <Balance totalBalance={totalBalance} />
-                </div>
-                <div className="m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col">
-                  <Tokens
-                    address={address}
-                    setTokens={setTokens}
-                    tokens={tokens}
-                  />
-                </div>
+                <Balance totalBalance={totalBalance} />
+
+                <Tokens
+                  address={address}
+                  setTokens={setTokens}
+                  tokens={tokens}
+                />
               </div>
               <div className="w-full lg:w-1/2">
-                <div
-                  className={
-                    "m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"
-                  }
-                >
-                  <ChainAggregatedElements
-                    tokens={tokens}
-                    totalBalance={totalBalance}
-                  />
-                </div>
+                <ChainAggregatedElements
+                  tokens={tokens}
+                  totalBalance={totalBalance}
+                />
               </div>
             </div>
           ) : (

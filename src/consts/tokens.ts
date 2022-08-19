@@ -2203,6 +2203,14 @@ export const AVALANCHE_TOKENS: Token[] = [
     address: "0x1b88d7ad51626044ec62ef9803ea264da4442f32",
     coingecko: "zookeeper",
   },
+  {
+    name: `USDC.e`,
+    symbol: "USDC.e",
+    logo: "/logos/usd-coin-avalanche-bridged-usdc-e.png",
+    chain: CHAINS.AVALANCHE,
+    address: "0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664",
+    coingecko: "usd-coin-avalanche-bridged-usdc-e",
+  },
 ];
 
 const BNB_TOKENS: Token[] = [];
