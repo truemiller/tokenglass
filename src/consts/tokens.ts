@@ -4602,14 +4602,6 @@ const IOTEX_TOKENS: Token[] = [
     coingecko: "crosschain-iotx",
   },
   {
-    name: `Cyclone Protocol`,
-    symbol: "cyc",
-    logo: "https://assets.coingecko.com/coins/images/14065/small/b3_DFjFp_400x400.jpg?1614128740",
-    chain: CHAINS.IOTEX,
-    address: "io1f4acssp65t6s90egjkzpvrdsrjjyysnvxgqjrh",
-    coingecko: "cyclone-protocol",
-  },
-  {
     name: `ioBUSD`,
     symbol: "iobusd",
     logo: "https://assets.coingecko.com/coins/images/19254/small/io14nhfkywdfvl40evgsqnh43ev33q6he8yez8c8a.png?1634802175",
