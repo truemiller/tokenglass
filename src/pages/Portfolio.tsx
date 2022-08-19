@@ -32,46 +32,46 @@ export default function Portfolio({ address }: WalletProps) {
         <title>Token Glass - Portfolio</title>
       </Helmet>
       <div className={"p-10"}>
-        <div className="mx-auto container">
+        <div className="container mx-auto">
           <div className="flex flex-row">
             <div className="flex flex-col">
-              <h1 className={"font-extrabold text-6xl"}>Portfolio</h1>
+              <h1 className={"font-bold text-6xl"}>Portfolio</h1>
             </div>
           </div>
-
           {address ? (
-            <>
-              <div
-                className={
-                  "mt-5 border border-b-4 bg-white p-5 rounded-xl flex flex-col"
-                }
-              >
-                <Balance totalBalance={totalBalance} />
+            <div className={"flex flex-row flex-wrap"}>
+              <div className="w-full lg:w-1/2">
+                <div
+                  className={
+                    "m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"
+                  }
+                >
+                  <Balance totalBalance={totalBalance} />
+                </div>
+                <div className="m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col">
+                  <Tokens
+                    address={address}
+                    setTokens={setTokens}
+                    tokens={tokens}
+                  />
+                </div>
               </div>
-              <div
-                className={
-                  "mt-5 border border-b-4 bg-white p-5 rounded-xl flex flex-col"
-                }
-              >
-                <ChainAggregatedElements
-                  tokens={tokens}
-                  totalBalance={totalBalance}
-                />
+              <div className="w-full lg:w-1/2">
+                <div
+                  className={
+                    "m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"
+                  }
+                >
+                  <ChainAggregatedElements
+                    tokens={tokens}
+                    totalBalance={totalBalance}
+                  />
+                </div>
               </div>
-
-              <div className="mt-5 border border-b-4 bg-white p-5 rounded-xl flex flex-col">
-                <Tokens
-                  address={address}
-                  setTokens={setTokens}
-                  tokens={tokens}
-                />
-              </div>
-            </>
+            </div>
           ) : (
             <div
-              className={
-                "mt-5 border border-b-4 bg-white p-5 rounded-xl flex flex-col"
-              }
+              className={"mt-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"}
             >
               <p>
                 Please <strong>connect your Metamask</strong> to TokenGlass to

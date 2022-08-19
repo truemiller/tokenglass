@@ -60,6 +60,7 @@ export default function App(): JSX.Element {
                   path={"/portfolio"}
                   element={<Portfolio address={address} />}
                 />
+                <Route path={"/portfolio/:address"} element={<Portfolio />} />
                 <Route path={"/rpc"} element={<RPC />} />
                 <Route path={"/proposals"} element={<Proposals />} />
                 <Route path={"/about"} element={<About />} />

@@ -32,24 +32,24 @@ export const LeftSidebar = () => {
   };
   return (
     <aside
-      className={`bg-gray-900 flex flex-col  h-screen z-10 sticky top-0`}
+      className={`bg-white flex flex-col h-screen z-10 sticky top-0 shadow-2xl`}
       style={{
         height: "100%",
         minHeight: "100vh",
       }}
     >
       <div
-        className="text-center flex flex-col"
+        className="text-center flex flex-col shadow-xl"
         style={{
           height: "70px",
-          background:
-            "url('https://img2.goodfon.com/wallpaper/nbig/b/bb/blue-glass-abstract.jpg')",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
         <button
-          className={"btn my-auto text-white hover:text-blue-400"}
+          className={
+            "btn my-auto text-blue-700 hover:text-blue-900 backdrop-blur"
+          }
           onClick={handleToggle}
         >
           <i className={`fas fa-bars ${toggle ? "rotate-90" : ""}`}></i>
@@ -62,8 +62,8 @@ export const LeftSidebar = () => {
             <button
               className={`flex w-full p-3 hover:text-blue-400 ${
                 currentRoute === `${link.link}`
-                  ? "bg-gray-100 text-black"
-                  : "text-white"
+                  ? "bg-blue-700 text-white"
+                  : "text-black"
               }`}
             >
               <i className={`${link.fa} my-auto`}></i>

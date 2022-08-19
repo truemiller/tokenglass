@@ -21,18 +21,20 @@ export function Navbar({ setAddress }: NavbarProps) {
   return (
     <>
       <nav
-        className="w-full p-3 top-0 sticky bg-white"
+        className="w-full p-3 top-0 sticky bg-white shadow-xl"
         style={{ height: "70px" }}
       >
         <div className="mx-auto">
           <div className="flex justify-between">
-            <div>
-              <i className="fas fa-magnifying-glass mr-3 text-blue-700"></i>
-              <input
-                type="text"
-                className="p-3"
-                placeholder={"Search for a wallet"}
-              />
+            <div className={"flex flex-row"}>
+              <i className="fas fa-magnifying-glass mr-3 text-blue-700 my-auto"></i>
+              <form>
+                <input
+                  type="text"
+                  className="p-3"
+                  placeholder={"Search for a wallet"}
+                />
+              </form>
             </div>
             <div className={"flex flex-row"}>
               {address ? (
@@ -43,7 +45,7 @@ export function Navbar({ setAddress }: NavbarProps) {
                   />
                   <button
                     className={
-                      "btn btn-danger rounded-xl p-2 px-5 bg-red-600 hover:bg-red-900 text-white"
+                      "btn btn-danger rounded-xl p-2 px-5 bg-red-700 hover:bg-red-900 text-white shadow border"
                     }
                     onClick={() => setAddress(null)}
                   >
@@ -53,7 +55,7 @@ export function Navbar({ setAddress }: NavbarProps) {
               ) : (
                 <>
                   <button
-                    className="bg-blue-700 p-2 px-5 rounded-xl text-white hover:bg-blue-900"
+                    className="bg-blue-700 p-2 px-5 rounded-xl text-white hover:bg-blue-900 shadow border"
                     onClick={handleConnect}
                   >
                     Connect

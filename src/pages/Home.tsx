@@ -25,7 +25,7 @@ export default function Home() {
         <div className="mx-auto container">
           <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5 mb-5">
             <div className="my-auto  p-3 ">
-              <h1 className="text-6xl mb-5 mt-auto font-extrabold">
+              <h1 className="text-6xl mb-5 mt-auto font-bold">
                 Crypto portfolio tracker
               </h1>
               <p className={"mb-5"}>

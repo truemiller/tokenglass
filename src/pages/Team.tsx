@@ -11,13 +11,13 @@ export default function Team(): JSX.Element {
         <div className="container mx-auto">
           <div className="flex flex-row flex-wrap">
             <div className="md:w-1/3 ">
-              <h2 className={"font-extrabold text-5xl"}>Meet our team</h2>
+              <h2 className={"font-bold text-5xl"}>Meet our team</h2>
               Our team is built up of two like-minded individuals looking to
               make crypto more exciting.
             </div>
             <div className="md:w-1/3 sm:w-1/2 w-1/2 text-center">
               <div className="mx-auto">
-                <h3 className={"font-extrabold"}>True Miller</h3>
+                <h3 className={"font-bold"}>True Miller</h3>
                 <img
                   src="/team/truemiller.jpg"
                   alt=""
@@ -29,7 +29,7 @@ export default function Team(): JSX.Element {
             </div>
             <div className="md:w-1/3 sm:w-1/2 w-1/2 text-center">
               <div className="mx-auto">
-                <h3 className={"font-extrabold"}>Thundercat</h3>
+                <h3 className={"font-bold"}>Thundercat</h3>
                 <img
                   src="/team/thundercat.jpg"
                   alt=""

@@ -7,7 +7,7 @@ export default function Balance(props: any): JSX.Element {
   return (
     <>
       <div className="flex">
-        <span className={"font-extrabold text-xl "}>
+        <span className={"font-bold text-xl "}>
           Balance: $ {totalBalance.toLocaleString()}
         </span>
       </div>

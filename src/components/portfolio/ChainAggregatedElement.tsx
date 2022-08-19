@@ -22,7 +22,7 @@ export const ChainAggregatedElement = ({
       />
       <div className={"ml-2 flex flex-col"}>
         <span>{chain.provider.network.name}</span>
-        <span className={"font-extrabold"}>${balance.toLocaleString()}</span>
+        <span className={"font-bold"}>${balance.toLocaleString()}</span>
         <span className={"text-sm"}>
           {((balance * 100) / totalBalance).toLocaleString()}%
         </span>
