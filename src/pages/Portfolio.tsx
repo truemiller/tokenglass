@@ -40,19 +40,16 @@ export default function Portfolio({ address }: WalletProps) {
           </div>
           {address ? (
             <div className={"flex flex-row flex-wrap"}>
-              <div className="w-full lg:w-1/2">
+              <div className="w-full ">
                 <Balance totalBalance={totalBalance} />
-
+                <ChainAggregatedElements
+                  tokens={tokens}
+                  totalBalance={totalBalance}
+                />
                 <Tokens
                   address={address}
                   setTokens={setTokens}
                   tokens={tokens}
-                />
-              </div>
-              <div className="w-full lg:w-1/2">
-                <ChainAggregatedElements
-                  tokens={tokens}
-                  totalBalance={totalBalance}
                 />
               </div>
             </div>
