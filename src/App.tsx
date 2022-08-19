@@ -40,7 +40,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     window?.ethereum
-      .request({ method: "eth_requestAccounts" })
+      ?.request({ method: "eth_requestAccounts" })
       .then((r: any) => {
         setAddress(r[0]);
       });
