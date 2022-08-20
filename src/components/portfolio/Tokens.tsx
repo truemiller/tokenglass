@@ -279,7 +279,7 @@ export function Tokens({
 
   return (
     <>
-      <div className="m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col">
+      <div className="my-5 shadow-xl bg-white p-5 rounded-xl flex flex-col">
         <table className={"w-full table"}>
           <thead>
             <tr>

@@ -26,7 +26,7 @@ export function ChainAggregatedElements({
 
   return (
     <>
-      <div className={"m-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"}>
+      <div className={"my-5 shadow-xl bg-white p-5 rounded-xl flex flex-col"}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
           {Object.keys(CHAINS)
             //@ts-ignore

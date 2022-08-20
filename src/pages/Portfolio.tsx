@@ -31,7 +31,7 @@ export default function Portfolio({ address }: WalletProps) {
       <Helmet>
         <title>Token Glass - Portfolio</title>
       </Helmet>
-      <div className={"p-10"}>
+      <div className={"p-5 md:p-10"}>
         <div className="container mx-auto">
           <div className="flex flex-row">
             <div className="flex flex-col">
